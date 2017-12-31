@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yubing.web.mapper.constraint.KeyGeneratorMapper">
+
+    <!-- 为了防止sql注入，动态表名时，statementType必须设置成ava.lang.String" stat -->
+    <select id="getKeyId" resultType="java.lang.Integer" parameterType="java.lang.String" statementType="STATEMENT">
+        SELECT ${sequenceName} as KEY_ID from dual
+    </select>
+
+    <select id="getLongKeyId" resultType="java.lang.Long" parameterType="java.lang.String" statementType="STATEMENT">
+        SELECT ${sequenceName} as KEY_ID from dual
+    </select>
+
+</mapper>
+
+
+

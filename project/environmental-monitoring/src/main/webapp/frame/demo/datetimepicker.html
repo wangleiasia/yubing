@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日期控件</title>
+
+    <link rel="stylesheet" type="text/css" href="/frame/css/common.css">
+
+    <script>
+        $("#datetimepicker1").datepicker({
+            todayHighlight: true,
+            language:"zh-CN",
+            format:"yyyy-mm-dd"
+        });
+    </script>
+
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">新用户注册</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class='col-sm-6'>
+                <div class="form-group">
+                <label>选择日期：</label>
+                <!--指定 date标记-->
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control"/>
+                    <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <label>选择日期+时间：</label>
+                <!--指定 date标记-->
+                <div class='input-group date' id='datetimepicker2'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</div>
+
+
+</body>
+</html>
