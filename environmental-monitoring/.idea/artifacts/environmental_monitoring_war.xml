@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="environmental-monitoring:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="environmental-monitoring.war">
+      <element id="artifact" artifact-name="environmental-monitoring:war exploded" />
+    </root>
+  </artifact>
+</component>
