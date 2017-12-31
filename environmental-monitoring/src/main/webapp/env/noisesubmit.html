@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+
+    <meta content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width" name="viewport">
+
+    <link rel="stylesheet" type="text/css" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+
+
+    <script src="/env/noisesubmit.js"></script>
+
+    <title>noisesubmit</title>
+</head>
+<body>
+
+<div class="panel panel-default" style="margin-bottom: 2px">
+    <div class="panel-heading">
+        <h3 class="panel-title">24小时噪声监测实时提交</h3>
+    </div>
+
+    <div style="margin-top: 8px">
+        <form class="form-horizontal" id="form-id_noisesubmit">
+            <div class="form-group">
+                <label class="col-sm-1 control-label">项目编号</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="项目编号" name="项目编号" placeholder="项目编号">
+                </div>
+                <label class="col-sm-1 control-label">点位编号</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="点位编号" name="点位编号" placeholder="点位编号">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">月</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" readonly id="月" name="月" placeholder="月">
+                </div>
+                <label class="col-sm-1 control-label">日</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" readonly id="日" name="日" placeholder="日">
+                </div>
+                <label class="col-sm-1 control-label">时</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" readonly id="时" name="时" placeholder="时">
+                </div>
+                <label class="col-sm-1 control-label">分</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" readonly id="分" name="分" placeholder="分">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">时间段</label>
+                <!--
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="时间段" name="时间段" placeholder="时间段">
+                </div>
+                -->
+                <div class="col-sm-4">
+                    <select class="form-control"  name="时间段">
+                        <option value="白天">白天</option>
+                        <option value="夜间">夜间</option>
+                    </select>
+                </div>
+                <label class="col-sm-1 control-label">设备编号</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="设备编号" name="设备编号" placeholder="设备编号">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">方法代码</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="方法代码" name="方法代码" placeholder="方法代码">
+                </div>
+                <label class="col-sm-1 control-label">记录人</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="记录人" name="记录人" placeholder="记录人">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">L10</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="L10" name="L10" placeholder="L10">
+                </div>
+                <label class="col-sm-1 control-label">L50</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="L50" name="L50" placeholder="L50">
+                </div>
+                <label class="col-sm-1 control-label">L90</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="L90" name="L90" placeholder="L90">
+                </div>
+                <label class="col-sm-1 control-label">Leq</label>
+                <div class="col-sm-1">
+                    <input type="text" class="form-control" id="Leq" name="Leq" placeholder="Leq">
+                </div>
+                <span class="label label-primary input-lg">DB</span>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">Lmax</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="Lmax" name="Lmax" placeholder="Lmax">
+                </div>
+                <label class="col-sm-1 control-label">Lmin</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="Lmin" name="Lmin" placeholder="Lmin">
+                </div>
+                <label class="col-sm-1 control-label">标准差</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="标准差" name="标准差" placeholder="标准差">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">大型车</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="大型车" name="大型车" placeholder="大型车">
+                </div>
+                <label class="col-sm-1 control-label">中小型车</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="中小型车" name="中小型车" placeholder="中小型车">
+                </div>
+                <span class="label label-primary input-lg">辆/20min</span>
+            </div>
+        </form>
+    </div>
+
+</div>
+<div>
+    <button type="button" style="margin-top: 5px;" class="btn btn-primary btn-block" onclick="submit()">提交</button>
+</div>
+
+</body>
+</html>

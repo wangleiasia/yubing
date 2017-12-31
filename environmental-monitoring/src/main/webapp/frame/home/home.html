@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>home0</title>
+
+    <link rel="stylesheet" type="text/css" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/jquery-1.9.1/jquery.min.js"></script>
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <!-- bootstrap table组件以及中文包的引用 -->
+    <link href="/bootstrap-3.3.7-dist/css/bootstrap-table.min.css" rel="stylesheet" />
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap-table.min.js"></script>
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap-table-zh-CN.min.js"></script>
+
+    <!-- 对话框组件 -->
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap-dialog.min.js"></script>
+    <link href="/bootstrap-3.3.7-dist/css/bootstrap-dialog.min.css" rel="stylesheet" />
+
+    <!-- 下拉列表组件-->
+    <!--<link href="/bootstrap-3.3.7-dist/css/bootstrap-select.min.css" rel="stylesheet" />-->
+    <!--<script src="/bootstrap-3.3.7-dist/js/bootstrap-select.min.js"></script>-->
+    <!--<script src="/bootstrap-3.3.7-dist/js/defaults-zh_CN.js"></script>-->
+
+    <!-- 日期控件 -->
+    <link rel="stylesheet" type="text/css" href="/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css">
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.min.js"></script>
+    <!--<script src="/bootstrap-3.3.7-dist/js/moment-with-locales.min.js"></script>-->
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.zh-CN.js"></script>
+
+    <!-- 自定义功能JS文件 -->
+    <script src="/frame/script/jquery.table.js"></script>
+    <script src="/frame/script/jquery.form.js"></script>
+    <script src="/frame/script/jquery.select.js"></script>
+
+    <style>
+        body{
+            background-image: url("/frame/image/s2.jpg");
+            background-size: cover;
+        }
+        #work-div_id{
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            $("#header").load("/frame/home/header.html");
+            $("#footer").load("/frame/home/footer.html");
+            $("#menu").load("/frame/home/menu.html");
+            $("#work").load("/frame/home/default-work.html");
+        });
+
+    </script>
+
+</head>
+
+<body>
+
+    <div id="main-div" class="container-fluid">
+        <div class="row">
+            <div id="header" class="col-md-12">
+            </div>
+        </div>
+        <div class="row">
+            <div id="menu" class="col-md-11">
+            </div>
+        </div>
+        <div class="row">
+            <div id="center" class="col-md-12">
+                <div class="container-fluid">
+                    <div id="work-div_id" class="row">
+                        <div class="col-md-1"></div>
+                        <div id="work" class="col-md-10"></div>
+                        <div class="col-md-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div id="footer" class="col-md-12"></div>
+        </div>
+    </div>
+
+</body>
+</html>

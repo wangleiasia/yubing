@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>menu</title>
+    <script>
+        function showContent(dest) {
+            $("#work").load(dest);
+        }
+        $(document).ready(function () {
+            //装载菜单
+            loadMenuHtml();
+        });
+        /**
+         * 加载菜单
+         */
+        function loadMenuHtml() {
+            $.post("/service/loadMenu","",function (data) {
+                $("#menu-part-div_id").empty();
+                $("#menu-part-div_id").append(data['menuHtml']);
+            },"json");
+        }
+    </script>
+
+    <style>
+        #menu-div_id{
+            margin-left: 8.3333333333%;
+        }
+    </style>
+
+</head>
+<body>
+
+<div id="menu-div_id">
+
+<ul class="nav nav-pills" id="menu-part-div_id">
+    <!--<li class="dropdown">-->
+        <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">我的DEMO<span class="caret"></span></a>-->
+        <!--<ul class="dropdown-menu">-->
+            <!--<li><a href="javascript:showContent('/frame/demo/form.html')">表单</a></li>-->
+            <!--<li><a href="#">jMeter</a></li>-->
+            <!--<li><a href="#">EJB</a></li>-->
+            <!--<li class="divider"></li>-->
+            <!--<li><a href="#">分离的链接</a></li>-->
+        <!--</ul>-->
+    <!--</li>-->
+    <!--<li><a href="#">SVN</a></li>-->
+    <!--<li><a href="#">iOS</a></li>-->
+    <!--<li><a href="#">VB.Net</a></li>-->
+    <!--<li class="dropdown">-->
+        <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">Java<span class="caret"></span>-->
+        <!--</a>-->
+        <!--<ul class="dropdown-menu">-->
+            <!--<li><a href="#">Swing</a></li>-->
+            <!--<li><a href="#">jMeter</a></li>-->
+            <!--<li><a href="#">EJB</a></li>-->
+            <!--<li class="divider"></li>-->
+            <!--<li><a href="#">分离的链接</a></li>-->
+        <!--</ul>-->
+    <!--</li>-->
+    <!--<li><a href="#">PHP</a></li>-->
+</ul>
+
+</div>
+
+</body>
+</html>
