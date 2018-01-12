@@ -17,9 +17,9 @@ $(document).ready(function () {
     },"json");
 
     //浏览器高度
-    var height = $(document).height();
-    var workHeight = height-50-5-27;
-    $("#work").height(workHeight);
+    // var height = $(document).height();
+    // var workHeight = height-50-5-27;
+    // $("#work").height(workHeight);
 
 });
 
