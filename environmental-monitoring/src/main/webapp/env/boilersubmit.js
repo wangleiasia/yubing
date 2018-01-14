@@ -22,14 +22,15 @@ $(document).ready(function () {
     var boilerInfoColumns = [
         {'field': '项目编号', 'title': '项目编号'},
         {'field': '点位编号', 'title': '点位编号'},
+        {'field': '样品编号', 'title': '样品编号'},
         {'field': '序号', 'title': '序号'},
-        {'field': '次序', 'title': '次序'},
+        {'field': '时间段', 'title': '时间段'},
         {'field': '项目名称', 'title': '项目名称'},
         {'field': '检测结果', 'title': '检测结果'},
         {'field': '方法代码', 'title': '方法代码'},
-        {'field': '对应项目', 'title': '对应项目'},
         {'field': '单位', 'title': '单位'},
-        {'field': '仪器编号', 'title': '仪器编号'}
+        {'field': '仪器编号', 'title': '仪器编号'},
+        {'field': '检测人', 'title': '检测人'}
     ];
     //生成表格对象并初始化
     new RadioTableObject('tab-id_boilerInfo', boilerInfoColumns).Init();
@@ -37,30 +38,36 @@ $(document).ready(function () {
     $("#div-id-table_boilerInfo").hide();
 
     //用户项目编号下拉列表展示
-    $.post("/service/queryUserPointMangage",'',function (data) {
+    $.post("/service/pointManage/airPointManagePageInit",'',function (data) {
+        var prjArray = [];
         if('false' == data['result']) {
+            $("#项目编号").selectLoad(prjArray);
             return;
         }
+        var prjList = data['项目信息'];
         //加载数据
-        var topMenuArray = [];
-        for(var i = 0; i < data.length; i++) {
+        for(var i = 0; i < prjList.length; i++) {
             var item ={
-                value:data[i]['项目编号'],
-                desc:data[i]['项目编号']
+                value:prjList[i],
+                desc:prjList[i]
             };
-            topMenuArray.push(item);
+            prjArray.push(item);
         }
-        $("#项目编号").selectLoad(topMenuArray);
+        $("#项目编号").selectLoad(prjArray);
     },"json");
 });
 
-//根据项目编码查询点位信息-大气样品查询
+/**
+ *
+ * 根据项目编码查询点位信息-大气样品查询
+ *
+ */
 function queryPointByPrjCode() {
     //隐藏文件上传区域
     $("#div-id_fileInput").hide();
     var prjNumCode = $("#项目编号").val();
-    if(typeof(prjNumCode) == 'undefined' || '' == prjNumCode || null == prjNumCode) {
-        alert("请输入项目编号");
+    if(typeof(prjNumCode) == 'undefined' || '-1' == prjNumCode || null == prjNumCode) {
+        alert("请选择项目编号");
         return;
     }
 
@@ -79,7 +86,9 @@ function queryPointByPrjCode() {
     },"json");
 }
 
-//表格行的单击事件
+/**
+ * 表格行的单击事件
+ */
 $("#tab-id_pointInfo").on('click-row.bs.table', function(e,row, element) {
     // console.log(e);
     // console.log(row);
@@ -96,7 +105,10 @@ $("#tab-id_pointInfo").on('click-row.bs.table', function(e,row, element) {
     //显示文件上传区域
     $("#div-id_fileInput").show();
 });
-//回调函数，用于文件上传时获取额外的参数
+/**
+ * 回调函数，用于文件上传时获取额外的参数
+ * @returns {*}
+ */
 uploadExtendParam = function () {
     //将点位信息回传
     var selectRows = $('#tab-id_pointInfo').bootstrapTable('getSelections');
@@ -104,7 +116,11 @@ uploadExtendParam = function () {
     obj.项目编号 = $("#项目编号").val();
     return selectRows[0];
 };
-//回调函数：文件上产成功后
+/**
+ *
+ * 回调函数：文件上传成功后
+ *
+ */
 $('#file-0').on('fileuploaded', function(event, data, previewId, index) {
     var selectRows = $('#tab-id_pointInfo').bootstrapTable('getSelections');
     var obj = selectRows[0];
@@ -125,7 +141,11 @@ $('#file-0').on('fileuploaded', function(event, data, previewId, index) {
     },"json");
 });
 
-//工况回传
+/**
+ *
+ * 工况回传
+ *
+ */
 function operatingModeSubmit() {
     var param = $("#form-id_noisesubmit").serialize();
     var selectRows = $('#tab-id_pointInfo').bootstrapTable('getSelections');

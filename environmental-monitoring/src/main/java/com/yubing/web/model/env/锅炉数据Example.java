@@ -175,6 +175,66 @@ public class 锅炉数据Example {
             return (Criteria) this;
         }
 
+        public Criteria and序号IsNull() {
+            addCriterion("序号 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria and序号IsNotNull() {
+            addCriterion("序号 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria and序号EqualTo(Integer value) {
+            addCriterion("序号 =", value, "序号");
+            return (Criteria) this;
+        }
+
+        public Criteria and序号NotEqualTo(Integer value) {
+            addCriterion("序号 <>", value, "序号");
+            return (Criteria) this;
+        }
+
+        public Criteria and序号GreaterThan(Integer value) {
+            addCriterion("序号 >", value, "序号");
+            return (Criteria) this;
+        }
+
+        public Criteria and序号GreaterThanOrEqualTo(Integer value) {
+            addCriterion("序号 >=", value, "序号");
+            return (Criteria) this;
+        }
+
+        public Criteria and序号LessThan(Integer value) {
+            addCriterion("序号 <", value, "序号");
+            return (Criteria) this;
+        }
+
+        public Criteria and序号LessThanOrEqualTo(Integer value) {
+            addCriterion("序号 <=", value, "序号");
+            return (Criteria) this;
+        }
+
+        public Criteria and序号In(List<Integer> values) {
+            addCriterion("序号 in", values, "序号");
+            return (Criteria) this;
+        }
+
+        public Criteria and序号NotIn(List<Integer> values) {
+            addCriterion("序号 not in", values, "序号");
+            return (Criteria) this;
+        }
+
+        public Criteria and序号Between(Integer value1, Integer value2) {
+            addCriterion("序号 between", value1, value2, "序号");
+            return (Criteria) this;
+        }
+
+        public Criteria and序号NotBetween(Integer value1, Integer value2) {
+            addCriterion("序号 not between", value1, value2, "序号");
+            return (Criteria) this;
+        }
+
         public Criteria and点位编号IsNull() {
             addCriterion("点位编号 is null");
             return (Criteria) this;
@@ -315,133 +375,73 @@ public class 锅炉数据Example {
             return (Criteria) this;
         }
 
-        public Criteria and序号IsNull() {
-            addCriterion("序号 is null");
+        public Criteria and时间段IsNull() {
+            addCriterion("时间段 is null");
             return (Criteria) this;
         }
 
-        public Criteria and序号IsNotNull() {
-            addCriterion("序号 is not null");
+        public Criteria and时间段IsNotNull() {
+            addCriterion("时间段 is not null");
             return (Criteria) this;
         }
 
-        public Criteria and序号EqualTo(Integer value) {
-            addCriterion("序号 =", value, "序号");
+        public Criteria and时间段EqualTo(String value) {
+            addCriterion("时间段 =", value, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and序号NotEqualTo(Integer value) {
-            addCriterion("序号 <>", value, "序号");
+        public Criteria and时间段NotEqualTo(String value) {
+            addCriterion("时间段 <>", value, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and序号GreaterThan(Integer value) {
-            addCriterion("序号 >", value, "序号");
+        public Criteria and时间段GreaterThan(String value) {
+            addCriterion("时间段 >", value, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and序号GreaterThanOrEqualTo(Integer value) {
-            addCriterion("序号 >=", value, "序号");
+        public Criteria and时间段GreaterThanOrEqualTo(String value) {
+            addCriterion("时间段 >=", value, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and序号LessThan(Integer value) {
-            addCriterion("序号 <", value, "序号");
+        public Criteria and时间段LessThan(String value) {
+            addCriterion("时间段 <", value, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and序号LessThanOrEqualTo(Integer value) {
-            addCriterion("序号 <=", value, "序号");
+        public Criteria and时间段LessThanOrEqualTo(String value) {
+            addCriterion("时间段 <=", value, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and序号In(List<Integer> values) {
-            addCriterion("序号 in", values, "序号");
+        public Criteria and时间段Like(String value) {
+            addCriterion("时间段 like", value, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and序号NotIn(List<Integer> values) {
-            addCriterion("序号 not in", values, "序号");
+        public Criteria and时间段NotLike(String value) {
+            addCriterion("时间段 not like", value, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and序号Between(Integer value1, Integer value2) {
-            addCriterion("序号 between", value1, value2, "序号");
+        public Criteria and时间段In(List<String> values) {
+            addCriterion("时间段 in", values, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and序号NotBetween(Integer value1, Integer value2) {
-            addCriterion("序号 not between", value1, value2, "序号");
+        public Criteria and时间段NotIn(List<String> values) {
+            addCriterion("时间段 not in", values, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and次序IsNull() {
-            addCriterion("次序 is null");
+        public Criteria and时间段Between(String value1, String value2) {
+            addCriterion("时间段 between", value1, value2, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and次序IsNotNull() {
-            addCriterion("次序 is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria and次序EqualTo(String value) {
-            addCriterion("次序 =", value, "次序");
-            return (Criteria) this;
-        }
-
-        public Criteria and次序NotEqualTo(String value) {
-            addCriterion("次序 <>", value, "次序");
-            return (Criteria) this;
-        }
-
-        public Criteria and次序GreaterThan(String value) {
-            addCriterion("次序 >", value, "次序");
-            return (Criteria) this;
-        }
-
-        public Criteria and次序GreaterThanOrEqualTo(String value) {
-            addCriterion("次序 >=", value, "次序");
-            return (Criteria) this;
-        }
-
-        public Criteria and次序LessThan(String value) {
-            addCriterion("次序 <", value, "次序");
-            return (Criteria) this;
-        }
-
-        public Criteria and次序LessThanOrEqualTo(String value) {
-            addCriterion("次序 <=", value, "次序");
-            return (Criteria) this;
-        }
-
-        public Criteria and次序Like(String value) {
-            addCriterion("次序 like", value, "次序");
-            return (Criteria) this;
-        }
-
-        public Criteria and次序NotLike(String value) {
-            addCriterion("次序 not like", value, "次序");
-            return (Criteria) this;
-        }
-
-        public Criteria and次序In(List<String> values) {
-            addCriterion("次序 in", values, "次序");
-            return (Criteria) this;
-        }
-
-        public Criteria and次序NotIn(List<String> values) {
-            addCriterion("次序 not in", values, "次序");
-            return (Criteria) this;
-        }
-
-        public Criteria and次序Between(String value1, String value2) {
-            addCriterion("次序 between", value1, value2, "次序");
-            return (Criteria) this;
-        }
-
-        public Criteria and次序NotBetween(String value1, String value2) {
-            addCriterion("次序 not between", value1, value2, "次序");
+        public Criteria and时间段NotBetween(String value1, String value2) {
+            addCriterion("时间段 not between", value1, value2, "时间段");
             return (Criteria) this;
         }
 
@@ -655,76 +655,6 @@ public class 锅炉数据Example {
             return (Criteria) this;
         }
 
-        public Criteria and对应项目IsNull() {
-            addCriterion("对应项目 is null");
-            return (Criteria) this;
-        }
-
-        public Criteria and对应项目IsNotNull() {
-            addCriterion("对应项目 is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria and对应项目EqualTo(String value) {
-            addCriterion("对应项目 =", value, "对应项目");
-            return (Criteria) this;
-        }
-
-        public Criteria and对应项目NotEqualTo(String value) {
-            addCriterion("对应项目 <>", value, "对应项目");
-            return (Criteria) this;
-        }
-
-        public Criteria and对应项目GreaterThan(String value) {
-            addCriterion("对应项目 >", value, "对应项目");
-            return (Criteria) this;
-        }
-
-        public Criteria and对应项目GreaterThanOrEqualTo(String value) {
-            addCriterion("对应项目 >=", value, "对应项目");
-            return (Criteria) this;
-        }
-
-        public Criteria and对应项目LessThan(String value) {
-            addCriterion("对应项目 <", value, "对应项目");
-            return (Criteria) this;
-        }
-
-        public Criteria and对应项目LessThanOrEqualTo(String value) {
-            addCriterion("对应项目 <=", value, "对应项目");
-            return (Criteria) this;
-        }
-
-        public Criteria and对应项目Like(String value) {
-            addCriterion("对应项目 like", value, "对应项目");
-            return (Criteria) this;
-        }
-
-        public Criteria and对应项目NotLike(String value) {
-            addCriterion("对应项目 not like", value, "对应项目");
-            return (Criteria) this;
-        }
-
-        public Criteria and对应项目In(List<String> values) {
-            addCriterion("对应项目 in", values, "对应项目");
-            return (Criteria) this;
-        }
-
-        public Criteria and对应项目NotIn(List<String> values) {
-            addCriterion("对应项目 not in", values, "对应项目");
-            return (Criteria) this;
-        }
-
-        public Criteria and对应项目Between(String value1, String value2) {
-            addCriterion("对应项目 between", value1, value2, "对应项目");
-            return (Criteria) this;
-        }
-
-        public Criteria and对应项目NotBetween(String value1, String value2) {
-            addCriterion("对应项目 not between", value1, value2, "对应项目");
-            return (Criteria) this;
-        }
-
         public Criteria and单位IsNull() {
             addCriterion("单位 is null");
             return (Criteria) this;
@@ -865,52 +795,62 @@ public class 锅炉数据Example {
             return (Criteria) this;
         }
 
-        public Criteria and时间EqualTo(Date value) {
+        public Criteria and时间EqualTo(String value) {
             addCriterion("时间 =", value, "时间");
             return (Criteria) this;
         }
 
-        public Criteria and时间NotEqualTo(Date value) {
+        public Criteria and时间NotEqualTo(String value) {
             addCriterion("时间 <>", value, "时间");
             return (Criteria) this;
         }
 
-        public Criteria and时间GreaterThan(Date value) {
+        public Criteria and时间GreaterThan(String value) {
             addCriterion("时间 >", value, "时间");
             return (Criteria) this;
         }
 
-        public Criteria and时间GreaterThanOrEqualTo(Date value) {
+        public Criteria and时间GreaterThanOrEqualTo(String value) {
             addCriterion("时间 >=", value, "时间");
             return (Criteria) this;
         }
 
-        public Criteria and时间LessThan(Date value) {
+        public Criteria and时间LessThan(String value) {
             addCriterion("时间 <", value, "时间");
             return (Criteria) this;
         }
 
-        public Criteria and时间LessThanOrEqualTo(Date value) {
+        public Criteria and时间LessThanOrEqualTo(String value) {
             addCriterion("时间 <=", value, "时间");
             return (Criteria) this;
         }
 
-        public Criteria and时间In(List<Date> values) {
+        public Criteria and时间Like(String value) {
+            addCriterion("时间 like", value, "时间");
+            return (Criteria) this;
+        }
+
+        public Criteria and时间NotLike(String value) {
+            addCriterion("时间 not like", value, "时间");
+            return (Criteria) this;
+        }
+
+        public Criteria and时间In(List<String> values) {
             addCriterion("时间 in", values, "时间");
             return (Criteria) this;
         }
 
-        public Criteria and时间NotIn(List<Date> values) {
+        public Criteria and时间NotIn(List<String> values) {
             addCriterion("时间 not in", values, "时间");
             return (Criteria) this;
         }
 
-        public Criteria and时间Between(Date value1, Date value2) {
+        public Criteria and时间Between(String value1, String value2) {
             addCriterion("时间 between", value1, value2, "时间");
             return (Criteria) this;
         }
 
-        public Criteria and时间NotBetween(Date value1, Date value2) {
+        public Criteria and时间NotBetween(String value1, String value2) {
             addCriterion("时间 not between", value1, value2, "时间");
             return (Criteria) this;
         }

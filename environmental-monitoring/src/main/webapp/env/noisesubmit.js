@@ -44,6 +44,25 @@ $(document).ready(function () {
         }
         $("#方法代码").selectLoad(methodCodeArray);
     },"json");
+
+    //初始化设备信息
+    $.post("/service/pointManage/queryEquipmentForNoise",'',function (data) {
+        var equipmentArray = [];
+        if('false' == data['result']) {
+            $("#设备编号").selectLoad(equipmentArray);
+            return;
+        }
+        //加载数据
+        for(var i = 0; i < data.length; i++) {
+            var descV = '['+data[i]['设备编号']+']['+data[i]['设备名称']+']';
+            var item ={
+                value:data[i]['设备编号'],
+                desc:descV
+            };
+            equipmentArray.push(item);
+        }
+        $("#设备编号").selectLoad(equipmentArray);
+    },"json");
 });
 
 /**

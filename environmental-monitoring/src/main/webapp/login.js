@@ -4,9 +4,9 @@
 
 $(document).ready(function () {
     //浏览器高度
-    var height = $(document).height();
-    var workHeight = height-67;
-    $("#work").height(workHeight);
+    // var height = $(document).height();
+    // var workHeight = height-67;
+    // $("#work").height(workHeight);
 });
 
 function login() {

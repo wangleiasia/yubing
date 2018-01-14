@@ -72,6 +72,7 @@
 		<mapper resource="mapper/env/大气样品Mapper.xml" />
 		<mapper resource="mapper/env/shouquanbiaoMapper.xml" />
 		<mapper resource="mapper/env/检测依据Mapper.xml"></mapper>
+		<mapper resource="mapper/env/设备台账Mapper.xml"></mapper>
 
 	</mappers>
 

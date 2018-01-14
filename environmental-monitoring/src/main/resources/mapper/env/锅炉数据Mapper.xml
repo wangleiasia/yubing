@@ -3,22 +3,21 @@
 <mapper namespace="com.yubing.web.mapper.env.锅炉数据Mapper">
   <resultMap id="BaseResultMap" type="com.yubing.web.model.env.锅炉数据">
     <result column="项目编号" jdbcType="VARCHAR" property="项目编号" />
+    <result column="序号" jdbcType="INTEGER" property="序号" />
     <result column="点位编号" jdbcType="VARCHAR" property="点位编号" />
     <result column="样品编号" jdbcType="VARCHAR" property="样品编号" />
-    <result column="序号" jdbcType="INTEGER" property="序号" />
-    <result column="次序" jdbcType="CHAR" property="次序" />
+    <result column="时间段" jdbcType="VARCHAR" property="时间段" />
     <result column="项目名称" jdbcType="VARCHAR" property="项目名称" />
     <result column="检测结果" jdbcType="VARCHAR" property="检测结果" />
     <result column="方法代码" jdbcType="VARCHAR" property="方法代码" />
-    <result column="对应项目" jdbcType="VARCHAR" property="对应项目" />
     <result column="单位" jdbcType="VARCHAR" property="单位" />
     <result column="检测日期" jdbcType="TIMESTAMP" property="检测日期" />
-    <result column="时间" jdbcType="TIMESTAMP" property="时间" />
+    <result column="时间" jdbcType="VARCHAR" property="时间" />
     <result column="检测人" jdbcType="VARCHAR" property="检测人" />
     <result column="仪器编号" jdbcType="VARCHAR" property="仪器编号" />
     <result column="复核" jdbcType="VARCHAR" property="复核" />
-    <result column="结论" jdbcType="CHAR" property="结论" />
-    <result column="选择" jdbcType="CHAR" property="选择" />
+    <result column="结论" jdbcType="VARCHAR" property="结论" />
+    <result column="选择" jdbcType="VARCHAR" property="选择" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -79,8 +78,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    项目编号, 点位编号, 样品编号, 序号, 次序, 项目名称, 检测结果, 方法代码, 对应项目, 单位, 检测日期, 时间, 检测人, 仪器编号, 复核, 结论, 
-    选择
+    项目编号, 序号, 点位编号, 样品编号, 时间段, 项目名称, 检测结果, 方法代码, 单位, 检测日期, 时间, 检测人, 仪器编号, 复核, 结论, 选择
   </sql>
   <select id="selectByExample" parameterType="com.yubing.web.model.env.锅炉数据Example" resultMap="BaseResultMap">
     select
@@ -104,16 +102,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.yubing.web.model.env.锅炉数据">
-    insert into 锅炉数据 (项目编号, 点位编号, 样品编号, 
-      序号, 次序, 项目名称, 检测结果, 
-      方法代码, 对应项目, 单位, 检测日期, 
-      时间, 检测人, 仪器编号, 复核, 
-      结论, 选择)
-    values (#{项目编号,jdbcType=VARCHAR}, #{点位编号,jdbcType=VARCHAR}, #{样品编号,jdbcType=VARCHAR}, 
-      #{序号,jdbcType=INTEGER}, #{次序,jdbcType=CHAR}, #{项目名称,jdbcType=VARCHAR}, #{检测结果,jdbcType=VARCHAR}, 
-      #{方法代码,jdbcType=VARCHAR}, #{对应项目,jdbcType=VARCHAR}, #{单位,jdbcType=VARCHAR}, #{检测日期,jdbcType=TIMESTAMP}, 
-      #{时间,jdbcType=TIMESTAMP}, #{检测人,jdbcType=VARCHAR}, #{仪器编号,jdbcType=VARCHAR}, #{复核,jdbcType=VARCHAR}, 
-      #{结论,jdbcType=CHAR}, #{选择,jdbcType=CHAR})
+    insert into 锅炉数据 (项目编号, 序号, 点位编号, 
+      样品编号, 时间段, 项目名称, 检测结果, 
+      方法代码, 单位, 检测日期, 时间, 
+      检测人, 仪器编号, 复核, 结论, 
+      选择)
+    values (#{项目编号,jdbcType=VARCHAR}, #{序号,jdbcType=INTEGER}, #{点位编号,jdbcType=VARCHAR}, 
+      #{样品编号,jdbcType=VARCHAR}, #{时间段,jdbcType=VARCHAR}, #{项目名称,jdbcType=VARCHAR}, #{检测结果,jdbcType=VARCHAR}, 
+      #{方法代码,jdbcType=VARCHAR}, #{单位,jdbcType=VARCHAR}, #{检测日期,jdbcType=TIMESTAMP}, #{时间,jdbcType=VARCHAR}, 
+      #{检测人,jdbcType=VARCHAR}, #{仪器编号,jdbcType=VARCHAR}, #{复核,jdbcType=VARCHAR}, #{结论,jdbcType=VARCHAR}, 
+      #{选择,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yubing.web.model.env.锅炉数据">
     insert into 锅炉数据
@@ -121,17 +119,17 @@
       <if test="项目编号 != null">
         项目编号,
       </if>
+      <if test="序号 != null">
+        序号,
+      </if>
       <if test="点位编号 != null">
         点位编号,
       </if>
       <if test="样品编号 != null">
         样品编号,
       </if>
-      <if test="序号 != null">
-        序号,
-      </if>
-      <if test="次序 != null">
-        次序,
+      <if test="时间段 != null">
+        时间段,
       </if>
       <if test="项目名称 != null">
         项目名称,
@@ -141,9 +139,6 @@
       </if>
       <if test="方法代码 != null">
         方法代码,
-      </if>
-      <if test="对应项目 != null">
-        对应项目,
       </if>
       <if test="单位 != null">
         单位,
@@ -174,17 +169,17 @@
       <if test="项目编号 != null">
         #{项目编号,jdbcType=VARCHAR},
       </if>
+      <if test="序号 != null">
+        #{序号,jdbcType=INTEGER},
+      </if>
       <if test="点位编号 != null">
         #{点位编号,jdbcType=VARCHAR},
       </if>
       <if test="样品编号 != null">
         #{样品编号,jdbcType=VARCHAR},
       </if>
-      <if test="序号 != null">
-        #{序号,jdbcType=INTEGER},
-      </if>
-      <if test="次序 != null">
-        #{次序,jdbcType=CHAR},
+      <if test="时间段 != null">
+        #{时间段,jdbcType=VARCHAR},
       </if>
       <if test="项目名称 != null">
         #{项目名称,jdbcType=VARCHAR},
@@ -195,9 +190,6 @@
       <if test="方法代码 != null">
         #{方法代码,jdbcType=VARCHAR},
       </if>
-      <if test="对应项目 != null">
-        #{对应项目,jdbcType=VARCHAR},
-      </if>
       <if test="单位 != null">
         #{单位,jdbcType=VARCHAR},
       </if>
@@ -205,7 +197,7 @@
         #{检测日期,jdbcType=TIMESTAMP},
       </if>
       <if test="时间 != null">
-        #{时间,jdbcType=TIMESTAMP},
+        #{时间,jdbcType=VARCHAR},
       </if>
       <if test="检测人 != null">
         #{检测人,jdbcType=VARCHAR},
@@ -217,10 +209,10 @@
         #{复核,jdbcType=VARCHAR},
       </if>
       <if test="结论 != null">
-        #{结论,jdbcType=CHAR},
+        #{结论,jdbcType=VARCHAR},
       </if>
       <if test="选择 != null">
-        #{选择,jdbcType=CHAR},
+        #{选择,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -236,17 +228,17 @@
       <if test="record.项目编号 != null">
         项目编号 = #{record.项目编号,jdbcType=VARCHAR},
       </if>
+      <if test="record.序号 != null">
+        序号 = #{record.序号,jdbcType=INTEGER},
+      </if>
       <if test="record.点位编号 != null">
         点位编号 = #{record.点位编号,jdbcType=VARCHAR},
       </if>
       <if test="record.样品编号 != null">
         样品编号 = #{record.样品编号,jdbcType=VARCHAR},
       </if>
-      <if test="record.序号 != null">
-        序号 = #{record.序号,jdbcType=INTEGER},
-      </if>
-      <if test="record.次序 != null">
-        次序 = #{record.次序,jdbcType=CHAR},
+      <if test="record.时间段 != null">
+        时间段 = #{record.时间段,jdbcType=VARCHAR},
       </if>
       <if test="record.项目名称 != null">
         项目名称 = #{record.项目名称,jdbcType=VARCHAR},
@@ -257,9 +249,6 @@
       <if test="record.方法代码 != null">
         方法代码 = #{record.方法代码,jdbcType=VARCHAR},
       </if>
-      <if test="record.对应项目 != null">
-        对应项目 = #{record.对应项目,jdbcType=VARCHAR},
-      </if>
       <if test="record.单位 != null">
         单位 = #{record.单位,jdbcType=VARCHAR},
       </if>
@@ -267,7 +256,7 @@
         检测日期 = #{record.检测日期,jdbcType=TIMESTAMP},
       </if>
       <if test="record.时间 != null">
-        时间 = #{record.时间,jdbcType=TIMESTAMP},
+        时间 = #{record.时间,jdbcType=VARCHAR},
       </if>
       <if test="record.检测人 != null">
         检测人 = #{record.检测人,jdbcType=VARCHAR},
@@ -279,10 +268,10 @@
         复核 = #{record.复核,jdbcType=VARCHAR},
       </if>
       <if test="record.结论 != null">
-        结论 = #{record.结论,jdbcType=CHAR},
+        结论 = #{record.结论,jdbcType=VARCHAR},
       </if>
       <if test="record.选择 != null">
-        选择 = #{record.选择,jdbcType=CHAR},
+        选择 = #{record.选择,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -292,22 +281,21 @@
   <update id="updateByExample" parameterType="map">
     update 锅炉数据
     set 项目编号 = #{record.项目编号,jdbcType=VARCHAR},
+      序号 = #{record.序号,jdbcType=INTEGER},
       点位编号 = #{record.点位编号,jdbcType=VARCHAR},
       样品编号 = #{record.样品编号,jdbcType=VARCHAR},
-      序号 = #{record.序号,jdbcType=INTEGER},
-      次序 = #{record.次序,jdbcType=CHAR},
+      时间段 = #{record.时间段,jdbcType=VARCHAR},
       项目名称 = #{record.项目名称,jdbcType=VARCHAR},
       检测结果 = #{record.检测结果,jdbcType=VARCHAR},
       方法代码 = #{record.方法代码,jdbcType=VARCHAR},
-      对应项目 = #{record.对应项目,jdbcType=VARCHAR},
       单位 = #{record.单位,jdbcType=VARCHAR},
       检测日期 = #{record.检测日期,jdbcType=TIMESTAMP},
-      时间 = #{record.时间,jdbcType=TIMESTAMP},
+      时间 = #{record.时间,jdbcType=VARCHAR},
       检测人 = #{record.检测人,jdbcType=VARCHAR},
       仪器编号 = #{record.仪器编号,jdbcType=VARCHAR},
       复核 = #{record.复核,jdbcType=VARCHAR},
-      结论 = #{record.结论,jdbcType=CHAR},
-      选择 = #{record.选择,jdbcType=CHAR}
+      结论 = #{record.结论,jdbcType=VARCHAR},
+      选择 = #{record.选择,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

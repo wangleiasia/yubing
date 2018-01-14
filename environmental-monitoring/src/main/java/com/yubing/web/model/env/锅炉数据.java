@@ -5,13 +5,13 @@ import java.util.Date;
 public class 锅炉数据 {
     private String 项目编号;
 
+    private Integer 序号;
+
     private String 点位编号;
 
     private String 样品编号;
 
-    private Integer 序号;
-
-    private String 次序;
+    private String 时间段;
 
     private String 项目名称;
 
@@ -19,13 +19,11 @@ public class 锅炉数据 {
 
     private String 方法代码;
 
-    private String 对应项目;
-
     private String 单位;
 
     private Date 检测日期;
 
-    private Date 时间;
+    private String 时间;
 
     private String 检测人;
 
@@ -45,6 +43,14 @@ public class 锅炉数据 {
         this.项目编号 = 项目编号 == null ? null : 项目编号.trim();
     }
 
+    public Integer get序号() {
+        return 序号;
+    }
+
+    public void set序号(Integer 序号) {
+        this.序号 = 序号;
+    }
+
     public String get点位编号() {
         return 点位编号;
     }
@@ -61,20 +67,12 @@ public class 锅炉数据 {
         this.样品编号 = 样品编号 == null ? null : 样品编号.trim();
     }
 
-    public Integer get序号() {
-        return 序号;
+    public String get时间段() {
+        return 时间段;
     }
 
-    public void set序号(Integer 序号) {
-        this.序号 = 序号;
-    }
-
-    public String get次序() {
-        return 次序;
-    }
-
-    public void set次序(String 次序) {
-        this.次序 = 次序 == null ? null : 次序.trim();
+    public void set时间段(String 时间段) {
+        this.时间段 = 时间段 == null ? null : 时间段.trim();
     }
 
     public String get项目名称() {
@@ -101,14 +99,6 @@ public class 锅炉数据 {
         this.方法代码 = 方法代码 == null ? null : 方法代码.trim();
     }
 
-    public String get对应项目() {
-        return 对应项目;
-    }
-
-    public void set对应项目(String 对应项目) {
-        this.对应项目 = 对应项目 == null ? null : 对应项目.trim();
-    }
-
     public String get单位() {
         return 单位;
     }
@@ -125,12 +115,12 @@ public class 锅炉数据 {
         this.检测日期 = 检测日期;
     }
 
-    public Date get时间() {
+    public String get时间() {
         return 时间;
     }
 
-    public void set时间(Date 时间) {
-        this.时间 = 时间;
+    public void set时间(String 时间) {
+        this.时间 = 时间 == null ? null : 时间.trim();
     }
 
     public String get检测人() {

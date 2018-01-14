@@ -14,4 +14,9 @@ public interface I大气样品SV {
 
     List<大气样品> queryRecordsByCond(Map<String,String> cond) throws Exception;
 
+    //查询没有上传的大气样品
+    List<大气样品> queryNotUploadRecordsByCond(Map<String,String> cond) throws Exception;
+
+    //更新大气样品
+    void modify(Map<String,String> cond,大气样品 record) throws Exception;
 }

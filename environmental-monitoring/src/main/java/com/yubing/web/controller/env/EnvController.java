@@ -1,5 +1,6 @@
 package com.yubing.web.controller.env;
 
+import com.yubing.util.DateUtil;
 import com.yubing.util.JsonDateValueProcessor;
 import com.yubing.web.controller.ControllerUtil;
 import com.yubing.web.csv.service.env.interfaces.I大气样品SV;
@@ -28,7 +29,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -87,7 +87,7 @@ public class EnvController {
                 String line = null;
                 while((line = reader.readLine()) != null) {
                     //这里添加业务逻辑
-                    saveUploadReaord(line,airTemplate,keyInfo,records);
+                    saveUploadReaord(line,airTemplate,keyInfo,records,request);
                 }
                 //保存锅炉数据
                 s锅炉数据SVImpl.addRecords(records);
@@ -101,7 +101,7 @@ public class EnvController {
     }
 
     //处理上传文件的内容
-    private void saveUploadReaord(String line,大气样品 airTemplate,Map<String,String> keyInfo,List<锅炉数据> records) throws Exception {
+    private void saveUploadReaord(String line,大气样品 airTemplate,Map<String,String> keyInfo,List<锅炉数据> records,HttpServletRequest request) throws Exception {
         if(StringUtils.isBlank(line)) {
             return;
         }
@@ -130,30 +130,32 @@ public class EnvController {
                 keyInfo.put(StringUtils.trim(rightRecords[0]), StringUtils.trim(rightRecords[1]));
             }
         }else if(line.contains(":") || line.contains("：")) {
-            resolve(line,keyInfo);
+            resolve(line,keyInfo,request);
         }else if(line.contains("=")){
-            resolve(line,airTemplate,keyInfo,records);
+            resolve(line,airTemplate,keyInfo,records,request);
         }
     }
 
-    private void resolve(String line,Map<String,String> keyInfo) throws Exception {
+    private void resolve(String line,Map<String,String> keyInfo,HttpServletRequest request) throws Exception {
         if(StringUtils.isBlank(line)) {
             LOGGER.error("锅炉数据有误，传入的数据行为空");
             return;
         }
-        String[] items = null;
-        if(line.contains(":")) {
-            items = line.split(":");
-        }else if(line.contains("：")) {
-            items = line.split("：");
-        }
-        if(null == items || items.length != 2) {
+        if(!line.contains(":")) {
             LOGGER.error("锅炉数据有误，传入的数据行为："+line);
             return;
         }
-        keyInfo.put(StringUtils.trim(items[0]), StringUtils.trim(items[1]));
+        int index = line.indexOf(':');
+        if(index < 1) {
+            LOGGER.error("锅炉数据有误，传入的数据行为："+line);
+            return;
+        }
+        String key = line.substring(0,index);
+        String value = line.substring(index+1,line.length());
+
+        keyInfo.put(StringUtils.trim(key), StringUtils.trim(value));
     }
-    private void resolve(String line,大气样品 airTemplate,Map<String,String> keyInfo,List<锅炉数据> records) throws Exception {
+    private void resolve(String line,大气样品 airTemplate,Map<String,String> keyInfo,List<锅炉数据> records,HttpServletRequest request) throws Exception {
         if(StringUtils.isBlank(line)) {
             LOGGER.error("锅炉数据有误，传入的数据行为空");
             return;
@@ -176,16 +178,18 @@ public class EnvController {
         record.set点位编号(airTemplate.get点位编号());
         record.set样品编号(airTemplate.get样品编号());
         record.set序号(boilerTemplate.get序号());
-        record.set次序(convertSeq(airTemplate.get时间段()));
+        record.set时间段(airTemplate.get时间段());
         record.set项目名称(boilerTemplate.get项目名称());
         record.set检测结果(items[1]);
         record.set方法代码(boilerTemplate.get方法代码());
-        record.set对应项目(boilerTemplate.get对应项目());
         record.set单位(boilerTemplate.get单位());
-        record.set检测日期(new Date());
-        record.set时间(new Timestamp(System.currentTimeMillis()));
-        //--需要补充检测人
+        record.set检测人((String)request.getSession().getAttribute("account"));
         record.set仪器编号(boilerTemplate.get仪器编号());
+
+        String checkDate = keyInfo.get("测试日期Date");
+        String checkTime = keyInfo.get("测试时间Time");
+        record.set检测日期(DateUtil.transToDate(checkDate,DateUtil.FORMAT_YYMMDD));
+        record.set时间(checkTime);
 
         records.add(record);
     }
@@ -230,7 +234,7 @@ public class EnvController {
     @RequestMapping(value="/大气样品查询",produces="text/json;charset=UTF-8")
     public String queryMonitorPoint(@RequestParam Map<String,String> param) {
         try {
-            List<大气样品> records = s大气样品SVImpl.queryRecordsByCond(param);
+            List<大气样品> records = s大气样品SVImpl.queryNotUploadRecordsByCond(param);
             if (null == records || records.size() < 1) {
                 return ControllerUtil.result(false, "没有查询到监测点信息");
             }
@@ -277,24 +281,6 @@ public class EnvController {
         }
     }
 
-    //监测点查询
-    @ResponseBody
-    @RequestMapping(value="/queryUserPointMangage",produces="text/json;charset=UTF-8")
-    public String queryUserPointMangage(HttpServletRequest request) {
-        try {
-            String userName = (String)request.getSession().getAttribute("userName");
-            Map<String,String> cond = new HashMap<String, String>();
-            cond.put("监测人员",userName);
-            List<监测点管理> records = s监测点管理SVImpl.queryRecordsByCond(cond);
-            if (null == records || records.size() < 1) {
-                return ControllerUtil.result(false, "没有查询到监测点信息");
-            }
-            return JSONArray.fromObject(records).toString();
-        }catch (Exception e) {
-            LOGGER.error("监测点查询异常",e);
-            return ControllerUtil.result(false, e.getMessage());
-        }
-    }
     /************************************************************************************/
 
     //工况回传

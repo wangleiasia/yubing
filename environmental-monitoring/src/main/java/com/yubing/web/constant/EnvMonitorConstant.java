@@ -9,8 +9,10 @@ public class EnvMonitorConstant {
     public static final String DATAVALID = "1";
 
     //类别
-    public static final String ZHENDONG = "震动";
+    public static final String ZHENDONG = "振动";
     public static final String ZAOSHENG = "噪声";
     public static final String GUOLU = "锅炉";
+
+    public static final String AIRCATEGORY = "便携大气";
 
 }

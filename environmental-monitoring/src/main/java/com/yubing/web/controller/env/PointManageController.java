@@ -3,7 +3,10 @@ package com.yubing.web.controller.env;
 import com.yubing.web.constant.EnvMonitorConstant;
 import com.yubing.web.controller.ControllerUtil;
 import com.yubing.web.csv.service.env.interfaces.I监测点管理SV;
+import com.yubing.web.csv.service.env.interfaces.I设备台账SV;
 import com.yubing.web.model.env.监测点管理;
+import com.yubing.web.model.env.设备台账;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -28,6 +31,8 @@ public class PointManageController {
 
     @Resource
     private I监测点管理SV s监测点管理SVImpl;
+    @Resource
+    private I设备台账SV s设备台账SVImpl;
 
     //点位信息管理页面打开时页面初始化
     @ResponseBody
@@ -155,6 +160,62 @@ public class PointManageController {
             return ControllerUtil.result(true, "监测点修改成功");
         }catch (Exception e) {
             LOGGER.error("修改监测点异常",e);
+            return ControllerUtil.result(false, e.getMessage());
+        }
+    }
+
+    //监测点查询
+    @ResponseBody
+    @RequestMapping(value="/queryUserPointMangage",produces="text/json;charset=UTF-8")
+    public String queryUserPointMangage(HttpServletRequest request) {
+        try {
+            String userName = (String)request.getSession().getAttribute("userName");
+            Map<String,String> cond = new HashMap<String, String>();
+            cond.put("监测人员",userName);
+            List<监测点管理> records = s监测点管理SVImpl.queryRecordsByCond(cond);
+            if (null == records || records.size() < 1) {
+                return ControllerUtil.result(false, "没有查询到监测点信息");
+            }
+            return JSONArray.fromObject(records).toString();
+        }catch (Exception e) {
+            LOGGER.error("监测点查询异常",e);
+            return ControllerUtil.result(false, e.getMessage());
+        }
+    }
+
+    //噪声设备信息查询
+    @ResponseBody
+    @RequestMapping(value="/pointManage/queryEquipmentForNoise",produces="text/json;charset=UTF-8")
+    public String queryEquipmentForNoise() {
+        try {
+            List<String> cond = new ArrayList<String>();
+            cond.add(EnvMonitorConstant.ZAOSHENG);
+            cond.add(EnvMonitorConstant.ZHENDONG);
+            List<设备台账> records = s设备台账SVImpl.queryRecordsByCond(cond);
+            if (null == records || records.size() < 1) {
+                return ControllerUtil.result(false, "没有查询到设备信息");
+            }
+            return JSONArray.fromObject(records).toString();
+        }catch (Exception e) {
+            LOGGER.error("监测点查询异常",e);
+            return ControllerUtil.result(false, e.getMessage());
+        }
+    }
+
+    //噪声设备信息查询
+    @ResponseBody
+    @RequestMapping(value="/pointManage/queryEquipmentForAir",produces="text/json;charset=UTF-8")
+    public String queryEquipmentForAir() {
+        try {
+            List<String> cond = new ArrayList<String>();
+            cond.add(EnvMonitorConstant.AIRCATEGORY);
+            List<设备台账> records = s设备台账SVImpl.queryRecordsByCond(cond);
+            if (null == records || records.size() < 1) {
+                return ControllerUtil.result(false, "没有查询到设备信息");
+            }
+            return JSONArray.fromObject(records).toString();
+        }catch (Exception e) {
+            LOGGER.error("监测点查询异常",e);
             return ControllerUtil.result(false, e.getMessage());
         }
     }

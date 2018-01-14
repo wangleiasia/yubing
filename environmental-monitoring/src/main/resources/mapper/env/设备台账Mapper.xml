@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yubing.web.mapper.env.设备台账Mapper">
+  <resultMap id="BaseResultMap" type="com.yubing.web.model.env.设备台账">
+    <result column="序号" jdbcType="INTEGER" property="序号" />
+    <result column="设备名称" jdbcType="VARCHAR" property="设备名称" />
+    <result column="型号" jdbcType="VARCHAR" property="型号" />
+    <result column="设备编号" jdbcType="VARCHAR" property="设备编号" />
+    <result column="产品编号" jdbcType="VARCHAR" property="产品编号" />
+    <result column="购入日期" jdbcType="VARCHAR" property="购入日期" />
+    <result column="生产厂家" jdbcType="VARCHAR" property="生产厂家" />
+    <result column="校准日期" jdbcType="TIMESTAMP" property="校准日期" />
+    <result column="校准有效期至" jdbcType="TIMESTAMP" property="校准有效期至" />
+    <result column="溯源方式" jdbcType="VARCHAR" property="溯源方式" />
+    <result column="校准单位" jdbcType="VARCHAR" property="校准单位" />
+    <result column="责任人" jdbcType="VARCHAR" property="责任人" />
+    <result column="类别" jdbcType="VARCHAR" property="类别" />
+    <result column="监测类别" jdbcType="VARCHAR" property="监测类别" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    序号, 设备名称, 型号, 设备编号, 产品编号, 购入日期, 生产厂家, 校准日期, 校准有效期至, 溯源方式, 校准单位, 责任人, 类别, 监测类别
+  </sql>
+  <select id="selectByExample" parameterType="com.yubing.web.model.env.设备台账Example" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from 设备台账
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.yubing.web.model.env.设备台账Example">
+    delete from 设备台账
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yubing.web.model.env.设备台账">
+    insert into 设备台账 (序号, 设备名称, 型号, 
+      设备编号, 产品编号, 购入日期, 生产厂家, 
+      校准日期, 校准有效期至, 溯源方式, 
+      校准单位, 责任人, 类别, 监测类别
+      )
+    values (#{序号,jdbcType=INTEGER}, #{设备名称,jdbcType=VARCHAR}, #{型号,jdbcType=VARCHAR}, 
+      #{设备编号,jdbcType=VARCHAR}, #{产品编号,jdbcType=VARCHAR}, #{购入日期,jdbcType=VARCHAR}, #{生产厂家,jdbcType=VARCHAR}, 
+      #{校准日期,jdbcType=TIMESTAMP}, #{校准有效期至,jdbcType=TIMESTAMP}, #{溯源方式,jdbcType=VARCHAR}, 
+      #{校准单位,jdbcType=VARCHAR}, #{责任人,jdbcType=VARCHAR}, #{类别,jdbcType=VARCHAR}, #{监测类别,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yubing.web.model.env.设备台账">
+    insert into 设备台账
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="序号 != null">
+        序号,
+      </if>
+      <if test="设备名称 != null">
+        设备名称,
+      </if>
+      <if test="型号 != null">
+        型号,
+      </if>
+      <if test="设备编号 != null">
+        设备编号,
+      </if>
+      <if test="产品编号 != null">
+        产品编号,
+      </if>
+      <if test="购入日期 != null">
+        购入日期,
+      </if>
+      <if test="生产厂家 != null">
+        生产厂家,
+      </if>
+      <if test="校准日期 != null">
+        校准日期,
+      </if>
+      <if test="校准有效期至 != null">
+        校准有效期至,
+      </if>
+      <if test="溯源方式 != null">
+        溯源方式,
+      </if>
+      <if test="校准单位 != null">
+        校准单位,
+      </if>
+      <if test="责任人 != null">
+        责任人,
+      </if>
+      <if test="类别 != null">
+        类别,
+      </if>
+      <if test="监测类别 != null">
+        监测类别,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="序号 != null">
+        #{序号,jdbcType=INTEGER},
+      </if>
+      <if test="设备名称 != null">
+        #{设备名称,jdbcType=VARCHAR},
+      </if>
+      <if test="型号 != null">
+        #{型号,jdbcType=VARCHAR},
+      </if>
+      <if test="设备编号 != null">
+        #{设备编号,jdbcType=VARCHAR},
+      </if>
+      <if test="产品编号 != null">
+        #{产品编号,jdbcType=VARCHAR},
+      </if>
+      <if test="购入日期 != null">
+        #{购入日期,jdbcType=VARCHAR},
+      </if>
+      <if test="生产厂家 != null">
+        #{生产厂家,jdbcType=VARCHAR},
+      </if>
+      <if test="校准日期 != null">
+        #{校准日期,jdbcType=TIMESTAMP},
+      </if>
+      <if test="校准有效期至 != null">
+        #{校准有效期至,jdbcType=TIMESTAMP},
+      </if>
+      <if test="溯源方式 != null">
+        #{溯源方式,jdbcType=VARCHAR},
+      </if>
+      <if test="校准单位 != null">
+        #{校准单位,jdbcType=VARCHAR},
+      </if>
+      <if test="责任人 != null">
+        #{责任人,jdbcType=VARCHAR},
+      </if>
+      <if test="类别 != null">
+        #{类别,jdbcType=VARCHAR},
+      </if>
+      <if test="监测类别 != null">
+        #{监测类别,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yubing.web.model.env.设备台账Example" resultType="java.lang.Long">
+    select count(*) from 设备台账
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update 设备台账
+    <set>
+      <if test="record.序号 != null">
+        序号 = #{record.序号,jdbcType=INTEGER},
+      </if>
+      <if test="record.设备名称 != null">
+        设备名称 = #{record.设备名称,jdbcType=VARCHAR},
+      </if>
+      <if test="record.型号 != null">
+        型号 = #{record.型号,jdbcType=VARCHAR},
+      </if>
+      <if test="record.设备编号 != null">
+        设备编号 = #{record.设备编号,jdbcType=VARCHAR},
+      </if>
+      <if test="record.产品编号 != null">
+        产品编号 = #{record.产品编号,jdbcType=VARCHAR},
+      </if>
+      <if test="record.购入日期 != null">
+        购入日期 = #{record.购入日期,jdbcType=VARCHAR},
+      </if>
+      <if test="record.生产厂家 != null">
+        生产厂家 = #{record.生产厂家,jdbcType=VARCHAR},
+      </if>
+      <if test="record.校准日期 != null">
+        校准日期 = #{record.校准日期,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.校准有效期至 != null">
+        校准有效期至 = #{record.校准有效期至,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.溯源方式 != null">
+        溯源方式 = #{record.溯源方式,jdbcType=VARCHAR},
+      </if>
+      <if test="record.校准单位 != null">
+        校准单位 = #{record.校准单位,jdbcType=VARCHAR},
+      </if>
+      <if test="record.责任人 != null">
+        责任人 = #{record.责任人,jdbcType=VARCHAR},
+      </if>
+      <if test="record.类别 != null">
+        类别 = #{record.类别,jdbcType=VARCHAR},
+      </if>
+      <if test="record.监测类别 != null">
+        监测类别 = #{record.监测类别,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update 设备台账
+    set 序号 = #{record.序号,jdbcType=INTEGER},
+      设备名称 = #{record.设备名称,jdbcType=VARCHAR},
+      型号 = #{record.型号,jdbcType=VARCHAR},
+      设备编号 = #{record.设备编号,jdbcType=VARCHAR},
+      产品编号 = #{record.产品编号,jdbcType=VARCHAR},
+      购入日期 = #{record.购入日期,jdbcType=VARCHAR},
+      生产厂家 = #{record.生产厂家,jdbcType=VARCHAR},
+      校准日期 = #{record.校准日期,jdbcType=TIMESTAMP},
+      校准有效期至 = #{record.校准有效期至,jdbcType=TIMESTAMP},
+      溯源方式 = #{record.溯源方式,jdbcType=VARCHAR},
+      校准单位 = #{record.校准单位,jdbcType=VARCHAR},
+      责任人 = #{record.责任人,jdbcType=VARCHAR},
+      类别 = #{record.类别,jdbcType=VARCHAR},
+      监测类别 = #{record.监测类别,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
