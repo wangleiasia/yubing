@@ -42,11 +42,11 @@ public class 监测点管理SVImpl implements I监测点管理SV {
         if(StringUtils.isNotBlank(cond.get("监测人员"))) {
             c.and监测人员EqualTo(cond.get("监测人员"));
         }
-        if(StringUtils.isNotBlank(cond.get("口令"))) {
-            c.and口令EqualTo(cond.get("口令"));
+        if(StringUtils.isNotBlank(cond.get("授权账户"))) {
+            c.and授权账户EqualTo(cond.get("授权账户"));
         }
-        if(StringUtils.isNotBlank(cond.get("密码"))) {
-            c.and密码EqualTo(cond.get("密码"));
+        if(StringUtils.isNotBlank(cond.get("状态"))) {
+            c.and状态EqualTo(cond.get("状态"));
         }
 
         return i监测点管理DAO.selectByExample(example);
