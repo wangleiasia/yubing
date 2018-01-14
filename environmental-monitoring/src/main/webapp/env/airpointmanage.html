@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+
+    <meta content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width" name="viewport">
+
+    <script src="/env/airpointmanage.js"></script>
+
+    <title>noise</title>
+</head>
+<body>
+<div class="panel panel-default" style="margin-bottom: 2px">
+    <div class="panel-heading">
+        <h3 class="panel-title">大气点位信息管理</h3>
+    </div>
+
+    <nav class="navbar navbar-default" style="margin-bottom: 0px">
+        <div class="collapse navbar-collapse">
+            <form class="navbar-form navbar-right" id="form-id_query_cond">
+                <div class="form-group">
+                    <label class="control-label">项目编号</label>
+                    <select class="form-control" id="q_项目编号" name="项目编号" onchange="showPointInfo()"></select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">点位编号</label>
+                    <select class="form-control" id="q_点位编号" name="点位编号"></select>
+                </div>
+                <button type="button" class="btn btn-default" onclick="queryMonitorPoint()">查询</button>
+            </form>
+        </div>
+    </nav>
+
+    <div style="margin-top: 8px">
+        <form class="form-horizontal" id="form-id_noise">
+            <div class="form-group">
+                <label class="col-sm-1 control-label">项目编号</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" readonly id="项目编号" name="项目编号" placeholder="项目编号">
+                </div>
+                <label class="col-sm-1 control-label">点位编号</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="点位编号" name="点位编号" placeholder="点位编号">
+                </div>
+                <label class="col-sm-1 control-label">点位名称</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="点位名称" name="点位名称" placeholder="点位名称">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">任务单号</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="任务单号" name="任务单号" placeholder="任务单号">
+                </div>
+                <label class="col-sm-1 control-label">设备编号</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="设备编号" name="设备编号" placeholder="校准设备名称编号">
+                </div>
+                <label class="col-sm-1 control-label">信息上传</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="信息上传" name="信息上传" placeholder="信息上传">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">气象条件</label>
+                <div class="col-sm-11">
+                    <input type="text" class="form-control" id="气象条件" name="气象条件" placeholder="气象条件">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">备注</label>
+                <div class="col-sm-11">
+                    <input type="text" class="form-control" id="备注" name="备注" placeholder="备注">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<button type="button" class="btn btn-primary btn-block" style="margin-top: 5px;" onclick="submit()">提交</button>
+</body>
+</html>

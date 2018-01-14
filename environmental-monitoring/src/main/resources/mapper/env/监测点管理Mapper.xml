@@ -11,31 +11,40 @@
     <result column="现场联系人" jdbcType="VARCHAR" property="现场联系人" />
     <result column="联系人电话" jdbcType="VARCHAR" property="联系人电话" />
     <result column="任务单号" jdbcType="VARCHAR" property="任务单号" />
-    <result column="监测频次" jdbcType="CHAR" property="监测频次" />
-    <result column="监测天数" jdbcType="CHAR" property="监测天数" />
-    <result column="行政区划代码" jdbcType="CHAR" property="行政区划代码" />
-    <result column="功能区代码" jdbcType="CHAR" property="功能区代码" />
+    <result column="监测频次" jdbcType="VARCHAR" property="监测频次" />
+    <result column="监测天数" jdbcType="VARCHAR" property="监测天数" />
+    <result column="行政区划代码" jdbcType="VARCHAR" property="行政区划代码" />
+    <result column="功能区代码" jdbcType="VARCHAR" property="功能区代码" />
+    <result column="主要来源" jdbcType="VARCHAR" property="主要来源" />
     <result column="测点参照物" jdbcType="VARCHAR" property="测点参照物" />
     <result column="气象条件" jdbcType="VARCHAR" property="气象条件" />
-    <result column="测点高度" jdbcType="CHAR" property="测点高度" />
-    <result column="样品数量" jdbcType="CHAR" property="样品数量" />
+    <result column="测点高度" jdbcType="VARCHAR" property="测点高度" />
+    <result column="测点间距" jdbcType="VARCHAR" property="测点间距" />
+    <result column="路段名称" jdbcType="VARCHAR" property="路段名称" />
+    <result column="路段长度" jdbcType="VARCHAR" property="路段长度" />
+    <result column="道路总宽度" jdbcType="VARCHAR" property="道路总宽度" />
+    <result column="机动车道数" jdbcType="VARCHAR" property="机动车道数" />
+    <result column="车道类别" jdbcType="VARCHAR" property="车道类别" />
+    <result column="道路等级" jdbcType="VARCHAR" property="道路等级" />
+    <result column="路段覆盖人口" jdbcType="VARCHAR" property="路段覆盖人口" />
+    <result column="样品数量" jdbcType="VARCHAR" property="样品数量" />
     <result column="建点日期" jdbcType="TIMESTAMP" property="建点日期" />
     <result column="负责部门" jdbcType="VARCHAR" property="负责部门" />
     <result column="监测人员" jdbcType="VARCHAR" property="监测人员" />
     <result column="设备编号" jdbcType="VARCHAR" property="设备编号" />
     <result column="测量声压值" jdbcType="VARCHAR" property="测量声压值" />
-    <result column="监测前校准值" jdbcType="CHAR" property="监测前校准值" />
-    <result column="监测后校准值" jdbcType="CHAR" property="监测后校准值" />
-    <result column="Ld" jdbcType="CHAR" property="ld" />
-    <result column="Ln" jdbcType="CHAR" property="ln" />
-    <result column="Ldn" jdbcType="CHAR" property="ldn" />
+    <result column="监测前校准值" jdbcType="VARCHAR" property="监测前校准值" />
+    <result column="监测后校准值" jdbcType="VARCHAR" property="监测后校准值" />
+    <result column="Ld" jdbcType="VARCHAR" property="ld" />
+    <result column="Ln" jdbcType="VARCHAR" property="ln" />
+    <result column="Ldn" jdbcType="VARCHAR" property="ldn" />
     <result column="监测年度" jdbcType="VARCHAR" property="监测年度" />
     <result column="勾选" jdbcType="CHAR" property="勾选" />
     <result column="备注" jdbcType="VARCHAR" property="备注" />
     <result column="信息上传" jdbcType="VARCHAR" property="信息上传" />
     <result column="上传时间" jdbcType="TIMESTAMP" property="上传时间" />
-    <result column="口令" jdbcType="VARCHAR" property="口令" />
-    <result column="密码" jdbcType="VARCHAR" property="密码" />
+    <result column="授权账户" jdbcType="VARCHAR" property="授权账户" />
+    <result column="状态" jdbcType="VARCHAR" property="状态" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -96,9 +105,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    项目编号, 点位编号, 点位名称, 样品类别, 类别, 坐标, 现场联系人, 联系人电话, 任务单号, 监测频次, 监测天数, 行政区划代码, 功能区代码, 测点参照物, 
-    气象条件, 测点高度, 样品数量, 建点日期, 负责部门, 监测人员, 设备编号, 测量声压值, 监测前校准值, 监测后校准值, Ld, Ln, Ldn, 监测年度, 
-    勾选, 备注, 信息上传, 上传时间, 口令, 密码
+    项目编号, 点位编号, 点位名称, 样品类别, 类别, 坐标, 现场联系人, 联系人电话, 任务单号, 监测频次, 监测天数, 行政区划代码, 功能区代码, 主要来源, 
+    测点参照物, 气象条件, 测点高度, 测点间距, 路段名称, 路段长度, 道路总宽度, 机动车道数, 车道类别, 道路等级, 路段覆盖人口, 样品数量, 建点日期, 
+    负责部门, 监测人员, 设备编号, 测量声压值, 监测前校准值, 监测后校准值, Ld, Ln, Ldn, 监测年度, 勾选, 备注, 信息上传, 上传时间, 授权账户, 
+    状态
   </sql>
   <select id="selectByExample" parameterType="com.yubing.web.model.env.监测点管理Example" resultMap="BaseResultMap">
     select
@@ -124,24 +134,30 @@
   <insert id="insert" parameterType="com.yubing.web.model.env.监测点管理">
     insert into 监测点管理 (项目编号, 点位编号, 点位名称, 
       样品类别, 类别, 坐标, 现场联系人, 
-      联系人电话, 任务单号, 监测频次, 监测天数, 
-      行政区划代码, 功能区代码, 测点参照物, 气象条件, 
-      测点高度, 样品数量, 建点日期, 负责部门, 
-      监测人员, 设备编号, 测量声压值, 
-      监测前校准值, 监测后校准值, Ld, Ln, 
-      Ldn, 监测年度, 勾选, 备注, 
-      信息上传, 上传时间, 口令, 密码
-      )
+      联系人电话, 任务单号, 监测频次, 
+      监测天数, 行政区划代码, 功能区代码, 
+      主要来源, 测点参照物, 气象条件, 
+      测点高度, 测点间距, 路段名称, 路段长度, 
+      道路总宽度, 机动车道数, 车道类别, 
+      道路等级, 路段覆盖人口, 样品数量, 
+      建点日期, 负责部门, 监测人员, 
+      设备编号, 测量声压值, 监测前校准值, 
+      监测后校准值, Ld, Ln, Ldn, 
+      监测年度, 勾选, 备注, 信息上传, 
+      上传时间, 授权账户, 状态)
     values (#{项目编号,jdbcType=VARCHAR}, #{点位编号,jdbcType=VARCHAR}, #{点位名称,jdbcType=VARCHAR}, 
       #{样品类别,jdbcType=VARCHAR}, #{类别,jdbcType=VARCHAR}, #{坐标,jdbcType=VARCHAR}, #{现场联系人,jdbcType=VARCHAR}, 
-      #{联系人电话,jdbcType=VARCHAR}, #{任务单号,jdbcType=VARCHAR}, #{监测频次,jdbcType=CHAR}, #{监测天数,jdbcType=CHAR}, 
-      #{行政区划代码,jdbcType=CHAR}, #{功能区代码,jdbcType=CHAR}, #{测点参照物,jdbcType=VARCHAR}, #{气象条件,jdbcType=VARCHAR}, 
-      #{测点高度,jdbcType=CHAR}, #{样品数量,jdbcType=CHAR}, #{建点日期,jdbcType=TIMESTAMP}, #{负责部门,jdbcType=VARCHAR}, 
-      #{监测人员,jdbcType=VARCHAR}, #{设备编号,jdbcType=VARCHAR}, #{测量声压值,jdbcType=VARCHAR}, 
-      #{监测前校准值,jdbcType=CHAR}, #{监测后校准值,jdbcType=CHAR}, #{ld,jdbcType=CHAR}, #{ln,jdbcType=CHAR}, 
-      #{ldn,jdbcType=CHAR}, #{监测年度,jdbcType=VARCHAR}, #{勾选,jdbcType=CHAR}, #{备注,jdbcType=VARCHAR}, 
-      #{信息上传,jdbcType=VARCHAR}, #{上传时间,jdbcType=TIMESTAMP}, #{口令,jdbcType=VARCHAR}, #{密码,jdbcType=VARCHAR}
-      )
+      #{联系人电话,jdbcType=VARCHAR}, #{任务单号,jdbcType=VARCHAR}, #{监测频次,jdbcType=VARCHAR}, 
+      #{监测天数,jdbcType=VARCHAR}, #{行政区划代码,jdbcType=VARCHAR}, #{功能区代码,jdbcType=VARCHAR}, 
+      #{主要来源,jdbcType=VARCHAR}, #{测点参照物,jdbcType=VARCHAR}, #{气象条件,jdbcType=VARCHAR}, 
+      #{测点高度,jdbcType=VARCHAR}, #{测点间距,jdbcType=VARCHAR}, #{路段名称,jdbcType=VARCHAR}, #{路段长度,jdbcType=VARCHAR}, 
+      #{道路总宽度,jdbcType=VARCHAR}, #{机动车道数,jdbcType=VARCHAR}, #{车道类别,jdbcType=VARCHAR}, 
+      #{道路等级,jdbcType=VARCHAR}, #{路段覆盖人口,jdbcType=VARCHAR}, #{样品数量,jdbcType=VARCHAR}, 
+      #{建点日期,jdbcType=TIMESTAMP}, #{负责部门,jdbcType=VARCHAR}, #{监测人员,jdbcType=VARCHAR}, 
+      #{设备编号,jdbcType=VARCHAR}, #{测量声压值,jdbcType=VARCHAR}, #{监测前校准值,jdbcType=VARCHAR}, 
+      #{监测后校准值,jdbcType=VARCHAR}, #{ld,jdbcType=VARCHAR}, #{ln,jdbcType=VARCHAR}, #{ldn,jdbcType=VARCHAR}, 
+      #{监测年度,jdbcType=VARCHAR}, #{勾选,jdbcType=CHAR}, #{备注,jdbcType=VARCHAR}, #{信息上传,jdbcType=VARCHAR}, 
+      #{上传时间,jdbcType=TIMESTAMP}, #{授权账户,jdbcType=VARCHAR}, #{状态,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yubing.web.model.env.监测点管理">
     insert into 监测点管理
@@ -185,6 +201,9 @@
       <if test="功能区代码 != null">
         功能区代码,
       </if>
+      <if test="主要来源 != null">
+        主要来源,
+      </if>
       <if test="测点参照物 != null">
         测点参照物,
       </if>
@@ -193,6 +212,30 @@
       </if>
       <if test="测点高度 != null">
         测点高度,
+      </if>
+      <if test="测点间距 != null">
+        测点间距,
+      </if>
+      <if test="路段名称 != null">
+        路段名称,
+      </if>
+      <if test="路段长度 != null">
+        路段长度,
+      </if>
+      <if test="道路总宽度 != null">
+        道路总宽度,
+      </if>
+      <if test="机动车道数 != null">
+        机动车道数,
+      </if>
+      <if test="车道类别 != null">
+        车道类别,
+      </if>
+      <if test="道路等级 != null">
+        道路等级,
+      </if>
+      <if test="路段覆盖人口 != null">
+        路段覆盖人口,
       </if>
       <if test="样品数量 != null">
         样品数量,
@@ -242,11 +285,11 @@
       <if test="上传时间 != null">
         上传时间,
       </if>
-      <if test="口令 != null">
-        口令,
+      <if test="授权账户 != null">
+        授权账户,
       </if>
-      <if test="密码 != null">
-        密码,
+      <if test="状态 != null">
+        状态,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -278,16 +321,19 @@
         #{任务单号,jdbcType=VARCHAR},
       </if>
       <if test="监测频次 != null">
-        #{监测频次,jdbcType=CHAR},
+        #{监测频次,jdbcType=VARCHAR},
       </if>
       <if test="监测天数 != null">
-        #{监测天数,jdbcType=CHAR},
+        #{监测天数,jdbcType=VARCHAR},
       </if>
       <if test="行政区划代码 != null">
-        #{行政区划代码,jdbcType=CHAR},
+        #{行政区划代码,jdbcType=VARCHAR},
       </if>
       <if test="功能区代码 != null">
-        #{功能区代码,jdbcType=CHAR},
+        #{功能区代码,jdbcType=VARCHAR},
+      </if>
+      <if test="主要来源 != null">
+        #{主要来源,jdbcType=VARCHAR},
       </if>
       <if test="测点参照物 != null">
         #{测点参照物,jdbcType=VARCHAR},
@@ -296,10 +342,34 @@
         #{气象条件,jdbcType=VARCHAR},
       </if>
       <if test="测点高度 != null">
-        #{测点高度,jdbcType=CHAR},
+        #{测点高度,jdbcType=VARCHAR},
+      </if>
+      <if test="测点间距 != null">
+        #{测点间距,jdbcType=VARCHAR},
+      </if>
+      <if test="路段名称 != null">
+        #{路段名称,jdbcType=VARCHAR},
+      </if>
+      <if test="路段长度 != null">
+        #{路段长度,jdbcType=VARCHAR},
+      </if>
+      <if test="道路总宽度 != null">
+        #{道路总宽度,jdbcType=VARCHAR},
+      </if>
+      <if test="机动车道数 != null">
+        #{机动车道数,jdbcType=VARCHAR},
+      </if>
+      <if test="车道类别 != null">
+        #{车道类别,jdbcType=VARCHAR},
+      </if>
+      <if test="道路等级 != null">
+        #{道路等级,jdbcType=VARCHAR},
+      </if>
+      <if test="路段覆盖人口 != null">
+        #{路段覆盖人口,jdbcType=VARCHAR},
       </if>
       <if test="样品数量 != null">
-        #{样品数量,jdbcType=CHAR},
+        #{样品数量,jdbcType=VARCHAR},
       </if>
       <if test="建点日期 != null">
         #{建点日期,jdbcType=TIMESTAMP},
@@ -317,19 +387,19 @@
         #{测量声压值,jdbcType=VARCHAR},
       </if>
       <if test="监测前校准值 != null">
-        #{监测前校准值,jdbcType=CHAR},
+        #{监测前校准值,jdbcType=VARCHAR},
       </if>
       <if test="监测后校准值 != null">
-        #{监测后校准值,jdbcType=CHAR},
+        #{监测后校准值,jdbcType=VARCHAR},
       </if>
       <if test="ld != null">
-        #{ld,jdbcType=CHAR},
+        #{ld,jdbcType=VARCHAR},
       </if>
       <if test="ln != null">
-        #{ln,jdbcType=CHAR},
+        #{ln,jdbcType=VARCHAR},
       </if>
       <if test="ldn != null">
-        #{ldn,jdbcType=CHAR},
+        #{ldn,jdbcType=VARCHAR},
       </if>
       <if test="监测年度 != null">
         #{监测年度,jdbcType=VARCHAR},
@@ -346,11 +416,11 @@
       <if test="上传时间 != null">
         #{上传时间,jdbcType=TIMESTAMP},
       </if>
-      <if test="口令 != null">
-        #{口令,jdbcType=VARCHAR},
+      <if test="授权账户 != null">
+        #{授权账户,jdbcType=VARCHAR},
       </if>
-      <if test="密码 != null">
-        #{密码,jdbcType=VARCHAR},
+      <if test="状态 != null">
+        #{状态,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -391,16 +461,19 @@
         任务单号 = #{record.任务单号,jdbcType=VARCHAR},
       </if>
       <if test="record.监测频次 != null">
-        监测频次 = #{record.监测频次,jdbcType=CHAR},
+        监测频次 = #{record.监测频次,jdbcType=VARCHAR},
       </if>
       <if test="record.监测天数 != null">
-        监测天数 = #{record.监测天数,jdbcType=CHAR},
+        监测天数 = #{record.监测天数,jdbcType=VARCHAR},
       </if>
       <if test="record.行政区划代码 != null">
-        行政区划代码 = #{record.行政区划代码,jdbcType=CHAR},
+        行政区划代码 = #{record.行政区划代码,jdbcType=VARCHAR},
       </if>
       <if test="record.功能区代码 != null">
-        功能区代码 = #{record.功能区代码,jdbcType=CHAR},
+        功能区代码 = #{record.功能区代码,jdbcType=VARCHAR},
+      </if>
+      <if test="record.主要来源 != null">
+        主要来源 = #{record.主要来源,jdbcType=VARCHAR},
       </if>
       <if test="record.测点参照物 != null">
         测点参照物 = #{record.测点参照物,jdbcType=VARCHAR},
@@ -409,10 +482,34 @@
         气象条件 = #{record.气象条件,jdbcType=VARCHAR},
       </if>
       <if test="record.测点高度 != null">
-        测点高度 = #{record.测点高度,jdbcType=CHAR},
+        测点高度 = #{record.测点高度,jdbcType=VARCHAR},
+      </if>
+      <if test="record.测点间距 != null">
+        测点间距 = #{record.测点间距,jdbcType=VARCHAR},
+      </if>
+      <if test="record.路段名称 != null">
+        路段名称 = #{record.路段名称,jdbcType=VARCHAR},
+      </if>
+      <if test="record.路段长度 != null">
+        路段长度 = #{record.路段长度,jdbcType=VARCHAR},
+      </if>
+      <if test="record.道路总宽度 != null">
+        道路总宽度 = #{record.道路总宽度,jdbcType=VARCHAR},
+      </if>
+      <if test="record.机动车道数 != null">
+        机动车道数 = #{record.机动车道数,jdbcType=VARCHAR},
+      </if>
+      <if test="record.车道类别 != null">
+        车道类别 = #{record.车道类别,jdbcType=VARCHAR},
+      </if>
+      <if test="record.道路等级 != null">
+        道路等级 = #{record.道路等级,jdbcType=VARCHAR},
+      </if>
+      <if test="record.路段覆盖人口 != null">
+        路段覆盖人口 = #{record.路段覆盖人口,jdbcType=VARCHAR},
       </if>
       <if test="record.样品数量 != null">
-        样品数量 = #{record.样品数量,jdbcType=CHAR},
+        样品数量 = #{record.样品数量,jdbcType=VARCHAR},
       </if>
       <if test="record.建点日期 != null">
         建点日期 = #{record.建点日期,jdbcType=TIMESTAMP},
@@ -430,19 +527,19 @@
         测量声压值 = #{record.测量声压值,jdbcType=VARCHAR},
       </if>
       <if test="record.监测前校准值 != null">
-        监测前校准值 = #{record.监测前校准值,jdbcType=CHAR},
+        监测前校准值 = #{record.监测前校准值,jdbcType=VARCHAR},
       </if>
       <if test="record.监测后校准值 != null">
-        监测后校准值 = #{record.监测后校准值,jdbcType=CHAR},
+        监测后校准值 = #{record.监测后校准值,jdbcType=VARCHAR},
       </if>
       <if test="record.ld != null">
-        Ld = #{record.ld,jdbcType=CHAR},
+        Ld = #{record.ld,jdbcType=VARCHAR},
       </if>
       <if test="record.ln != null">
-        Ln = #{record.ln,jdbcType=CHAR},
+        Ln = #{record.ln,jdbcType=VARCHAR},
       </if>
       <if test="record.ldn != null">
-        Ldn = #{record.ldn,jdbcType=CHAR},
+        Ldn = #{record.ldn,jdbcType=VARCHAR},
       </if>
       <if test="record.监测年度 != null">
         监测年度 = #{record.监测年度,jdbcType=VARCHAR},
@@ -459,11 +556,11 @@
       <if test="record.上传时间 != null">
         上传时间 = #{record.上传时间,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.口令 != null">
-        口令 = #{record.口令,jdbcType=VARCHAR},
+      <if test="record.授权账户 != null">
+        授权账户 = #{record.授权账户,jdbcType=VARCHAR},
       </if>
-      <if test="record.密码 != null">
-        密码 = #{record.密码,jdbcType=VARCHAR},
+      <if test="record.状态 != null">
+        状态 = #{record.状态,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -481,31 +578,40 @@
       现场联系人 = #{record.现场联系人,jdbcType=VARCHAR},
       联系人电话 = #{record.联系人电话,jdbcType=VARCHAR},
       任务单号 = #{record.任务单号,jdbcType=VARCHAR},
-      监测频次 = #{record.监测频次,jdbcType=CHAR},
-      监测天数 = #{record.监测天数,jdbcType=CHAR},
-      行政区划代码 = #{record.行政区划代码,jdbcType=CHAR},
-      功能区代码 = #{record.功能区代码,jdbcType=CHAR},
+      监测频次 = #{record.监测频次,jdbcType=VARCHAR},
+      监测天数 = #{record.监测天数,jdbcType=VARCHAR},
+      行政区划代码 = #{record.行政区划代码,jdbcType=VARCHAR},
+      功能区代码 = #{record.功能区代码,jdbcType=VARCHAR},
+      主要来源 = #{record.主要来源,jdbcType=VARCHAR},
       测点参照物 = #{record.测点参照物,jdbcType=VARCHAR},
       气象条件 = #{record.气象条件,jdbcType=VARCHAR},
-      测点高度 = #{record.测点高度,jdbcType=CHAR},
-      样品数量 = #{record.样品数量,jdbcType=CHAR},
+      测点高度 = #{record.测点高度,jdbcType=VARCHAR},
+      测点间距 = #{record.测点间距,jdbcType=VARCHAR},
+      路段名称 = #{record.路段名称,jdbcType=VARCHAR},
+      路段长度 = #{record.路段长度,jdbcType=VARCHAR},
+      道路总宽度 = #{record.道路总宽度,jdbcType=VARCHAR},
+      机动车道数 = #{record.机动车道数,jdbcType=VARCHAR},
+      车道类别 = #{record.车道类别,jdbcType=VARCHAR},
+      道路等级 = #{record.道路等级,jdbcType=VARCHAR},
+      路段覆盖人口 = #{record.路段覆盖人口,jdbcType=VARCHAR},
+      样品数量 = #{record.样品数量,jdbcType=VARCHAR},
       建点日期 = #{record.建点日期,jdbcType=TIMESTAMP},
       负责部门 = #{record.负责部门,jdbcType=VARCHAR},
       监测人员 = #{record.监测人员,jdbcType=VARCHAR},
       设备编号 = #{record.设备编号,jdbcType=VARCHAR},
       测量声压值 = #{record.测量声压值,jdbcType=VARCHAR},
-      监测前校准值 = #{record.监测前校准值,jdbcType=CHAR},
-      监测后校准值 = #{record.监测后校准值,jdbcType=CHAR},
-      Ld = #{record.ld,jdbcType=CHAR},
-      Ln = #{record.ln,jdbcType=CHAR},
-      Ldn = #{record.ldn,jdbcType=CHAR},
+      监测前校准值 = #{record.监测前校准值,jdbcType=VARCHAR},
+      监测后校准值 = #{record.监测后校准值,jdbcType=VARCHAR},
+      Ld = #{record.ld,jdbcType=VARCHAR},
+      Ln = #{record.ln,jdbcType=VARCHAR},
+      Ldn = #{record.ldn,jdbcType=VARCHAR},
       监测年度 = #{record.监测年度,jdbcType=VARCHAR},
       勾选 = #{record.勾选,jdbcType=CHAR},
       备注 = #{record.备注,jdbcType=VARCHAR},
       信息上传 = #{record.信息上传,jdbcType=VARCHAR},
       上传时间 = #{record.上传时间,jdbcType=TIMESTAMP},
-      口令 = #{record.口令,jdbcType=VARCHAR},
-      密码 = #{record.密码,jdbcType=VARCHAR}
+      授权账户 = #{record.授权账户,jdbcType=VARCHAR},
+      状态 = #{record.状态,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

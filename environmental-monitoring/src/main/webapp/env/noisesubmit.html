@@ -24,11 +24,13 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label">项目编号</label>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" id="项目编号" name="项目编号" placeholder="项目编号">
+                    <!--<input type="text" class="form-control" id="项目编号" name="项目编号" placeholder="项目编号">-->
+                    <select class="form-control" id="项目编号" name="项目编号" onchange="showPointInfo()"></select>
                 </div>
                 <label class="col-sm-1 control-label">点位编号</label>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" id="点位编号" name="点位编号" placeholder="点位编号">
+                    <!--<input type="text" class="form-control" id="点位编号" name="点位编号" placeholder="点位编号">-->
+                    <select class="form-control" id="点位编号" name="点位编号"></select>
                 </div>
             </div>
             <div class="form-group">
@@ -58,7 +60,7 @@
                 -->
                 <div class="col-sm-4">
                     <select class="form-control"  name="时间段">
-                        <option value="白天">白天</option>
+                        <option value="昼间">昼间</option>
                         <option value="夜间">夜间</option>
                     </select>
                 </div>
@@ -70,7 +72,8 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label">方法代码</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="方法代码" name="方法代码" placeholder="方法代码">
+                    <!--<input type="text" class="form-control" id="方法代码" name="方法代码" placeholder="方法代码">-->
+                    <select class="form-control" id="方法代码" name="方法代码"></select>
                 </div>
                 <label class="col-sm-1 control-label">记录人</label>
                 <div class="col-sm-6">

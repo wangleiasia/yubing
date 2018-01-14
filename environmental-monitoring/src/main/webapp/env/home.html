@@ -4,48 +4,74 @@
     <meta charset="UTF-8">
 
     <title>home</title>
+
+    <script src="/jquery-1.9.1/jquery.min.js"></script>
 </head>
 <body>
 
-<!--<script>-->
+<script>
 
-    <!--var x = document.getElementById("demo");-->
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var coords = position.coords;
+            // 纬度[N]
+            var v = coords.latitude;
+            // 经度[E]
+            var s = coords.longitude
+            alert(changeToDFM(v,'N') + '---' + changeToDFM(s,'E'));
+        }, function (error) {
+            switch(error.code) {
+                case error.TIMEOUT:
+                    showError("A timeout occured! Please try again!");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    showError('We can\'t detect your location. Sorry!');
+                    break;
+                case error.PERMISSION_DENIED:
+                    showError('Please allow geolocation access for this to work.');
+                    break;
+                case error.UNKNOWN_ERROR:
+                    showError('An unknown error occured!');
+                    break;
+            }
+        }, {
+            // 指示浏览器获取高精度的位置，默认为false
+            enableHighAcuracy: true,
+            // 指定获取地理位置的超时时间，默认不限时，单位为毫秒
+            timeout: 5000,
+            // 最长有效期，在重复获取地理位置时，此参数指定多久再次获取位置。
+            maximumAge: 3000
+        });
+    } else {
+        alert("Your browser does not support Geolocation!");
+    }
 
-    <!--function getLocation() {-->
-        <!--console.info("getLocation working")-->
-        <!--if (navigator.geolocation) {-->
-            <!--navigator.geolocation.getCurrentPosition(showPosition,showError);-->
-        <!--} else {-->
-            <!--x.innerHTML = "Geolocation is not supported by this browser.";-->
-        <!--}-->
-    <!--}-->
+    function showError(info) {
+        alert(info);
+    }
 
-    <!--function showPosition(position) {-->
-        <!--x.innerHTML="Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;-->
-    <!--}-->
+    function changeToDFM(du,item){
+        var duL = parseInt(du/1);
+        var fen,miao;
 
-    <!--function showError(error) {-->
-        <!--switch (error.code) {-->
-            <!--case error.PERMISSION_DENIED:-->
-                <!--x.innerHTML = "User denied the request for Geolocation."-->
-                <!--break;-->
-            <!--case error.POSITION_UNAVAILABLE:-->
-                <!--x.innerHTML = "Location information is unavailable."-->
-                <!--break;-->
-            <!--case error.TIMEOUT:-->
-                <!--x.innerHTML = "The request to get user location timed out."-->
-                <!--break;-->
-            <!--case error.UNKNOWN_ERROR:-->
-                <!--x.innerHTML = "An unknown error occurred."-->
-                <!--break;-->
-        <!--}-->
-    <!--}-->
+        var temp = du % 1;
+        temp = temp *60;
+        fen = parseInt(temp/1);
+        temp = (temp % 1) * 60;
+        miao = parseInt(temp/1);
+        temp = (temp % 1) * 60;
+        var miaoE = parseInt(temp/1);
 
-<!--</script>-->
+        miao = miao+"."+miaoE;
 
-    <!--<p id="demo">Click the button to get your coordinates:</p>-->
+        return item+duL+"°"+fen+"'"+miao+"\"";
+    }
+}
 
-    <!--<input type="button" value="位置信息" onclick="getLocation()">-->
+</script>
+
+    <input type="button" value="位置信息" onclick="getLocation()">
 
 </body>
 </html>

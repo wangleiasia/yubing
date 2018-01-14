@@ -29,11 +29,29 @@ public class 监测点管理 {
 
     private String 功能区代码;
 
+    private String 主要来源;
+
     private String 测点参照物;
 
     private String 气象条件;
 
     private String 测点高度;
+
+    private String 测点间距;
+
+    private String 路段名称;
+
+    private String 路段长度;
+
+    private String 道路总宽度;
+
+    private String 机动车道数;
+
+    private String 车道类别;
+
+    private String 道路等级;
+
+    private String 路段覆盖人口;
 
     private String 样品数量;
 
@@ -67,9 +85,9 @@ public class 监测点管理 {
 
     private Date 上传时间;
 
-    private String 口令;
+    private String 授权账户;
 
-    private String 密码;
+    private String 状态;
 
     public String get项目编号() {
         return 项目编号;
@@ -175,6 +193,14 @@ public class 监测点管理 {
         this.功能区代码 = 功能区代码 == null ? null : 功能区代码.trim();
     }
 
+    public String get主要来源() {
+        return 主要来源;
+    }
+
+    public void set主要来源(String 主要来源) {
+        this.主要来源 = 主要来源 == null ? null : 主要来源.trim();
+    }
+
     public String get测点参照物() {
         return 测点参照物;
     }
@@ -197,6 +223,70 @@ public class 监测点管理 {
 
     public void set测点高度(String 测点高度) {
         this.测点高度 = 测点高度 == null ? null : 测点高度.trim();
+    }
+
+    public String get测点间距() {
+        return 测点间距;
+    }
+
+    public void set测点间距(String 测点间距) {
+        this.测点间距 = 测点间距 == null ? null : 测点间距.trim();
+    }
+
+    public String get路段名称() {
+        return 路段名称;
+    }
+
+    public void set路段名称(String 路段名称) {
+        this.路段名称 = 路段名称 == null ? null : 路段名称.trim();
+    }
+
+    public String get路段长度() {
+        return 路段长度;
+    }
+
+    public void set路段长度(String 路段长度) {
+        this.路段长度 = 路段长度 == null ? null : 路段长度.trim();
+    }
+
+    public String get道路总宽度() {
+        return 道路总宽度;
+    }
+
+    public void set道路总宽度(String 道路总宽度) {
+        this.道路总宽度 = 道路总宽度 == null ? null : 道路总宽度.trim();
+    }
+
+    public String get机动车道数() {
+        return 机动车道数;
+    }
+
+    public void set机动车道数(String 机动车道数) {
+        this.机动车道数 = 机动车道数 == null ? null : 机动车道数.trim();
+    }
+
+    public String get车道类别() {
+        return 车道类别;
+    }
+
+    public void set车道类别(String 车道类别) {
+        this.车道类别 = 车道类别 == null ? null : 车道类别.trim();
+    }
+
+    public String get道路等级() {
+        return 道路等级;
+    }
+
+    public void set道路等级(String 道路等级) {
+        this.道路等级 = 道路等级 == null ? null : 道路等级.trim();
+    }
+
+    public String get路段覆盖人口() {
+        return 路段覆盖人口;
+    }
+
+    public void set路段覆盖人口(String 路段覆盖人口) {
+        this.路段覆盖人口 = 路段覆盖人口 == null ? null : 路段覆盖人口.trim();
     }
 
     public String get样品数量() {
@@ -327,19 +417,19 @@ public class 监测点管理 {
         this.上传时间 = 上传时间;
     }
 
-    public String get口令() {
-        return 口令;
+    public String get授权账户() {
+        return 授权账户;
     }
 
-    public void set口令(String 口令) {
-        this.口令 = 口令 == null ? null : 口令.trim();
+    public void set授权账户(String 授权账户) {
+        this.授权账户 = 授权账户 == null ? null : 授权账户.trim();
     }
 
-    public String get密码() {
-        return 密码;
+    public String get状态() {
+        return 状态;
     }
 
-    public void set密码(String 密码) {
-        this.密码 = 密码 == null ? null : 密码.trim();
+    public void set状态(String 状态) {
+        this.状态 = 状态 == null ? null : 状态.trim();
     }
 }

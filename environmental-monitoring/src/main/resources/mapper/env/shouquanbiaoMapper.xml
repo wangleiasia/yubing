@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yubing.web.mapper.env.shouquanbiaoMapper">
+  <resultMap id="BaseResultMap" type="com.yubing.web.model.env.shouquanbiao">
+    <result column="序号" jdbcType="INTEGER" property="序号" />
+    <result column="账户" jdbcType="VARCHAR" property="账户" />
+    <result column="姓名" jdbcType="VARCHAR" property="姓名" />
+    <result column="密码" jdbcType="VARCHAR" property="密码" />
+    <result column="职责" jdbcType="VARCHAR" property="职责" />
+    <result column="室别" jdbcType="VARCHAR" property="室别" />
+    <result column="部门编号" jdbcType="VARCHAR" property="部门编号" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    序号, 账户, 姓名, 密码, 职责, 室别, 部门编号
+  </sql>
+  <select id="selectByExample" parameterType="com.yubing.web.model.env.shouquanbiaoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from shouquanbiao
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.yubing.web.model.env.shouquanbiaoExample">
+    delete from shouquanbiao
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yubing.web.model.env.shouquanbiao">
+    insert into shouquanbiao (序号, 账户, 姓名, 密码, 
+      职责, 室别, 部门编号)
+    values (#{序号,jdbcType=INTEGER}, #{账户,jdbcType=VARCHAR}, #{姓名,jdbcType=VARCHAR}, #{密码,jdbcType=VARCHAR}, 
+      #{职责,jdbcType=VARCHAR}, #{室别,jdbcType=VARCHAR}, #{部门编号,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yubing.web.model.env.shouquanbiao">
+    insert into shouquanbiao
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="序号 != null">
+        序号,
+      </if>
+      <if test="账户 != null">
+        账户,
+      </if>
+      <if test="姓名 != null">
+        姓名,
+      </if>
+      <if test="密码 != null">
+        密码,
+      </if>
+      <if test="职责 != null">
+        职责,
+      </if>
+      <if test="室别 != null">
+        室别,
+      </if>
+      <if test="部门编号 != null">
+        部门编号,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="序号 != null">
+        #{序号,jdbcType=INTEGER},
+      </if>
+      <if test="账户 != null">
+        #{账户,jdbcType=VARCHAR},
+      </if>
+      <if test="姓名 != null">
+        #{姓名,jdbcType=VARCHAR},
+      </if>
+      <if test="密码 != null">
+        #{密码,jdbcType=VARCHAR},
+      </if>
+      <if test="职责 != null">
+        #{职责,jdbcType=VARCHAR},
+      </if>
+      <if test="室别 != null">
+        #{室别,jdbcType=VARCHAR},
+      </if>
+      <if test="部门编号 != null">
+        #{部门编号,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yubing.web.model.env.shouquanbiaoExample" resultType="java.lang.Long">
+    select count(*) from shouquanbiao
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update shouquanbiao
+    <set>
+      <if test="record.序号 != null">
+        序号 = #{record.序号,jdbcType=INTEGER},
+      </if>
+      <if test="record.账户 != null">
+        账户 = #{record.账户,jdbcType=VARCHAR},
+      </if>
+      <if test="record.姓名 != null">
+        姓名 = #{record.姓名,jdbcType=VARCHAR},
+      </if>
+      <if test="record.密码 != null">
+        密码 = #{record.密码,jdbcType=VARCHAR},
+      </if>
+      <if test="record.职责 != null">
+        职责 = #{record.职责,jdbcType=VARCHAR},
+      </if>
+      <if test="record.室别 != null">
+        室别 = #{record.室别,jdbcType=VARCHAR},
+      </if>
+      <if test="record.部门编号 != null">
+        部门编号 = #{record.部门编号,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update shouquanbiao
+    set 序号 = #{record.序号,jdbcType=INTEGER},
+      账户 = #{record.账户,jdbcType=VARCHAR},
+      姓名 = #{record.姓名,jdbcType=VARCHAR},
+      密码 = #{record.密码,jdbcType=VARCHAR},
+      职责 = #{record.职责,jdbcType=VARCHAR},
+      室别 = #{record.室别,jdbcType=VARCHAR},
+      部门编号 = #{record.部门编号,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

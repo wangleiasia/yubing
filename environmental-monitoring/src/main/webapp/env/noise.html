@@ -19,14 +19,14 @@
             <div class="collapse navbar-collapse">
                 <form class="navbar-form navbar-right" id="form-id_query_cond">
                     <div class="form-group">
-                        <label class="sr-only">项目编号</label>
-                        <input type="text" class="form-control" id="q_项目编号" name="项目编号" placeholder="项目编号">
+                        <label class="control-label">项目编号</label>
+                        <select class="form-control" id="q_项目编号" name="项目编号" onchange="showPointInfo()"></select>
                     </div>
                     <div class="form-group">
-                        <label class="sr-only">点位编号</label>
-                        <input type="text" class="form-control" id="q_点位编号" name="点位编号" placeholder="点位编号">
+                        <label class="control-label">点位编号</label>
+                        <select class="form-control" id="q_点位编号" name="点位编号"></select>
                     </div>
-                    <button type="button" class="btn btn-default" onclick="queryMonitorPoint()">检索</button>
+                    <button type="button" class="btn btn-default" onclick="queryMonitorPoint()">查询</button>
                 </form>
             </div>
         </nav>
@@ -35,11 +35,11 @@
             <form class="form-horizontal" id="form-id_noise">
                 <div class="form-group">
                     <label class="col-sm-1 control-label">项目编号</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" id="项目编号" name="项目编号" placeholder="项目编号">
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" readonly id="项目编号" name="项目编号" placeholder="项目编号">
                     </div>
                     <label class="col-sm-1 control-label">点位编号</label>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <input type="text" class="form-control" id="点位编号" name="点位编号" placeholder="点位编号">
                     </div>
                     <label class="col-sm-1 control-label">点位名称</label>
@@ -49,68 +49,107 @@
                 </div>
                 <div class="form-group">
                     <label class="col-sm-1 control-label">坐标</label>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <input type="text" class="form-control" id="坐标" name="坐标" placeholder="坐标">
+                        <button type="button" class="btn btn-warning" onclick="getLocation()">获取坐标信息</button>
                     </div>
-                    <label class="col-sm-1 control-label">行政区域代码</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" id="行政区域代码" name="行政区域代码" placeholder="行政区域代码">
-                    </div>
-                    <label class="col-sm-1 control-label">功能区代码</label>
+                    <label class="col-sm-1 control-label">任务单号</label>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" id="功能区代码" name="功能区代码" placeholder="功能区代码">
+                        <input type="text" class="form-control" id="任务单号" name="任务单号" placeholder="任务单号">
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-1 control-label">测点参照物</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" id="测点参照物" name="测点参照物" placeholder="测点参照物">
-                    </div>
-                    <label class="col-sm-1 control-label">气象条件</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" id="气象条件" name="气象条件" placeholder="气象条件">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-1 control-label">测点高度</label>
+                    <label class="col-sm-1 control-label">设备编号</label>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" id="测点高度" name="测点高度" placeholder="测点高度">
-                    </div>
-                    <label class="col-sm-2 control-label">设备编号</label>
-                    <div class="col-sm-6">
                         <input type="text" class="form-control" id="设备编号" name="设备编号" placeholder="校准设备名称编号">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-1 control-label">测量声压值</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" id="测量声压值" name="测量声压值" placeholder="">
+                    <label class="col-sm-1 control-label">功能区代码</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="功能区代码" name="功能区代码" placeholder="功能区代码">
                     </div>
-                    <label class="col-sm-1 control-label">监测前校准值</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" id="监测前校准值" name="监测前校准值" placeholder="">
+                    <label class="col-sm-1 control-label">测点间距m</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="测点间距" name="测点间距" placeholder="测点间距">
                     </div>
-                    <label class="col-sm-1 control-label">监测后校准值</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" id="监测后校准值" name="监测后校准值" placeholder="">
-                    </div>
-                    <label class="col-sm-1 control-label">Ld</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" id="Ld" name="Ld" placeholder="">
-                    </div>
-                    <label class="col-sm-1 control-label">Ln</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" id="Ln" name="Ln" placeholder="">
-                    </div>
-                    <label class="col-sm-1 control-label">Ldn</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" id="Ldn" name="Ldn" placeholder="">
+                    <label class="col-sm-1 control-label">路段长度m</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="路段长度" name="路段长度" placeholder="路段长度">
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="col-sm-1 control-label">道路总宽度m</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="道路总宽度" name="道路总宽度" placeholder="道路总宽度">
+                    </div>
+                    <label class="col-sm-1 control-label">机动车道数</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="机动车道数" name="机动车道数" placeholder="机动车道数">
+                    </div>
+                    <label class="col-sm-1 control-label">车道类别</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="车道类别" name="车道类别" placeholder="车道类别">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">测点参照物</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="测点参照物" name="测点参照物" placeholder="测点参照物">
+                    </div>
+                    <label class="col-sm-1 control-label">测点高度</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="测点高度" name="测点高度" placeholder="测点高度">
+                    </div>
+                    <label class="col-sm-1 control-label">行政区划代码</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="行政区划代码" name="行政区划代码" placeholder="行政区划代码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">道路等级</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="道路等级" name="道路等级" placeholder="道路等级">
+                    </div>
+                    <label class="col-sm-1 control-label">路段覆盖人口</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="路段覆盖人口" name="路段覆盖人口" placeholder="路段覆盖人口">
+                    </div>
                     <label class="col-sm-1 control-label">监测年度</label>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <input type="text" class="form-control" id="监测年度" name="监测年度" placeholder="监测年度">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">测量声压值</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="测量声压值" name="测量声压值" placeholder="测量声压值">
+                    </div>
+                    <label class="col-sm-1 control-label">监测前校准值</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="监测前校准值" name="监测前校准值" placeholder=监测前校准值">
+                    </div>
+                    <label class="col-sm-1 control-label">监测后校准值</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="监测后校准值" name="监测后校准值" placeholder="监测后校准值">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">Ld</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="Ld" name="Ld" placeholder="Ld">
+                    </div>
+                    <label class="col-sm-1 control-label">Ln</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="Ln" name="Ln" placeholder="Ln">
+                    </div>
+                    <label class="col-sm-1 control-label">Ldn</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="Ldn" name="Ldn" placeholder="Ldn">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">路段名称</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="路段名称" name="路段名称" placeholder="路段名称">
                     </div>
                     <label class="col-sm-1 control-label">监测人员</label>
                     <div class="col-sm-2">
@@ -120,9 +159,9 @@
                     <div class="col-sm-2">
                         <input type="text" class="form-control" id="信息上传" name="信息上传" placeholder="信息上传">
                     </div>
-                    <label class="col-sm-1 control-label">任务单号</label>
+                    <label class="col-sm-1 control-label">气象条件</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" id="任务单号" name="任务单号" placeholder="任务单号">
+                        <input type="text" class="form-control" id="气象条件" name="气象条件" placeholder="气象条件">
                     </div>
                 </div>
                 <div class="form-group">
@@ -131,41 +170,6 @@
                         <input type="text" class="form-control" id="备注" name="备注" placeholder="备注">
                     </div>
                 </div>
-                <!-- 增加隐藏数属性，便于后台修改，每个form-group放6个值 -->
-                <!--
-                <div class="form-group hidden" >
-                    <label class="col-sm-1 control-label">样品类别</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" id="样品类别" name="样品类别" placeholder="样品类别">
-                    </div>
-                    <label class="col-sm-1 control-label">类别</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" id="类别" name="类别" placeholder="类别">
-                    </div>
-                    <label class="col-sm-1 control-label">现场联系人</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" id="现场联系人" name="现场联系人" placeholder="现场联系人">
-                    </div>
-                    <label class="col-sm-1 control-label">联系人电话</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" id="联系人电话" name="联系人电话" placeholder="联系人电话">
-                    </div>
-                    <label class="col-sm-1 control-label">检测频次</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" id="检测频次" name="检测频次" placeholder="检测频次">
-                    </div>
-                    <label class="col-sm-1 control-label">检测天数</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" id="检测天数" name="检测天数" placeholder="检测天数">
-                    </div>
-                </div>
-                <div class="form-group hidden" >
-                    <label class="col-sm-1 control-label">样品数量</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" id="样品数量" name="样品数量" placeholder="样品数量">
-                    </div>
-                </div>
-                -->
             </form>
         </div>
     </div>

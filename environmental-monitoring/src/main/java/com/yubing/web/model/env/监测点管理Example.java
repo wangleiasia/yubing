@@ -1015,6 +1015,76 @@ public class 监测点管理Example {
             return (Criteria) this;
         }
 
+        public Criteria and主要来源IsNull() {
+            addCriterion("主要来源 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria and主要来源IsNotNull() {
+            addCriterion("主要来源 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria and主要来源EqualTo(String value) {
+            addCriterion("主要来源 =", value, "主要来源");
+            return (Criteria) this;
+        }
+
+        public Criteria and主要来源NotEqualTo(String value) {
+            addCriterion("主要来源 <>", value, "主要来源");
+            return (Criteria) this;
+        }
+
+        public Criteria and主要来源GreaterThan(String value) {
+            addCriterion("主要来源 >", value, "主要来源");
+            return (Criteria) this;
+        }
+
+        public Criteria and主要来源GreaterThanOrEqualTo(String value) {
+            addCriterion("主要来源 >=", value, "主要来源");
+            return (Criteria) this;
+        }
+
+        public Criteria and主要来源LessThan(String value) {
+            addCriterion("主要来源 <", value, "主要来源");
+            return (Criteria) this;
+        }
+
+        public Criteria and主要来源LessThanOrEqualTo(String value) {
+            addCriterion("主要来源 <=", value, "主要来源");
+            return (Criteria) this;
+        }
+
+        public Criteria and主要来源Like(String value) {
+            addCriterion("主要来源 like", value, "主要来源");
+            return (Criteria) this;
+        }
+
+        public Criteria and主要来源NotLike(String value) {
+            addCriterion("主要来源 not like", value, "主要来源");
+            return (Criteria) this;
+        }
+
+        public Criteria and主要来源In(List<String> values) {
+            addCriterion("主要来源 in", values, "主要来源");
+            return (Criteria) this;
+        }
+
+        public Criteria and主要来源NotIn(List<String> values) {
+            addCriterion("主要来源 not in", values, "主要来源");
+            return (Criteria) this;
+        }
+
+        public Criteria and主要来源Between(String value1, String value2) {
+            addCriterion("主要来源 between", value1, value2, "主要来源");
+            return (Criteria) this;
+        }
+
+        public Criteria and主要来源NotBetween(String value1, String value2) {
+            addCriterion("主要来源 not between", value1, value2, "主要来源");
+            return (Criteria) this;
+        }
+
         public Criteria and测点参照物IsNull() {
             addCriterion("测点参照物 is null");
             return (Criteria) this;
@@ -1222,6 +1292,566 @@ public class 监测点管理Example {
 
         public Criteria and测点高度NotBetween(String value1, String value2) {
             addCriterion("测点高度 not between", value1, value2, "测点高度");
+            return (Criteria) this;
+        }
+
+        public Criteria and测点间距IsNull() {
+            addCriterion("测点间距 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria and测点间距IsNotNull() {
+            addCriterion("测点间距 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria and测点间距EqualTo(String value) {
+            addCriterion("测点间距 =", value, "测点间距");
+            return (Criteria) this;
+        }
+
+        public Criteria and测点间距NotEqualTo(String value) {
+            addCriterion("测点间距 <>", value, "测点间距");
+            return (Criteria) this;
+        }
+
+        public Criteria and测点间距GreaterThan(String value) {
+            addCriterion("测点间距 >", value, "测点间距");
+            return (Criteria) this;
+        }
+
+        public Criteria and测点间距GreaterThanOrEqualTo(String value) {
+            addCriterion("测点间距 >=", value, "测点间距");
+            return (Criteria) this;
+        }
+
+        public Criteria and测点间距LessThan(String value) {
+            addCriterion("测点间距 <", value, "测点间距");
+            return (Criteria) this;
+        }
+
+        public Criteria and测点间距LessThanOrEqualTo(String value) {
+            addCriterion("测点间距 <=", value, "测点间距");
+            return (Criteria) this;
+        }
+
+        public Criteria and测点间距Like(String value) {
+            addCriterion("测点间距 like", value, "测点间距");
+            return (Criteria) this;
+        }
+
+        public Criteria and测点间距NotLike(String value) {
+            addCriterion("测点间距 not like", value, "测点间距");
+            return (Criteria) this;
+        }
+
+        public Criteria and测点间距In(List<String> values) {
+            addCriterion("测点间距 in", values, "测点间距");
+            return (Criteria) this;
+        }
+
+        public Criteria and测点间距NotIn(List<String> values) {
+            addCriterion("测点间距 not in", values, "测点间距");
+            return (Criteria) this;
+        }
+
+        public Criteria and测点间距Between(String value1, String value2) {
+            addCriterion("测点间距 between", value1, value2, "测点间距");
+            return (Criteria) this;
+        }
+
+        public Criteria and测点间距NotBetween(String value1, String value2) {
+            addCriterion("测点间距 not between", value1, value2, "测点间距");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段名称IsNull() {
+            addCriterion("路段名称 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段名称IsNotNull() {
+            addCriterion("路段名称 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段名称EqualTo(String value) {
+            addCriterion("路段名称 =", value, "路段名称");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段名称NotEqualTo(String value) {
+            addCriterion("路段名称 <>", value, "路段名称");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段名称GreaterThan(String value) {
+            addCriterion("路段名称 >", value, "路段名称");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段名称GreaterThanOrEqualTo(String value) {
+            addCriterion("路段名称 >=", value, "路段名称");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段名称LessThan(String value) {
+            addCriterion("路段名称 <", value, "路段名称");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段名称LessThanOrEqualTo(String value) {
+            addCriterion("路段名称 <=", value, "路段名称");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段名称Like(String value) {
+            addCriterion("路段名称 like", value, "路段名称");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段名称NotLike(String value) {
+            addCriterion("路段名称 not like", value, "路段名称");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段名称In(List<String> values) {
+            addCriterion("路段名称 in", values, "路段名称");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段名称NotIn(List<String> values) {
+            addCriterion("路段名称 not in", values, "路段名称");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段名称Between(String value1, String value2) {
+            addCriterion("路段名称 between", value1, value2, "路段名称");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段名称NotBetween(String value1, String value2) {
+            addCriterion("路段名称 not between", value1, value2, "路段名称");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段长度IsNull() {
+            addCriterion("路段长度 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段长度IsNotNull() {
+            addCriterion("路段长度 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段长度EqualTo(String value) {
+            addCriterion("路段长度 =", value, "路段长度");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段长度NotEqualTo(String value) {
+            addCriterion("路段长度 <>", value, "路段长度");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段长度GreaterThan(String value) {
+            addCriterion("路段长度 >", value, "路段长度");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段长度GreaterThanOrEqualTo(String value) {
+            addCriterion("路段长度 >=", value, "路段长度");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段长度LessThan(String value) {
+            addCriterion("路段长度 <", value, "路段长度");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段长度LessThanOrEqualTo(String value) {
+            addCriterion("路段长度 <=", value, "路段长度");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段长度Like(String value) {
+            addCriterion("路段长度 like", value, "路段长度");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段长度NotLike(String value) {
+            addCriterion("路段长度 not like", value, "路段长度");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段长度In(List<String> values) {
+            addCriterion("路段长度 in", values, "路段长度");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段长度NotIn(List<String> values) {
+            addCriterion("路段长度 not in", values, "路段长度");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段长度Between(String value1, String value2) {
+            addCriterion("路段长度 between", value1, value2, "路段长度");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段长度NotBetween(String value1, String value2) {
+            addCriterion("路段长度 not between", value1, value2, "路段长度");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路总宽度IsNull() {
+            addCriterion("道路总宽度 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路总宽度IsNotNull() {
+            addCriterion("道路总宽度 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路总宽度EqualTo(String value) {
+            addCriterion("道路总宽度 =", value, "道路总宽度");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路总宽度NotEqualTo(String value) {
+            addCriterion("道路总宽度 <>", value, "道路总宽度");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路总宽度GreaterThan(String value) {
+            addCriterion("道路总宽度 >", value, "道路总宽度");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路总宽度GreaterThanOrEqualTo(String value) {
+            addCriterion("道路总宽度 >=", value, "道路总宽度");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路总宽度LessThan(String value) {
+            addCriterion("道路总宽度 <", value, "道路总宽度");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路总宽度LessThanOrEqualTo(String value) {
+            addCriterion("道路总宽度 <=", value, "道路总宽度");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路总宽度Like(String value) {
+            addCriterion("道路总宽度 like", value, "道路总宽度");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路总宽度NotLike(String value) {
+            addCriterion("道路总宽度 not like", value, "道路总宽度");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路总宽度In(List<String> values) {
+            addCriterion("道路总宽度 in", values, "道路总宽度");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路总宽度NotIn(List<String> values) {
+            addCriterion("道路总宽度 not in", values, "道路总宽度");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路总宽度Between(String value1, String value2) {
+            addCriterion("道路总宽度 between", value1, value2, "道路总宽度");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路总宽度NotBetween(String value1, String value2) {
+            addCriterion("道路总宽度 not between", value1, value2, "道路总宽度");
+            return (Criteria) this;
+        }
+
+        public Criteria and机动车道数IsNull() {
+            addCriterion("机动车道数 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria and机动车道数IsNotNull() {
+            addCriterion("机动车道数 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria and机动车道数EqualTo(String value) {
+            addCriterion("机动车道数 =", value, "机动车道数");
+            return (Criteria) this;
+        }
+
+        public Criteria and机动车道数NotEqualTo(String value) {
+            addCriterion("机动车道数 <>", value, "机动车道数");
+            return (Criteria) this;
+        }
+
+        public Criteria and机动车道数GreaterThan(String value) {
+            addCriterion("机动车道数 >", value, "机动车道数");
+            return (Criteria) this;
+        }
+
+        public Criteria and机动车道数GreaterThanOrEqualTo(String value) {
+            addCriterion("机动车道数 >=", value, "机动车道数");
+            return (Criteria) this;
+        }
+
+        public Criteria and机动车道数LessThan(String value) {
+            addCriterion("机动车道数 <", value, "机动车道数");
+            return (Criteria) this;
+        }
+
+        public Criteria and机动车道数LessThanOrEqualTo(String value) {
+            addCriterion("机动车道数 <=", value, "机动车道数");
+            return (Criteria) this;
+        }
+
+        public Criteria and机动车道数Like(String value) {
+            addCriterion("机动车道数 like", value, "机动车道数");
+            return (Criteria) this;
+        }
+
+        public Criteria and机动车道数NotLike(String value) {
+            addCriterion("机动车道数 not like", value, "机动车道数");
+            return (Criteria) this;
+        }
+
+        public Criteria and机动车道数In(List<String> values) {
+            addCriterion("机动车道数 in", values, "机动车道数");
+            return (Criteria) this;
+        }
+
+        public Criteria and机动车道数NotIn(List<String> values) {
+            addCriterion("机动车道数 not in", values, "机动车道数");
+            return (Criteria) this;
+        }
+
+        public Criteria and机动车道数Between(String value1, String value2) {
+            addCriterion("机动车道数 between", value1, value2, "机动车道数");
+            return (Criteria) this;
+        }
+
+        public Criteria and机动车道数NotBetween(String value1, String value2) {
+            addCriterion("机动车道数 not between", value1, value2, "机动车道数");
+            return (Criteria) this;
+        }
+
+        public Criteria and车道类别IsNull() {
+            addCriterion("车道类别 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria and车道类别IsNotNull() {
+            addCriterion("车道类别 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria and车道类别EqualTo(String value) {
+            addCriterion("车道类别 =", value, "车道类别");
+            return (Criteria) this;
+        }
+
+        public Criteria and车道类别NotEqualTo(String value) {
+            addCriterion("车道类别 <>", value, "车道类别");
+            return (Criteria) this;
+        }
+
+        public Criteria and车道类别GreaterThan(String value) {
+            addCriterion("车道类别 >", value, "车道类别");
+            return (Criteria) this;
+        }
+
+        public Criteria and车道类别GreaterThanOrEqualTo(String value) {
+            addCriterion("车道类别 >=", value, "车道类别");
+            return (Criteria) this;
+        }
+
+        public Criteria and车道类别LessThan(String value) {
+            addCriterion("车道类别 <", value, "车道类别");
+            return (Criteria) this;
+        }
+
+        public Criteria and车道类别LessThanOrEqualTo(String value) {
+            addCriterion("车道类别 <=", value, "车道类别");
+            return (Criteria) this;
+        }
+
+        public Criteria and车道类别Like(String value) {
+            addCriterion("车道类别 like", value, "车道类别");
+            return (Criteria) this;
+        }
+
+        public Criteria and车道类别NotLike(String value) {
+            addCriterion("车道类别 not like", value, "车道类别");
+            return (Criteria) this;
+        }
+
+        public Criteria and车道类别In(List<String> values) {
+            addCriterion("车道类别 in", values, "车道类别");
+            return (Criteria) this;
+        }
+
+        public Criteria and车道类别NotIn(List<String> values) {
+            addCriterion("车道类别 not in", values, "车道类别");
+            return (Criteria) this;
+        }
+
+        public Criteria and车道类别Between(String value1, String value2) {
+            addCriterion("车道类别 between", value1, value2, "车道类别");
+            return (Criteria) this;
+        }
+
+        public Criteria and车道类别NotBetween(String value1, String value2) {
+            addCriterion("车道类别 not between", value1, value2, "车道类别");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路等级IsNull() {
+            addCriterion("道路等级 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路等级IsNotNull() {
+            addCriterion("道路等级 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路等级EqualTo(String value) {
+            addCriterion("道路等级 =", value, "道路等级");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路等级NotEqualTo(String value) {
+            addCriterion("道路等级 <>", value, "道路等级");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路等级GreaterThan(String value) {
+            addCriterion("道路等级 >", value, "道路等级");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路等级GreaterThanOrEqualTo(String value) {
+            addCriterion("道路等级 >=", value, "道路等级");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路等级LessThan(String value) {
+            addCriterion("道路等级 <", value, "道路等级");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路等级LessThanOrEqualTo(String value) {
+            addCriterion("道路等级 <=", value, "道路等级");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路等级Like(String value) {
+            addCriterion("道路等级 like", value, "道路等级");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路等级NotLike(String value) {
+            addCriterion("道路等级 not like", value, "道路等级");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路等级In(List<String> values) {
+            addCriterion("道路等级 in", values, "道路等级");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路等级NotIn(List<String> values) {
+            addCriterion("道路等级 not in", values, "道路等级");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路等级Between(String value1, String value2) {
+            addCriterion("道路等级 between", value1, value2, "道路等级");
+            return (Criteria) this;
+        }
+
+        public Criteria and道路等级NotBetween(String value1, String value2) {
+            addCriterion("道路等级 not between", value1, value2, "道路等级");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段覆盖人口IsNull() {
+            addCriterion("路段覆盖人口 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段覆盖人口IsNotNull() {
+            addCriterion("路段覆盖人口 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段覆盖人口EqualTo(String value) {
+            addCriterion("路段覆盖人口 =", value, "路段覆盖人口");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段覆盖人口NotEqualTo(String value) {
+            addCriterion("路段覆盖人口 <>", value, "路段覆盖人口");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段覆盖人口GreaterThan(String value) {
+            addCriterion("路段覆盖人口 >", value, "路段覆盖人口");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段覆盖人口GreaterThanOrEqualTo(String value) {
+            addCriterion("路段覆盖人口 >=", value, "路段覆盖人口");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段覆盖人口LessThan(String value) {
+            addCriterion("路段覆盖人口 <", value, "路段覆盖人口");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段覆盖人口LessThanOrEqualTo(String value) {
+            addCriterion("路段覆盖人口 <=", value, "路段覆盖人口");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段覆盖人口Like(String value) {
+            addCriterion("路段覆盖人口 like", value, "路段覆盖人口");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段覆盖人口NotLike(String value) {
+            addCriterion("路段覆盖人口 not like", value, "路段覆盖人口");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段覆盖人口In(List<String> values) {
+            addCriterion("路段覆盖人口 in", values, "路段覆盖人口");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段覆盖人口NotIn(List<String> values) {
+            addCriterion("路段覆盖人口 not in", values, "路段覆盖人口");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段覆盖人口Between(String value1, String value2) {
+            addCriterion("路段覆盖人口 between", value1, value2, "路段覆盖人口");
+            return (Criteria) this;
+        }
+
+        public Criteria and路段覆盖人口NotBetween(String value1, String value2) {
+            addCriterion("路段覆盖人口 not between", value1, value2, "路段覆盖人口");
             return (Criteria) this;
         }
 
@@ -2325,143 +2955,143 @@ public class 监测点管理Example {
             return (Criteria) this;
         }
 
-        public Criteria and口令IsNull() {
-            addCriterion("口令 is null");
+        public Criteria and授权账户IsNull() {
+            addCriterion("授权账户 is null");
             return (Criteria) this;
         }
 
-        public Criteria and口令IsNotNull() {
-            addCriterion("口令 is not null");
+        public Criteria and授权账户IsNotNull() {
+            addCriterion("授权账户 is not null");
             return (Criteria) this;
         }
 
-        public Criteria and口令EqualTo(String value) {
-            addCriterion("口令 =", value, "口令");
+        public Criteria and授权账户EqualTo(String value) {
+            addCriterion("授权账户 =", value, "授权账户");
             return (Criteria) this;
         }
 
-        public Criteria and口令NotEqualTo(String value) {
-            addCriterion("口令 <>", value, "口令");
+        public Criteria and授权账户NotEqualTo(String value) {
+            addCriterion("授权账户 <>", value, "授权账户");
             return (Criteria) this;
         }
 
-        public Criteria and口令GreaterThan(String value) {
-            addCriterion("口令 >", value, "口令");
+        public Criteria and授权账户GreaterThan(String value) {
+            addCriterion("授权账户 >", value, "授权账户");
             return (Criteria) this;
         }
 
-        public Criteria and口令GreaterThanOrEqualTo(String value) {
-            addCriterion("口令 >=", value, "口令");
+        public Criteria and授权账户GreaterThanOrEqualTo(String value) {
+            addCriterion("授权账户 >=", value, "授权账户");
             return (Criteria) this;
         }
 
-        public Criteria and口令LessThan(String value) {
-            addCriterion("口令 <", value, "口令");
+        public Criteria and授权账户LessThan(String value) {
+            addCriterion("授权账户 <", value, "授权账户");
             return (Criteria) this;
         }
 
-        public Criteria and口令LessThanOrEqualTo(String value) {
-            addCriterion("口令 <=", value, "口令");
+        public Criteria and授权账户LessThanOrEqualTo(String value) {
+            addCriterion("授权账户 <=", value, "授权账户");
             return (Criteria) this;
         }
 
-        public Criteria and口令Like(String value) {
-            addCriterion("口令 like", value, "口令");
+        public Criteria and授权账户Like(String value) {
+            addCriterion("授权账户 like", value, "授权账户");
             return (Criteria) this;
         }
 
-        public Criteria and口令NotLike(String value) {
-            addCriterion("口令 not like", value, "口令");
+        public Criteria and授权账户NotLike(String value) {
+            addCriterion("授权账户 not like", value, "授权账户");
             return (Criteria) this;
         }
 
-        public Criteria and口令In(List<String> values) {
-            addCriterion("口令 in", values, "口令");
+        public Criteria and授权账户In(List<String> values) {
+            addCriterion("授权账户 in", values, "授权账户");
             return (Criteria) this;
         }
 
-        public Criteria and口令NotIn(List<String> values) {
-            addCriterion("口令 not in", values, "口令");
+        public Criteria and授权账户NotIn(List<String> values) {
+            addCriterion("授权账户 not in", values, "授权账户");
             return (Criteria) this;
         }
 
-        public Criteria and口令Between(String value1, String value2) {
-            addCriterion("口令 between", value1, value2, "口令");
+        public Criteria and授权账户Between(String value1, String value2) {
+            addCriterion("授权账户 between", value1, value2, "授权账户");
             return (Criteria) this;
         }
 
-        public Criteria and口令NotBetween(String value1, String value2) {
-            addCriterion("口令 not between", value1, value2, "口令");
+        public Criteria and授权账户NotBetween(String value1, String value2) {
+            addCriterion("授权账户 not between", value1, value2, "授权账户");
             return (Criteria) this;
         }
 
-        public Criteria and密码IsNull() {
-            addCriterion("密码 is null");
+        public Criteria and状态IsNull() {
+            addCriterion("状态 is null");
             return (Criteria) this;
         }
 
-        public Criteria and密码IsNotNull() {
-            addCriterion("密码 is not null");
+        public Criteria and状态IsNotNull() {
+            addCriterion("状态 is not null");
             return (Criteria) this;
         }
 
-        public Criteria and密码EqualTo(String value) {
-            addCriterion("密码 =", value, "密码");
+        public Criteria and状态EqualTo(String value) {
+            addCriterion("状态 =", value, "状态");
             return (Criteria) this;
         }
 
-        public Criteria and密码NotEqualTo(String value) {
-            addCriterion("密码 <>", value, "密码");
+        public Criteria and状态NotEqualTo(String value) {
+            addCriterion("状态 <>", value, "状态");
             return (Criteria) this;
         }
 
-        public Criteria and密码GreaterThan(String value) {
-            addCriterion("密码 >", value, "密码");
+        public Criteria and状态GreaterThan(String value) {
+            addCriterion("状态 >", value, "状态");
             return (Criteria) this;
         }
 
-        public Criteria and密码GreaterThanOrEqualTo(String value) {
-            addCriterion("密码 >=", value, "密码");
+        public Criteria and状态GreaterThanOrEqualTo(String value) {
+            addCriterion("状态 >=", value, "状态");
             return (Criteria) this;
         }
 
-        public Criteria and密码LessThan(String value) {
-            addCriterion("密码 <", value, "密码");
+        public Criteria and状态LessThan(String value) {
+            addCriterion("状态 <", value, "状态");
             return (Criteria) this;
         }
 
-        public Criteria and密码LessThanOrEqualTo(String value) {
-            addCriterion("密码 <=", value, "密码");
+        public Criteria and状态LessThanOrEqualTo(String value) {
+            addCriterion("状态 <=", value, "状态");
             return (Criteria) this;
         }
 
-        public Criteria and密码Like(String value) {
-            addCriterion("密码 like", value, "密码");
+        public Criteria and状态Like(String value) {
+            addCriterion("状态 like", value, "状态");
             return (Criteria) this;
         }
 
-        public Criteria and密码NotLike(String value) {
-            addCriterion("密码 not like", value, "密码");
+        public Criteria and状态NotLike(String value) {
+            addCriterion("状态 not like", value, "状态");
             return (Criteria) this;
         }
 
-        public Criteria and密码In(List<String> values) {
-            addCriterion("密码 in", values, "密码");
+        public Criteria and状态In(List<String> values) {
+            addCriterion("状态 in", values, "状态");
             return (Criteria) this;
         }
 
-        public Criteria and密码NotIn(List<String> values) {
-            addCriterion("密码 not in", values, "密码");
+        public Criteria and状态NotIn(List<String> values) {
+            addCriterion("状态 not in", values, "状态");
             return (Criteria) this;
         }
 
-        public Criteria and密码Between(String value1, String value2) {
-            addCriterion("密码 between", value1, value2, "密码");
+        public Criteria and状态Between(String value1, String value2) {
+            addCriterion("状态 between", value1, value2, "状态");
             return (Criteria) this;
         }
 
-        public Criteria and密码NotBetween(String value1, String value2) {
-            addCriterion("密码 not between", value1, value2, "密码");
+        public Criteria and状态NotBetween(String value1, String value2) {
+            addCriterion("状态 not between", value1, value2, "状态");
             return (Criteria) this;
         }
     }

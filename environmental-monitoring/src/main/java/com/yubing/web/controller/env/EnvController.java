@@ -261,34 +261,6 @@ public class EnvController {
         }
     }
 
-    //监测点修改
-    @ResponseBody
-    @RequestMapping(value="/修改监测点",produces="text/json;charset=UTF-8")
-    public String modfyMonitorPoint(监测点管理 record) {
-        try {
-            //先根据项目编号和检测点查询信息
-            Map<String, String> cond = new HashMap<String, String>();
-            cond.put("项目编号", record.get项目编号());
-            cond.put("点位编号", record.get点位编号());
-            List<监测点管理> records = s监测点管理SVImpl.queryRecordsByCond(cond);
-            if (null == records || records.size() < 1) {
-                String errorMsg = "根据项目编号[" + record.get项目编号() + "]，点位编号[" + record.get点位编号() + "]没有查询到监测点信息";
-                return ControllerUtil.result(false, errorMsg);
-            }
-            if (records.size() > 1) {
-                String errorMsg = "根据项目编号[" + record.get项目编号() + "]，点位编号[" + record.get点位编号() + "]查询出的点位信息大于1";
-                return ControllerUtil.result(false, errorMsg);
-            }
-            //开始更新点位信息
-            String ld = record.getLd();
-            s监测点管理SVImpl.modify(record.get项目编号(), record.get点位编号(), record);
-            return ControllerUtil.result(true, "监测点修改成功");
-        }catch (Exception e) {
-            LOGGER.error("修改监测点异常",e);
-            return ControllerUtil.result(false, e.getMessage());
-        }
-    }
-
     //监测点查询
     @ResponseBody
     @RequestMapping(value="/监测点查询",produces="text/json;charset=UTF-8")

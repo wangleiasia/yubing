@@ -12,7 +12,7 @@ public class CollectionUtil {
     /**从Map中取值*/
     public static String getValueFromMap(Map map,String key,String defaultValue) throws Exception {
         if(MapUtils.isEmpty(map)) {
-            return null;
+            return defaultValue;
         }
         if(map.containsKey(key)) {
             return (String)map.get(key);
