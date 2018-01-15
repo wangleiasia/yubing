@@ -1,16 +1,19 @@
 /**
  * Created by wanglei on 2017/12/19.
  */
-
+//保存大气样品信息
+var airTemplateData;
+var rowId;
 $(document).ready(function () {
-    //定义表格的列
+    //定义大气样品
     var columns = [
+        {'field': '项目编号', 'title': '项目编号'},
         {'field': '点位编号', 'title': '点位编号'},
         {'field': '样品编号', 'title': '样品编号'},
         {'field': '分类', 'title': '分类'},
         {'field': '样品类别', 'title': '样品类别'},
-        {'field': '时间段', 'title': '时间段'},
         {'field': '检测类别', 'title': '检测类别'},
+        {'field': '时间段', 'title': '时间段'},
         {'field': '检测日期', 'title': '检测日期'},
         {'field': '勾选', 'title': '是否已上传'}
     ];
@@ -81,6 +84,7 @@ function queryPointByPrjCode() {
             alert(data['message']);
             return;
         }
+        airTemplateData = data;
         //加载数据
         loadData($("#tab-id_pointInfo"),data);
     },"json");
@@ -90,13 +94,15 @@ function queryPointByPrjCode() {
  * 表格行的单击事件
  */
 $("#tab-id_pointInfo").on('click-row.bs.table', function(e,row, element) {
-    // console.log(e);
-    // console.log(row);
-    // console.log(element);
+    console.log(e);
+    console.log(row);
+    console.log(element);
+    rowId = element.data('index');
     //如果当前选择记录已经被上传，则不允许在上传
     var isHavedUpload = row["勾选"];
-    if(typeof isHavedUpload != undefined && 'Y' == isHavedUpload) {
+    if(typeof isHavedUpload != undefined && 'y' == isHavedUpload) {
         alert("当前检测点已上传！");
+        //隐藏文件上传区域
         $("#div-id_fileInput").hide();
         //当前行不选择
         $('#tab-id_pointInfo').bootstrapTable('uncheck',element.data('index'));
@@ -126,9 +132,13 @@ $('#file-0').on('fileuploaded', function(event, data, previewId, index) {
     var obj = selectRows[0];
     obj.项目编号 = $("#项目编号").val();
 
-    var param = "项目编号="+obj.项目编号;
-    param = "点位编号="+obj.点位编号;
-    param = "样品编号="+obj.样品编号;
+    //设置是否上传标识
+    airTemplateData[rowId].勾选='y';
+    //$('#tab-id_pointInfo').bootstrapTable('refresh',airTemplateData);
+    loadData($("#tab-id_pointInfo"),airTemplateData);
+    //$('#tab-id_pointInfo').bootstrapTable('updateCell','勾选','y');
+    // $('#tab-id_pointInfo').bootstrapTable('refresh',{query:airTemplateData});
+
     //上传成功后，显示数据
     $.post("/service/查询锅炉数据",obj,function (data) {
         if('false' == data['result']) {

@@ -91,6 +91,15 @@ public class EnvController {
                 }
                 //保存锅炉数据
                 s锅炉数据SVImpl.addRecords(records);
+
+                //锅炉数据上传成功后，需要修改大气样品，修改条件：项目编号、点位编号、样品编号、时间段
+                Map<String,String> cond = new HashMap<String, String>();
+                cond.put("项目编号",airTemplate.get项目编号());
+                cond.put("点位编号",airTemplate.get点位编号());
+                cond.put("样品编号",airTemplate.get样品编号());
+                cond.put("时间段",airTemplate.get时间段());
+                airTemplate.set勾选("y");
+                s大气样品SVImpl.modify(cond,airTemplate);
             }
 
         }
@@ -236,7 +245,7 @@ public class EnvController {
         try {
             List<大气样品> records = s大气样品SVImpl.queryNotUploadRecordsByCond(param);
             if (null == records || records.size() < 1) {
-                return ControllerUtil.result(false, "没有查询到监测点信息");
+                return ControllerUtil.result(false, "没有查询到大气样品信息");
             }
 
             //处理日期格式，注册转换器

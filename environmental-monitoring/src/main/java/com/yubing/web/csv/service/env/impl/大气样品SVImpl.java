@@ -58,7 +58,7 @@ public class 大气样品SVImpl implements I大气样品SV {
 
     public void modify(Map<String, String> cond, 大气样品 record) throws Exception {
         //项目编号、点位编号、样品编号三个值不能为空
-        if(StringUtils.isBlank(cond.get("项目编号")) || StringUtils.isBlank(cond.get("点位编号")) || StringUtils.isBlank(cond.get("样品编号"))) {
+        if(StringUtils.isBlank(cond.get("项目编号")) || StringUtils.isBlank(cond.get("点位编号")) || StringUtils.isBlank(cond.get("样品编号")) || StringUtils.isBlank(cond.get("时间段"))) {
             return;
         }
         大气样品Example example = new 大气样品Example() ;
@@ -66,6 +66,7 @@ public class 大气样品SVImpl implements I大气样品SV {
         c.and项目编号EqualTo(cond.get("项目编号"));
         c.and点位编号EqualTo(cond.get("点位编号"));
         c.and样品编号EqualTo(cond.get("样品编号"));
+        c.and时间段EqualTo(cond.get("时间段"));
 
         i大气样品DAO.updateByExample(record,example);
     }
