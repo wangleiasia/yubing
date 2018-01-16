@@ -52,13 +52,15 @@
     </form>
 </div>
 
+<iframe id="rfFrame" name="rfFrame" src="about:blank" style="display:none;"></iframe>
+
 <div class="panel panel-default" style="margin-bottom: 5px;margin-top: 5px;">
     <div class="panel-heading">
         <h3 class="panel-title">工况回传</h3>
     </div>
 
     <div style="margin-top: 8px">
-        <form class="form-horizontal" id="form-id_noisesubmit">
+        <form class="form-horizontal" id="form-id_noisesubmit" target="rfFrame">
             <div class="form-group">
                 <label class="col-sm-1 control-label">设计工况</label>
                 <div class="col-sm-5">
@@ -87,11 +89,14 @@
                     </select>
                 </div>
             </div>
+            <div>
+                <button type="submit" style="margin-top: 5px;" class="btn btn-primary btn-block" onclick="operatingModeSubmit()">工况回传</button>
+            </div>
         </form>
     </div>
-    <div>
-        <button type="button" style="margin-top: 5px;" class="btn btn-primary btn-block" onclick="operatingModeSubmit()">工况回传</button>
-    </div>
+    <!--<div>-->
+        <!--<button type="button" style="margin-top: 5px;" class="btn btn-primary btn-block" onclick="operatingModeSubmit()">工况回传</button>-->
+    <!--</div>-->
 </div>
 
 <!-- 锅炉数据上传结果 -->

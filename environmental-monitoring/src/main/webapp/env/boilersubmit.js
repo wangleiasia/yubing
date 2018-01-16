@@ -5,6 +5,7 @@
 var airTemplateData;
 var rowId;
 $(document).ready(function () {
+
     //定义大气样品
     var columns = [
         {'field': '项目编号', 'title': '项目编号'},
@@ -58,6 +59,44 @@ $(document).ready(function () {
         }
         $("#项目编号").selectLoad(prjArray);
     },"json");
+
+    $('#form-id_noisesubmit').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            设计工况: {
+                validators: {
+                    notEmpty: {
+                        message: '设计工况不能为空'
+                    },
+                    numeric:{
+                        message: '设计工况必须为数组'
+                    }
+                }
+            },
+            运行工况: {
+                validators: {
+                    notEmpty: {
+                        message: '运行工况不能为空'
+                    },
+                    numeric:{
+                        message: '运行工况必须为数组'
+                    }
+                }
+            },
+            单位: {
+                validators: {
+                    notEmpty: {
+                        message: '单位不能为空'
+                    }
+                }
+            }
+        }
+    });
 });
 
 /**
@@ -94,9 +133,14 @@ function queryPointByPrjCode() {
  * 表格行的单击事件
  */
 $("#tab-id_pointInfo").on('click-row.bs.table', function(e,row, element) {
-    console.log(e);
-    console.log(row);
-    console.log(element);
+    // console.log(e);
+    // console.log(row);
+    // console.log(element);
+
+    //清空工况回传表单
+    $('#form-id_noisesubmit').formClear();
+    $("#form-id_noisesubmit").data('bootstrapValidator').resetForm();
+
     rowId = element.data('index');
     //如果当前选择记录已经被上传，则不允许在上传
     var isHavedUpload = row["勾选"];
@@ -157,6 +201,13 @@ $('#file-0').on('fileuploaded', function(event, data, previewId, index) {
  *
  */
 function operatingModeSubmit() {
+
+    // var aa = $("#form-id_noisesubmit").data("bootstrapValidator").validate();
+    //手动验证
+    if(!$('#form-id_noisesubmit').data('bootstrapValidator').isValid()){
+        return ;
+    }
+
     var param = $("#form-id_noisesubmit").serialize();
     var selectRows = $('#tab-id_pointInfo').bootstrapTable('getSelections');
     if(selectRows.length == 0) {
