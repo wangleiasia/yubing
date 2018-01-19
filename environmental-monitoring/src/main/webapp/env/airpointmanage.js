@@ -123,4 +123,64 @@ function queryMonitorPoint() {
     },"json");
 }
 
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var coords = position.coords;
+            // 纬度[N]
+            var v = coords.latitude;
+            // 经度[E]
+            var s = coords.longitude
+            //alert(changeToDFM(v,'N') + '---' + changeToDFM(s,'E'));
+            $("#坐标").val(changeToDFM(v,'N') + ' ' + changeToDFM(s,'E'));
+        }, function (error) {
+            switch(error.code) {
+                case error.TIMEOUT:
+                    showError("A timeout occured! Please try again!");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    showError('We can\'t detect your location. Sorry!');
+                    break;
+                case error.PERMISSION_DENIED:
+                    showError('Please allow geolocation access for this to work.');
+                    break;
+                case error.UNKNOWN_ERROR:
+                    showError('An unknown error occured!');
+                    break;
+            }
+        }, {
+            // 指示浏览器获取高精度的位置，默认为false
+            enableHighAcuracy: true,
+            // 指定获取地理位置的超时时间，默认不限时，单位为毫秒
+            timeout: 5000,
+            // 最长有效期，在重复获取地理位置时，此参数指定多久再次获取位置。
+            maximumAge: 3000
+        });
+    } else {
+        alert("Your browser does not support Geolocation!");
+    }
+}
+
+function showError(info) {
+    alert(info);
+}
+
+function changeToDFM(du,item){
+    var duL = parseInt(du/1);
+    var fen,miao;
+
+    var temp = du % 1;
+    temp = temp *60;
+    fen = parseInt(temp/1);
+    temp = (temp % 1) * 60;
+    miao = parseInt(temp/1);
+    temp = (temp % 1) * 60;
+    var miaoE = parseInt(temp/1);
+
+    miao = miao+"."+miaoE;
+
+    return item+duL+"°"+fen+"'"+miao+"\"";
+}
+
+
 
