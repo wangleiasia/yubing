@@ -117,7 +117,14 @@ function submit() {
 $(document).ready(function () {
    //初始化表单信息
     var now = new Date();
-    $("#月").val(now.getMonth());
+    var sMonth;
+    var month = now.getMonth()+1;
+    if(month < 10) {
+        sMonth = '0'+month;
+    }else{
+        sMonth = month+'';
+    }
+    $("#月").val(sMonth);
     $("#日").val(now.getDate());
     $("#时").val(now.getHours());
     $("#分").val(now.getMinutes());

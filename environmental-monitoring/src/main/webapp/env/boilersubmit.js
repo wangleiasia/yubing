@@ -223,5 +223,29 @@ function operatingModeSubmit() {
     },"json");
 }
 
+function calculate() {
+    var v1 = $("#设计工况").val();
+    var v2 = $("#运行工况").val();
+    if(typeof(v1) == 'undefined' || '' == v1 || null == v1) {
+        return;
+    }
+    if(typeof(v2) == 'undefined' || '' == v2 || null == v2) {
+        return;
+    }
+    var result = (v2/v1)*100;
+    //取整数
+    var r1 = parseInt(result);
+    var temp = (result % 1)*100;
+    var r2 = parseInt(temp);
+    if(0 == r2) {
+        $("#负荷百分比").val(r1);
+    }else{
+        if(r2 < 10) {
+            r2 = '0'+r2;
+        }
+        $("#负荷百分比").val(r1+'.'+r2);
+    }
+}
+
 
 

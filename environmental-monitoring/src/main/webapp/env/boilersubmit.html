@@ -63,22 +63,12 @@
         <form class="form-horizontal" id="form-id_noisesubmit" target="rfFrame">
             <div class="form-group">
                 <label class="col-sm-1 control-label">设计工况</label>
-                <div class="col-sm-5">
+                <div class="col-sm-3">
                     <input type="text" class="form-control" id="设计工况" name="设计工况" placeholder="设计工况">
                 </div>
                 <label class="col-sm-1 control-label">运行工况</label>
-                <div class="col-sm-5">
+                <div class="col-sm-3">
                     <input type="text" class="form-control" id="运行工况" name="运行工况" placeholder="运行工况">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-1 control-label">百分比</label>
-                <div class="col-sm-3">
-                    <input type="text" class="form-control" id="负荷百分比" name="百分比" placeholder="百分比">
-                </div>
-                <label class="col-sm-1 control-label">单位</label>
-                <div class="col-sm-3">
-                    <input type="text" class="form-control" id="工况单位" name="单位" placeholder="单位">
                 </div>
                 <label class="col-sm-1 control-label">次序</label>
                 <div class="col-sm-3">
@@ -87,6 +77,21 @@
                         <option value="2">第二次</option>
                         <option value="3">第三次</option>
                     </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">百分比</label>
+                <div class="col-sm-5">
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="负荷百分比" name="百分比" placeholder="百分比">
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-primary" onclick="calculate()">计算</button>
+                    </div>
+                </div>
+                <label class="col-sm-1 control-label">单位</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="工况单位" name="单位" placeholder="单位">
                 </div>
             </div>
             <div>
