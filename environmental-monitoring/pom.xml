@@ -184,7 +184,24 @@
                     <workDirectory>${project.build.directory}</workDirectory>
                     <useCache>false</useCache>
                     <!-- 不对依赖包进行打包 -->
-                    <packagingExcludes>WEB-INF/lib/*</packagingExcludes>
+                    <packagingExcludes>
+                        WEB-INF/lib/*
+                        <!-- 以下主要用于增量发包 -->
+                        ,
+                        jquery-1.9.1/**,
+                        bootstrap-3.3.7-dist/**,
+                        bootstrap3-dialog-master/**,
+                        bootstrap-fileinput-master/**,
+                        bootstrapvalidator-master/**,
+                        frame/demo/**,
+                        frame/home/**,
+                        frame/sec/**,
+                        WEB-INF/classes/*.xml,
+                        WEB-INF/classes/*.properties,
+                        WEB-INF/classes/TestJunit.class,
+                        WEB-INF/applicationContext.xml,
+                        WEB-INF/*.xml
+                    </packagingExcludes>
                     <archive>
                         <addMavenDescriptor>true</addMavenDescriptor>
                     </archive>
