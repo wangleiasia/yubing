@@ -5,7 +5,7 @@ public class 工况表 {
 
     private String 点位编号;
 
-    private String 次序;
+    private String 时间段;
 
     private String 设计工况;
 
@@ -31,12 +31,12 @@ public class 工况表 {
         this.点位编号 = 点位编号 == null ? null : 点位编号.trim();
     }
 
-    public String get次序() {
-        return 次序;
+    public String get时间段() {
+        return 时间段;
     }
 
-    public void set次序(String 次序) {
-        this.次序 = 次序 == null ? null : 次序.trim();
+    public void set时间段(String 时间段) {
+        this.时间段 = 时间段 == null ? null : 时间段.trim();
     }
 
     public String get设计工况() {

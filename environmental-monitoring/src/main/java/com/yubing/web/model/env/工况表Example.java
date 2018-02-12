@@ -244,73 +244,73 @@ public class 工况表Example {
             return (Criteria) this;
         }
 
-        public Criteria and次序IsNull() {
-            addCriterion("次序 is null");
+        public Criteria and时间段IsNull() {
+            addCriterion("时间段 is null");
             return (Criteria) this;
         }
 
-        public Criteria and次序IsNotNull() {
-            addCriterion("次序 is not null");
+        public Criteria and时间段IsNotNull() {
+            addCriterion("时间段 is not null");
             return (Criteria) this;
         }
 
-        public Criteria and次序EqualTo(String value) {
-            addCriterion("次序 =", value, "次序");
+        public Criteria and时间段EqualTo(String value) {
+            addCriterion("时间段 =", value, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and次序NotEqualTo(String value) {
-            addCriterion("次序 <>", value, "次序");
+        public Criteria and时间段NotEqualTo(String value) {
+            addCriterion("时间段 <>", value, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and次序GreaterThan(String value) {
-            addCriterion("次序 >", value, "次序");
+        public Criteria and时间段GreaterThan(String value) {
+            addCriterion("时间段 >", value, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and次序GreaterThanOrEqualTo(String value) {
-            addCriterion("次序 >=", value, "次序");
+        public Criteria and时间段GreaterThanOrEqualTo(String value) {
+            addCriterion("时间段 >=", value, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and次序LessThan(String value) {
-            addCriterion("次序 <", value, "次序");
+        public Criteria and时间段LessThan(String value) {
+            addCriterion("时间段 <", value, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and次序LessThanOrEqualTo(String value) {
-            addCriterion("次序 <=", value, "次序");
+        public Criteria and时间段LessThanOrEqualTo(String value) {
+            addCriterion("时间段 <=", value, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and次序Like(String value) {
-            addCriterion("次序 like", value, "次序");
+        public Criteria and时间段Like(String value) {
+            addCriterion("时间段 like", value, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and次序NotLike(String value) {
-            addCriterion("次序 not like", value, "次序");
+        public Criteria and时间段NotLike(String value) {
+            addCriterion("时间段 not like", value, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and次序In(List<String> values) {
-            addCriterion("次序 in", values, "次序");
+        public Criteria and时间段In(List<String> values) {
+            addCriterion("时间段 in", values, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and次序NotIn(List<String> values) {
-            addCriterion("次序 not in", values, "次序");
+        public Criteria and时间段NotIn(List<String> values) {
+            addCriterion("时间段 not in", values, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and次序Between(String value1, String value2) {
-            addCriterion("次序 between", value1, value2, "次序");
+        public Criteria and时间段Between(String value1, String value2) {
+            addCriterion("时间段 between", value1, value2, "时间段");
             return (Criteria) this;
         }
 
-        public Criteria and次序NotBetween(String value1, String value2) {
-            addCriterion("次序 not between", value1, value2, "次序");
+        public Criteria and时间段NotBetween(String value1, String value2) {
+            addCriterion("时间段 not between", value1, value2, "时间段");
             return (Criteria) this;
         }
 

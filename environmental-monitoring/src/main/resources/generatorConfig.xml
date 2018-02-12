@@ -53,7 +53,7 @@
         <!-- 数据表进行生成操作 schema:相当于库名{schema="ORCL"}; tableName:表名; domainObjectName:对应的Model -->
         <!-- 如果是oracle，sqlserver数据看，需要去掉schema属性-->
         <!-- mysql需要添加schema属性-->
-        <table tableName="样品管理" domainObjectName="样品管理"
+        <table tableName="工况表" domainObjectName="工况表"
                enableCountByExample="true"
                enableUpdateByExample="true"
                enableDeleteByExample="true"

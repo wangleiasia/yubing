@@ -104,4 +104,16 @@ public class Login {
         }
     }
 
+    @ResponseBody
+    @RequestMapping(value="/getLoginNameExt",produces="text/json;charset=UTF-8")
+    public String getLoginNameExt(Map<String,String> param, HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String userName = (String)request.getSession().getAttribute("userName");
+            return ControllerUtil.result(true, userName);
+        }catch (Exception e) {
+            LOGGER.error("获取用户名异常",e);
+            return ControllerUtil.result(false, e.getMessage());
+        }
+    }
+
 }

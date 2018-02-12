@@ -46,6 +46,19 @@ $(document).ready(function () {
         $("#设备编号").selectLoad(equipmentArray);
     },"json");
 
+    //初始化用户名
+    $(document).ready(function () {
+        //初始化用户名
+        $.post("/service/getLoginNameExt",'',function (data) {
+            if ('true' == data['result']) {
+                $("#信息上传").val(data['message']);
+            } else {
+                alert(data['message']);
+            }
+        },"json");
+
+    });
+
 });
 
 function submit() {

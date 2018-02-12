@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.yubing.web.model.env.工况表">
     <result column="项目编号" jdbcType="VARCHAR" property="项目编号" />
     <result column="点位编号" jdbcType="VARCHAR" property="点位编号" />
-    <result column="次序" jdbcType="VARCHAR" property="次序" />
+    <result column="时间段" jdbcType="VARCHAR" property="时间段" />
     <result column="设计工况" jdbcType="VARCHAR" property="设计工况" />
     <result column="运行工况" jdbcType="VARCHAR" property="运行工况" />
     <result column="百分比" jdbcType="CHAR" property="百分比" />
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    项目编号, 点位编号, 次序, 设计工况, 运行工况, 百分比, 单位
+    项目编号, 点位编号, 时间段, 设计工况, 运行工况, 百分比, 单位
   </sql>
   <select id="selectByExample" parameterType="com.yubing.web.model.env.工况表Example" resultMap="BaseResultMap">
     select
@@ -93,10 +93,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.yubing.web.model.env.工况表">
-    insert into 工况表 (项目编号, 点位编号, 次序, 
+    insert into 工况表 (项目编号, 点位编号, 时间段, 
       设计工况, 运行工况, 百分比, 单位
       )
-    values (#{项目编号,jdbcType=VARCHAR}, #{点位编号,jdbcType=VARCHAR}, #{次序,jdbcType=VARCHAR}, 
+    values (#{项目编号,jdbcType=VARCHAR}, #{点位编号,jdbcType=VARCHAR}, #{时间段,jdbcType=VARCHAR}, 
       #{设计工况,jdbcType=VARCHAR}, #{运行工况,jdbcType=VARCHAR}, #{百分比,jdbcType=CHAR}, #{单位,jdbcType=VARCHAR}
       )
   </insert>
@@ -109,8 +109,8 @@
       <if test="点位编号 != null">
         点位编号,
       </if>
-      <if test="次序 != null">
-        次序,
+      <if test="时间段 != null">
+        时间段,
       </if>
       <if test="设计工况 != null">
         设计工况,
@@ -132,8 +132,8 @@
       <if test="点位编号 != null">
         #{点位编号,jdbcType=VARCHAR},
       </if>
-      <if test="次序 != null">
-        #{次序,jdbcType=VARCHAR},
+      <if test="时间段 != null">
+        #{时间段,jdbcType=VARCHAR},
       </if>
       <if test="设计工况 != null">
         #{设计工况,jdbcType=VARCHAR},
@@ -164,8 +164,8 @@
       <if test="record.点位编号 != null">
         点位编号 = #{record.点位编号,jdbcType=VARCHAR},
       </if>
-      <if test="record.次序 != null">
-        次序 = #{record.次序,jdbcType=VARCHAR},
+      <if test="record.时间段 != null">
+        时间段 = #{record.时间段,jdbcType=VARCHAR},
       </if>
       <if test="record.设计工况 != null">
         设计工况 = #{record.设计工况,jdbcType=VARCHAR},
@@ -188,7 +188,7 @@
     update 工况表
     set 项目编号 = #{record.项目编号,jdbcType=VARCHAR},
       点位编号 = #{record.点位编号,jdbcType=VARCHAR},
-      次序 = #{record.次序,jdbcType=VARCHAR},
+      时间段 = #{record.时间段,jdbcType=VARCHAR},
       设计工况 = #{record.设计工况,jdbcType=VARCHAR},
       运行工况 = #{record.运行工况,jdbcType=VARCHAR},
       百分比 = #{record.百分比,jdbcType=CHAR},
