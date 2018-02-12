@@ -1634,6 +1634,76 @@ public class 现场噪声监测记录Example {
             addCriterion("复核 not between", value1, value2, "复核");
             return (Criteria) this;
         }
+
+        public Criteria and小型车IsNull() {
+            addCriterion("小型车 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria and小型车IsNotNull() {
+            addCriterion("小型车 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria and小型车EqualTo(String value) {
+            addCriterion("小型车 =", value, "小型车");
+            return (Criteria) this;
+        }
+
+        public Criteria and小型车NotEqualTo(String value) {
+            addCriterion("小型车 <>", value, "小型车");
+            return (Criteria) this;
+        }
+
+        public Criteria and小型车GreaterThan(String value) {
+            addCriterion("小型车 >", value, "小型车");
+            return (Criteria) this;
+        }
+
+        public Criteria and小型车GreaterThanOrEqualTo(String value) {
+            addCriterion("小型车 >=", value, "小型车");
+            return (Criteria) this;
+        }
+
+        public Criteria and小型车LessThan(String value) {
+            addCriterion("小型车 <", value, "小型车");
+            return (Criteria) this;
+        }
+
+        public Criteria and小型车LessThanOrEqualTo(String value) {
+            addCriterion("小型车 <=", value, "小型车");
+            return (Criteria) this;
+        }
+
+        public Criteria and小型车Like(String value) {
+            addCriterion("小型车 like", value, "小型车");
+            return (Criteria) this;
+        }
+
+        public Criteria and小型车NotLike(String value) {
+            addCriterion("小型车 not like", value, "小型车");
+            return (Criteria) this;
+        }
+
+        public Criteria and小型车In(List<String> values) {
+            addCriterion("小型车 in", values, "小型车");
+            return (Criteria) this;
+        }
+
+        public Criteria and小型车NotIn(List<String> values) {
+            addCriterion("小型车 not in", values, "小型车");
+            return (Criteria) this;
+        }
+
+        public Criteria and小型车Between(String value1, String value2) {
+            addCriterion("小型车 between", value1, value2, "小型车");
+            return (Criteria) this;
+        }
+
+        public Criteria and小型车NotBetween(String value1, String value2) {
+            addCriterion("小型车 not between", value1, value2, "小型车");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

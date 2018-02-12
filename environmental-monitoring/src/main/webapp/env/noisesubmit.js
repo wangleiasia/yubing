@@ -8,6 +8,7 @@ $(document).ready(function () {
     $.post("/service/pointManage/noisePageInit",'',function (data) {
         var prjArray = [];
         var pointArray = [];
+        var sampleArray = [];
         if('false' == data['result']) {
             $("#项目编号").selectLoad(prjArray);
             $("#点位编号").selectLoad(pointArray);
@@ -25,6 +26,7 @@ $(document).ready(function () {
         $("#项目编号").selectLoad(prjArray);
         pointInfo = data['点位信息'];
         $("#点位编号").selectLoad(pointArray);
+        $("#样品编号").selectLoad(sampleArray);
     },"json");
 
     //初始化方法代码
@@ -84,6 +86,9 @@ function showPointInfo() {
         pointArray.push(item);
     }
     $("#点位编号").selectLoad(pointArray);
+
+    //初始化样品编号
+    initSampleCode();
 }
 
 function submit() {
@@ -131,5 +136,36 @@ $(document).ready(function () {
 
     //初始化时间段
 });
+
+//根据项目编号、点位编号查询样品编号
+function initSampleCode() {
+    var sampleCodeArray = [];
+    var prjNumCode = $("#项目编号").val();
+    if(typeof(prjNumCode) == 'undefined' || '' == prjNumCode || '-1' == prjNumCode) {
+        $("#样品编号").selectLoad(sampleCodeArray);
+        return;
+    }
+    var pointNumCode = $("#点位编号").val();
+    if(typeof(pointNumCode) == 'undefined' || '' == pointNumCode || '-1' == pointNumCode) {
+        $("#样品编号").selectLoad(sampleCodeArray);
+        return;
+    }
+    var param = '项目编号='+prjNumCode+'&点位编号='+pointNumCode;
+
+    $.post("/service/样品查询",param,function (data) {
+        if('false' == data['result']) {
+            return;
+        }
+        for(var i = 0; i < data.length; i++) {
+            var d = '['+data[i]['样品编号']+']['+data[i]['样品类别']+'&'+data[i]['分类']+']';
+            var item ={
+                value:data[i]['样品编号'],
+                desc:d
+            };
+            sampleCodeArray.push(item);
+        }
+        $("#样品编号").selectLoad(sampleCodeArray);
+    },"json");
+}
 
 

@@ -45,8 +45,8 @@ public class 监测点管理SVImpl implements I监测点管理SV {
         if(StringUtils.isNotBlank(cond.get("授权账户"))) {
             c.and授权账户EqualTo(cond.get("授权账户"));
         }
-        if(StringUtils.isNotBlank(cond.get("状态"))) {
-            c.and状态EqualTo(cond.get("状态"));
+        if(StringUtils.isNotBlank(cond.get("执行状态"))) {
+            c.and执行状态EqualTo(cond.get("执行状态"));
         }
 
         return i监测点管理DAO.selectByExample(example);

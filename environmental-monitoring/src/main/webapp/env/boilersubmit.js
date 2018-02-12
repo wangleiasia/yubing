@@ -39,7 +39,7 @@ $(document).ready(function () {
     //生成表格对象并初始化
     new RadioTableObject('tab-id_boilerInfo', boilerInfoColumns).Init();
     //隐藏锅炉数据区域
-    $("#div-id-table_boilerInfo").hide();
+    // $("#div-id-table_boilerInfo").hide();
 
     //用户项目编号下拉列表展示
     $.post("/service/pointManage/airPointManagePageInit",'',function (data) {
@@ -59,6 +59,9 @@ $(document).ready(function () {
         }
         $("#项目编号").selectLoad(prjArray);
     },"json");
+
+    //初始化：锅炉模板下拉列表展示
+    initBoilerTemplate();
 
     $('#form-id_noisesubmit').bootstrapValidator({
         message: 'This value is not valid',
@@ -100,8 +103,31 @@ $(document).ready(function () {
 });
 
 /**
+ * 初始化锅炉模板下拉列表展示
+ */
+function initBoilerTemplate() {
+    $.post("/service/queryBoilerTemplate",'',function (data) {
+        var prjArray = [];
+        if('false' == data['result']) {
+            $("#锅炉模板").selectLoad(prjArray);
+            return;
+        }
+        //加载数据
+        for(var i = 0; i < data.length; i++) {
+            var v = JSON.stringify(data[i]);
+            var item ={
+                value:v,
+                desc:data[i]['对应项目']
+            };
+            prjArray.push(item);
+        }
+        $("#锅炉模板").selectLoad(prjArray);
+    },"json");
+}
+
+/**
  *
- * 根据项目编码查询点位信息-大气样品查询
+ * 根据项目编码查询点位信息-样品查询
  *
  */
 function queryPointByPrjCode() {
@@ -117,7 +143,9 @@ function queryPointByPrjCode() {
     var dialog = createLoading();
     dialog.open();
     var param = $("#form-id_query").serialize();
-    $.post("/service/大气样品查询",param,function (data) {
+    //加載沒有上传过的数据
+    param+='&勾选=y&样品类别=有组织废气';
+    $.post("/service/样品查询",param,function (data) {
         dialog.close();
         if('false' == data['result']) {
             alert(data['message']);
@@ -189,7 +217,7 @@ $('#file-0').on('fileuploaded', function(event, data, previewId, index) {
             alert(data['message']);
             return;
         }
-        $("#div-id-table_boilerInfo").show();
+        // $("#div-id-table_boilerInfo").show();
         //加载数据
         loadData($("#tab-id_boilerInfo"),data);
     },"json");
@@ -245,6 +273,58 @@ function calculate() {
         }
         $("#负荷百分比").val(r1+'.'+r2);
     }
+}
+
+function commitAirResult() {
+    var selectRows = $('#tab-id_pointInfo').bootstrapTable('getSelections');
+    if(selectRows.length == 0) {
+        alert("请先选择样品！");
+        return;
+    }
+
+    var boilerTemplateStr = $("#锅炉模板").val();
+    if(typeof(boilerTemplateStr) == 'undefined' || '-1' == boilerTemplateStr || null == boilerTemplateStr) {
+        alert("请选择锅炉模板");
+        return;
+    }
+    var boilerTemplateJson = JSON.parse(boilerTemplateStr);
+
+    var obj = selectRows[0];
+    var param = '项目编号='+obj['项目编号'];
+    param += '&点位编号='+obj['点位编号'];
+    param += '&样品编号='+obj['样品编号'];
+    param += '&序号='+boilerTemplateJson['序号'];
+    param += '&时间段='+obj['时间段'];
+    param += '&项目名称='+boilerTemplateJson['项目名称'];
+    var checkResult = $("#项目值").val();
+    if(typeof(checkResult) == 'undefined') {
+        checkResult = '';
+    }
+    param += '&检测结果='+checkResult;
+    param += '&方法代码='+boilerTemplateJson['方法代码'];
+    param += '&单位='+boilerTemplateJson['单位'];
+    param += '&仪器编号='+boilerTemplateJson['仪器编号'];
+
+    $.post("/service/saveBoilerResult",param,function (data) {
+        alert(data['message']);
+        if('false' == data['result']) {
+            return;
+        }else{
+            $("#项目值").val('');
+            $("#锅炉模板").val('-1');
+            $("#myModal").modal('hide');
+        }
+    },"json");
+
+    //显示锅炉数据
+    $.post("/service/查询锅炉数据",obj,function (data) {
+        if('false' == data['queryParam']) {
+            alert(data['message']);
+            return;
+        }
+        //加载数据
+        loadData($("#tab-id_boilerInfo"),data);
+    },"json");
 }
 
 

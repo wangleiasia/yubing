@@ -44,7 +44,7 @@
     <result column="信息上传" jdbcType="VARCHAR" property="信息上传" />
     <result column="上传时间" jdbcType="TIMESTAMP" property="上传时间" />
     <result column="授权账户" jdbcType="VARCHAR" property="授权账户" />
-    <result column="状态" jdbcType="VARCHAR" property="状态" />
+    <result column="执行状态" jdbcType="VARCHAR" property="执行状态" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -108,7 +108,7 @@
     项目编号, 点位编号, 点位名称, 样品类别, 类别, 坐标, 现场联系人, 联系人电话, 任务单号, 监测频次, 监测天数, 行政区划代码, 功能区代码, 主要来源, 
     测点参照物, 气象条件, 测点高度, 测点间距, 路段名称, 路段长度, 道路总宽度, 机动车道数, 车道类别, 道路等级, 路段覆盖人口, 样品数量, 建点日期, 
     负责部门, 监测人员, 设备编号, 测量声压值, 监测前校准值, 监测后校准值, Ld, Ln, Ldn, 监测年度, 勾选, 备注, 信息上传, 上传时间, 授权账户, 
-    状态
+    执行状态
   </sql>
   <select id="selectByExample" parameterType="com.yubing.web.model.env.监测点管理Example" resultMap="BaseResultMap">
     select
@@ -144,7 +144,7 @@
       设备编号, 测量声压值, 监测前校准值, 
       监测后校准值, Ld, Ln, Ldn, 
       监测年度, 勾选, 备注, 信息上传, 
-      上传时间, 授权账户, 状态)
+      上传时间, 授权账户, 执行状态)
     values (#{项目编号,jdbcType=VARCHAR}, #{点位编号,jdbcType=VARCHAR}, #{点位名称,jdbcType=VARCHAR}, 
       #{样品类别,jdbcType=VARCHAR}, #{类别,jdbcType=VARCHAR}, #{坐标,jdbcType=VARCHAR}, #{现场联系人,jdbcType=VARCHAR}, 
       #{联系人电话,jdbcType=VARCHAR}, #{任务单号,jdbcType=VARCHAR}, #{监测频次,jdbcType=VARCHAR}, 
@@ -157,7 +157,7 @@
       #{设备编号,jdbcType=VARCHAR}, #{测量声压值,jdbcType=VARCHAR}, #{监测前校准值,jdbcType=VARCHAR}, 
       #{监测后校准值,jdbcType=VARCHAR}, #{ld,jdbcType=VARCHAR}, #{ln,jdbcType=VARCHAR}, #{ldn,jdbcType=VARCHAR}, 
       #{监测年度,jdbcType=VARCHAR}, #{勾选,jdbcType=CHAR}, #{备注,jdbcType=VARCHAR}, #{信息上传,jdbcType=VARCHAR}, 
-      #{上传时间,jdbcType=TIMESTAMP}, #{授权账户,jdbcType=VARCHAR}, #{状态,jdbcType=VARCHAR})
+      #{上传时间,jdbcType=TIMESTAMP}, #{授权账户,jdbcType=VARCHAR}, #{执行状态,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yubing.web.model.env.监测点管理">
     insert into 监测点管理
@@ -288,8 +288,8 @@
       <if test="授权账户 != null">
         授权账户,
       </if>
-      <if test="状态 != null">
-        状态,
+      <if test="执行状态 != null">
+        执行状态,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -419,8 +419,8 @@
       <if test="授权账户 != null">
         #{授权账户,jdbcType=VARCHAR},
       </if>
-      <if test="状态 != null">
-        #{状态,jdbcType=VARCHAR},
+      <if test="执行状态 != null">
+        #{执行状态,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -559,8 +559,8 @@
       <if test="record.授权账户 != null">
         授权账户 = #{record.授权账户,jdbcType=VARCHAR},
       </if>
-      <if test="record.状态 != null">
-        状态 = #{record.状态,jdbcType=VARCHAR},
+      <if test="record.执行状态 != null">
+        执行状态 = #{record.执行状态,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -611,7 +611,7 @@
       信息上传 = #{record.信息上传,jdbcType=VARCHAR},
       上传时间 = #{record.上传时间,jdbcType=TIMESTAMP},
       授权账户 = #{record.授权账户,jdbcType=VARCHAR},
-      状态 = #{record.状态,jdbcType=VARCHAR}
+      执行状态 = #{record.执行状态,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

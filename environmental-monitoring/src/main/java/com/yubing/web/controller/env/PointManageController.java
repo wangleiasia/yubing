@@ -106,7 +106,7 @@ public class PointManageController {
         String account = (String)request.getSession().getAttribute("account");
         Map<String,String> cond = new HashMap<String, String>();
         cond.put("授权账户",account);
-        cond.put("状态", EnvMonitorConstant.DATAVALID);
+        cond.put("执行状态", EnvMonitorConstant.POINT_MANAGER_STATE_N);
         return s监测点管理SVImpl.queryRecordsByCond(cond);
     }
 

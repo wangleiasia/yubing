@@ -73,6 +73,7 @@
 		<mapper resource="mapper/env/shouquanbiaoMapper.xml" />
 		<mapper resource="mapper/env/检测依据Mapper.xml"></mapper>
 		<mapper resource="mapper/env/设备台账Mapper.xml"></mapper>
+		<mapper resource="mapper/env/样品管理Mapper.xml"></mapper>
 
 	</mappers>
 

@@ -3025,73 +3025,73 @@ public class 监测点管理Example {
             return (Criteria) this;
         }
 
-        public Criteria and状态IsNull() {
-            addCriterion("状态 is null");
+        public Criteria and执行状态IsNull() {
+            addCriterion("执行状态 is null");
             return (Criteria) this;
         }
 
-        public Criteria and状态IsNotNull() {
-            addCriterion("状态 is not null");
+        public Criteria and执行状态IsNotNull() {
+            addCriterion("执行状态 is not null");
             return (Criteria) this;
         }
 
-        public Criteria and状态EqualTo(String value) {
-            addCriterion("状态 =", value, "状态");
+        public Criteria and执行状态EqualTo(String value) {
+            addCriterion("执行状态 =", value, "执行状态");
             return (Criteria) this;
         }
 
-        public Criteria and状态NotEqualTo(String value) {
-            addCriterion("状态 <>", value, "状态");
+        public Criteria and执行状态NotEqualTo(String value) {
+            addCriterion("执行状态 <>", value, "执行状态");
             return (Criteria) this;
         }
 
-        public Criteria and状态GreaterThan(String value) {
-            addCriterion("状态 >", value, "状态");
+        public Criteria and执行状态GreaterThan(String value) {
+            addCriterion("执行状态 >", value, "执行状态");
             return (Criteria) this;
         }
 
-        public Criteria and状态GreaterThanOrEqualTo(String value) {
-            addCriterion("状态 >=", value, "状态");
+        public Criteria and执行状态GreaterThanOrEqualTo(String value) {
+            addCriterion("执行状态 >=", value, "执行状态");
             return (Criteria) this;
         }
 
-        public Criteria and状态LessThan(String value) {
-            addCriterion("状态 <", value, "状态");
+        public Criteria and执行状态LessThan(String value) {
+            addCriterion("执行状态 <", value, "执行状态");
             return (Criteria) this;
         }
 
-        public Criteria and状态LessThanOrEqualTo(String value) {
-            addCriterion("状态 <=", value, "状态");
+        public Criteria and执行状态LessThanOrEqualTo(String value) {
+            addCriterion("执行状态 <=", value, "执行状态");
             return (Criteria) this;
         }
 
-        public Criteria and状态Like(String value) {
-            addCriterion("状态 like", value, "状态");
+        public Criteria and执行状态Like(String value) {
+            addCriterion("执行状态 like", value, "执行状态");
             return (Criteria) this;
         }
 
-        public Criteria and状态NotLike(String value) {
-            addCriterion("状态 not like", value, "状态");
+        public Criteria and执行状态NotLike(String value) {
+            addCriterion("执行状态 not like", value, "执行状态");
             return (Criteria) this;
         }
 
-        public Criteria and状态In(List<String> values) {
-            addCriterion("状态 in", values, "状态");
+        public Criteria and执行状态In(List<String> values) {
+            addCriterion("执行状态 in", values, "执行状态");
             return (Criteria) this;
         }
 
-        public Criteria and状态NotIn(List<String> values) {
-            addCriterion("状态 not in", values, "状态");
+        public Criteria and执行状态NotIn(List<String> values) {
+            addCriterion("执行状态 not in", values, "执行状态");
             return (Criteria) this;
         }
 
-        public Criteria and状态Between(String value1, String value2) {
-            addCriterion("状态 between", value1, value2, "状态");
+        public Criteria and执行状态Between(String value1, String value2) {
+            addCriterion("执行状态 between", value1, value2, "执行状态");
             return (Criteria) this;
         }
 
-        public Criteria and状态NotBetween(String value1, String value2) {
-            addCriterion("状态 not between", value1, value2, "状态");
+        public Criteria and执行状态NotBetween(String value1, String value2) {
+            addCriterion("执行状态 not between", value1, value2, "执行状态");
             return (Criteria) this;
         }
     }

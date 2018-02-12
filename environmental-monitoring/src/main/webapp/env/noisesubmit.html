@@ -5,8 +5,7 @@
 
     <meta content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no, width=device-width" name="viewport">
 
-    <link rel="stylesheet" type="text/css" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-
+    <!--<link rel="stylesheet" type="text/css" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css">-->
 
     <script src="/env/noisesubmit.js"></script>
 
@@ -30,7 +29,7 @@
                 <label class="col-sm-1 control-label">点位编号</label>
                 <div class="col-sm-3">
                     <!--<input type="text" class="form-control" id="点位编号" name="点位编号" placeholder="点位编号">-->
-                    <select class="form-control" id="点位编号" name="点位编号"></select>
+                    <select class="form-control" id="点位编号" name="点位编号" onchange="initSampleCode()"></select>
                 </div>
                 <label class="col-sm-1 control-label">方法代码</label>
                 <div class="col-sm-3">
@@ -58,7 +57,8 @@
                 </div>
                 <label class="col-sm-1 control-label">样品编号</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="样品编号" name="样品编号" placeholder="样品编号">
+                    <!--<input type="text" class="form-control" id="样品编号" name="样品编号" placeholder="样品编号">-->
+                    <select class="form-control" id="样品编号" name="样品编号"></select>
                 </div>
             </div>
             <div class="form-group">
@@ -77,16 +77,20 @@
             </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label">记录人</label>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <input type="text" class="form-control" id="记录人" name="记录人" placeholder="记录人">
                 </div>
                 <label class="col-sm-1 control-label">大型车</label>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <input type="text" class="form-control" id="大型车" name="大型车" placeholder="大型车">
                 </div>
-                <label class="col-sm-1 control-label">中小型车</label>
+                <label class="col-sm-1 control-label">中型车</label>
                 <div class="col-sm-2">
-                    <input type="text" class="form-control" id="中小型车" name="中小型车" placeholder="中小型车">
+                    <input type="text" class="form-control" id="中小型车" name="中小型车" placeholder="中型车">
+                </div>
+                <label class="col-sm-1 control-label">小型车</label>
+                <div class="col-sm-1">
+                    <input type="text" class="form-control" id="小型车" name="小型车" placeholder="小型车">
                 </div>
                 <span class="label label-primary input-lg">辆/20min</span>
             </div>

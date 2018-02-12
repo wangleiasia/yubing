@@ -7,23 +7,24 @@
     <result column="方法代码" jdbcType="VARCHAR" property="方法代码" />
     <result column="设备编号" jdbcType="VARCHAR" property="设备编号" />
     <result column="点位编号" jdbcType="VARCHAR" property="点位编号" />
-    <result column="月" jdbcType="CHAR" property="月" />
-    <result column="日" jdbcType="CHAR" property="日" />
-    <result column="时" jdbcType="CHAR" property="时" />
-    <result column="分" jdbcType="CHAR" property="分" />
-    <result column="Leq" jdbcType="CHAR" property="leq" />
-    <result column="L10" jdbcType="CHAR" property="l10" />
-    <result column="L50" jdbcType="CHAR" property="l50" />
-    <result column="L90" jdbcType="CHAR" property="l90" />
-    <result column="Lmax" jdbcType="CHAR" property="lmax" />
-    <result column="Lmin" jdbcType="CHAR" property="lmin" />
-    <result column="标准差SD" jdbcType="CHAR" property="标准差sd" />
+    <result column="月" jdbcType="VARCHAR" property="月" />
+    <result column="日" jdbcType="VARCHAR" property="日" />
+    <result column="时" jdbcType="VARCHAR" property="时" />
+    <result column="分" jdbcType="VARCHAR" property="分" />
+    <result column="Leq" jdbcType="VARCHAR" property="leq" />
+    <result column="L10" jdbcType="VARCHAR" property="l10" />
+    <result column="L50" jdbcType="VARCHAR" property="l50" />
+    <result column="L90" jdbcType="VARCHAR" property="l90" />
+    <result column="Lmax" jdbcType="VARCHAR" property="lmax" />
+    <result column="Lmin" jdbcType="VARCHAR" property="lmin" />
+    <result column="标准差SD" jdbcType="VARCHAR" property="标准差sd" />
     <result column="时间段" jdbcType="VARCHAR" property="时间段" />
-    <result column="大型车" jdbcType="CHAR" property="大型车" />
-    <result column="中小型车" jdbcType="CHAR" property="中小型车" />
+    <result column="大型车" jdbcType="VARCHAR" property="大型车" />
+    <result column="中小型车" jdbcType="VARCHAR" property="中小型车" />
     <result column="检测人员" jdbcType="VARCHAR" property="检测人员" />
     <result column="检测日期" jdbcType="TIMESTAMP" property="检测日期" />
     <result column="复核" jdbcType="VARCHAR" property="复核" />
+    <result column="小型车" jdbcType="VARCHAR" property="小型车" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -85,7 +86,7 @@
   </sql>
   <sql id="Base_Column_List">
     项目编号, 样品编号, 方法代码, 设备编号, 点位编号, 月, 日, 时, 分, Leq, L10, L50, L90, Lmax, Lmin, 标准差SD, 
-    时间段, 大型车, 中小型车, 检测人员, 检测日期, 复核
+    时间段, 大型车, 中小型车, 检测人员, 检测日期, 复核, 小型车
   </sql>
   <select id="selectByExample" parameterType="com.yubing.web.model.env.现场噪声监测记录Example" resultMap="BaseResultMap">
     select
@@ -114,13 +115,15 @@
       时, 分, Leq, L10, 
       L50, L90, Lmax, Lmin, 
       标准差SD, 时间段, 大型车, 中小型车, 
-      检测人员, 检测日期, 复核)
+      检测人员, 检测日期, 复核, 小型车
+      )
     values (#{项目编号,jdbcType=VARCHAR}, #{样品编号,jdbcType=VARCHAR}, #{方法代码,jdbcType=VARCHAR}, 
-      #{设备编号,jdbcType=VARCHAR}, #{点位编号,jdbcType=VARCHAR}, #{月,jdbcType=CHAR}, #{日,jdbcType=CHAR}, 
-      #{时,jdbcType=CHAR}, #{分,jdbcType=CHAR}, #{leq,jdbcType=CHAR}, #{l10,jdbcType=CHAR}, 
-      #{l50,jdbcType=CHAR}, #{l90,jdbcType=CHAR}, #{lmax,jdbcType=CHAR}, #{lmin,jdbcType=CHAR}, 
-      #{标准差sd,jdbcType=CHAR}, #{时间段,jdbcType=VARCHAR}, #{大型车,jdbcType=CHAR}, #{中小型车,jdbcType=CHAR}, 
-      #{检测人员,jdbcType=VARCHAR}, #{检测日期,jdbcType=TIMESTAMP}, #{复核,jdbcType=VARCHAR})
+      #{设备编号,jdbcType=VARCHAR}, #{点位编号,jdbcType=VARCHAR}, #{月,jdbcType=VARCHAR}, #{日,jdbcType=VARCHAR}, 
+      #{时,jdbcType=VARCHAR}, #{分,jdbcType=VARCHAR}, #{leq,jdbcType=VARCHAR}, #{l10,jdbcType=VARCHAR}, 
+      #{l50,jdbcType=VARCHAR}, #{l90,jdbcType=VARCHAR}, #{lmax,jdbcType=VARCHAR}, #{lmin,jdbcType=VARCHAR}, 
+      #{标准差sd,jdbcType=VARCHAR}, #{时间段,jdbcType=VARCHAR}, #{大型车,jdbcType=VARCHAR}, #{中小型车,jdbcType=VARCHAR}, 
+      #{检测人员,jdbcType=VARCHAR}, #{检测日期,jdbcType=TIMESTAMP}, #{复核,jdbcType=VARCHAR}, #{小型车,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.yubing.web.model.env.现场噪声监测记录">
     insert into 现场噪声监测记录
@@ -191,6 +194,9 @@
       <if test="复核 != null">
         复核,
       </if>
+      <if test="小型车 != null">
+        小型车,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="项目编号 != null">
@@ -209,46 +215,46 @@
         #{点位编号,jdbcType=VARCHAR},
       </if>
       <if test="月 != null">
-        #{月,jdbcType=CHAR},
+        #{月,jdbcType=VARCHAR},
       </if>
       <if test="日 != null">
-        #{日,jdbcType=CHAR},
+        #{日,jdbcType=VARCHAR},
       </if>
       <if test="时 != null">
-        #{时,jdbcType=CHAR},
+        #{时,jdbcType=VARCHAR},
       </if>
       <if test="分 != null">
-        #{分,jdbcType=CHAR},
+        #{分,jdbcType=VARCHAR},
       </if>
       <if test="leq != null">
-        #{leq,jdbcType=CHAR},
+        #{leq,jdbcType=VARCHAR},
       </if>
       <if test="l10 != null">
-        #{l10,jdbcType=CHAR},
+        #{l10,jdbcType=VARCHAR},
       </if>
       <if test="l50 != null">
-        #{l50,jdbcType=CHAR},
+        #{l50,jdbcType=VARCHAR},
       </if>
       <if test="l90 != null">
-        #{l90,jdbcType=CHAR},
+        #{l90,jdbcType=VARCHAR},
       </if>
       <if test="lmax != null">
-        #{lmax,jdbcType=CHAR},
+        #{lmax,jdbcType=VARCHAR},
       </if>
       <if test="lmin != null">
-        #{lmin,jdbcType=CHAR},
+        #{lmin,jdbcType=VARCHAR},
       </if>
       <if test="标准差sd != null">
-        #{标准差sd,jdbcType=CHAR},
+        #{标准差sd,jdbcType=VARCHAR},
       </if>
       <if test="时间段 != null">
         #{时间段,jdbcType=VARCHAR},
       </if>
       <if test="大型车 != null">
-        #{大型车,jdbcType=CHAR},
+        #{大型车,jdbcType=VARCHAR},
       </if>
       <if test="中小型车 != null">
-        #{中小型车,jdbcType=CHAR},
+        #{中小型车,jdbcType=VARCHAR},
       </if>
       <if test="检测人员 != null">
         #{检测人员,jdbcType=VARCHAR},
@@ -258,6 +264,9 @@
       </if>
       <if test="复核 != null">
         #{复核,jdbcType=VARCHAR},
+      </if>
+      <if test="小型车 != null">
+        #{小型车,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -286,46 +295,46 @@
         点位编号 = #{record.点位编号,jdbcType=VARCHAR},
       </if>
       <if test="record.月 != null">
-        月 = #{record.月,jdbcType=CHAR},
+        月 = #{record.月,jdbcType=VARCHAR},
       </if>
       <if test="record.日 != null">
-        日 = #{record.日,jdbcType=CHAR},
+        日 = #{record.日,jdbcType=VARCHAR},
       </if>
       <if test="record.时 != null">
-        时 = #{record.时,jdbcType=CHAR},
+        时 = #{record.时,jdbcType=VARCHAR},
       </if>
       <if test="record.分 != null">
-        分 = #{record.分,jdbcType=CHAR},
+        分 = #{record.分,jdbcType=VARCHAR},
       </if>
       <if test="record.leq != null">
-        Leq = #{record.leq,jdbcType=CHAR},
+        Leq = #{record.leq,jdbcType=VARCHAR},
       </if>
       <if test="record.l10 != null">
-        L10 = #{record.l10,jdbcType=CHAR},
+        L10 = #{record.l10,jdbcType=VARCHAR},
       </if>
       <if test="record.l50 != null">
-        L50 = #{record.l50,jdbcType=CHAR},
+        L50 = #{record.l50,jdbcType=VARCHAR},
       </if>
       <if test="record.l90 != null">
-        L90 = #{record.l90,jdbcType=CHAR},
+        L90 = #{record.l90,jdbcType=VARCHAR},
       </if>
       <if test="record.lmax != null">
-        Lmax = #{record.lmax,jdbcType=CHAR},
+        Lmax = #{record.lmax,jdbcType=VARCHAR},
       </if>
       <if test="record.lmin != null">
-        Lmin = #{record.lmin,jdbcType=CHAR},
+        Lmin = #{record.lmin,jdbcType=VARCHAR},
       </if>
       <if test="record.标准差sd != null">
-        标准差SD = #{record.标准差sd,jdbcType=CHAR},
+        标准差SD = #{record.标准差sd,jdbcType=VARCHAR},
       </if>
       <if test="record.时间段 != null">
         时间段 = #{record.时间段,jdbcType=VARCHAR},
       </if>
       <if test="record.大型车 != null">
-        大型车 = #{record.大型车,jdbcType=CHAR},
+        大型车 = #{record.大型车,jdbcType=VARCHAR},
       </if>
       <if test="record.中小型车 != null">
-        中小型车 = #{record.中小型车,jdbcType=CHAR},
+        中小型车 = #{record.中小型车,jdbcType=VARCHAR},
       </if>
       <if test="record.检测人员 != null">
         检测人员 = #{record.检测人员,jdbcType=VARCHAR},
@@ -335,6 +344,9 @@
       </if>
       <if test="record.复核 != null">
         复核 = #{record.复核,jdbcType=VARCHAR},
+      </if>
+      <if test="record.小型车 != null">
+        小型车 = #{record.小型车,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -348,23 +360,24 @@
       方法代码 = #{record.方法代码,jdbcType=VARCHAR},
       设备编号 = #{record.设备编号,jdbcType=VARCHAR},
       点位编号 = #{record.点位编号,jdbcType=VARCHAR},
-      月 = #{record.月,jdbcType=CHAR},
-      日 = #{record.日,jdbcType=CHAR},
-      时 = #{record.时,jdbcType=CHAR},
-      分 = #{record.分,jdbcType=CHAR},
-      Leq = #{record.leq,jdbcType=CHAR},
-      L10 = #{record.l10,jdbcType=CHAR},
-      L50 = #{record.l50,jdbcType=CHAR},
-      L90 = #{record.l90,jdbcType=CHAR},
-      Lmax = #{record.lmax,jdbcType=CHAR},
-      Lmin = #{record.lmin,jdbcType=CHAR},
-      标准差SD = #{record.标准差sd,jdbcType=CHAR},
+      月 = #{record.月,jdbcType=VARCHAR},
+      日 = #{record.日,jdbcType=VARCHAR},
+      时 = #{record.时,jdbcType=VARCHAR},
+      分 = #{record.分,jdbcType=VARCHAR},
+      Leq = #{record.leq,jdbcType=VARCHAR},
+      L10 = #{record.l10,jdbcType=VARCHAR},
+      L50 = #{record.l50,jdbcType=VARCHAR},
+      L90 = #{record.l90,jdbcType=VARCHAR},
+      Lmax = #{record.lmax,jdbcType=VARCHAR},
+      Lmin = #{record.lmin,jdbcType=VARCHAR},
+      标准差SD = #{record.标准差sd,jdbcType=VARCHAR},
       时间段 = #{record.时间段,jdbcType=VARCHAR},
-      大型车 = #{record.大型车,jdbcType=CHAR},
-      中小型车 = #{record.中小型车,jdbcType=CHAR},
+      大型车 = #{record.大型车,jdbcType=VARCHAR},
+      中小型车 = #{record.中小型车,jdbcType=VARCHAR},
       检测人员 = #{record.检测人员,jdbcType=VARCHAR},
       检测日期 = #{record.检测日期,jdbcType=TIMESTAMP},
-      复核 = #{record.复核,jdbcType=VARCHAR}
+      复核 = #{record.复核,jdbcType=VARCHAR},
+      小型车 = #{record.小型车,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

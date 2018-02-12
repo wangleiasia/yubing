@@ -196,7 +196,7 @@
                         frame/demo/**,
                         frame/home/**,
                         frame/sec/**,
-                        WEB-INF/classes/*.xml,
+                        WEB-INF/classes/generatorConfig.xml,
                         WEB-INF/classes/*.properties,
                         WEB-INF/classes/TestJunit.class,
                         WEB-INF/applicationContext.xml,

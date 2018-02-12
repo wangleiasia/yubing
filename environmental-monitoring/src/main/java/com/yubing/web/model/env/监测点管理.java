@@ -87,7 +87,7 @@ public class 监测点管理 {
 
     private String 授权账户;
 
-    private String 状态;
+    private String 执行状态;
 
     public String get项目编号() {
         return 项目编号;
@@ -425,11 +425,11 @@ public class 监测点管理 {
         this.授权账户 = 授权账户 == null ? null : 授权账户.trim();
     }
 
-    public String get状态() {
-        return 状态;
+    public String get执行状态() {
+        return 执行状态;
     }
 
-    public void set状态(String 状态) {
-        this.状态 = 状态 == null ? null : 状态.trim();
+    public void set执行状态(String 执行状态) {
+        this.执行状态 = 执行状态 == null ? null : 执行状态.trim();
     }
 }

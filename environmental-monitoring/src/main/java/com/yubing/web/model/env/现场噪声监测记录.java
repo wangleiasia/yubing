@@ -47,6 +47,8 @@ public class 现场噪声监测记录 {
 
     private String 复核;
 
+    private String 小型车;
+
     public String get项目编号() {
         return 项目编号;
     }
@@ -221,5 +223,13 @@ public class 现场噪声监测记录 {
 
     public void set复核(String 复核) {
         this.复核 = 复核 == null ? null : 复核.trim();
+    }
+
+    public String get小型车() {
+        return 小型车;
+    }
+
+    public void set小型车(String 小型车) {
+        this.小型车 = 小型车 == null ? null : 小型车.trim();
     }
 }

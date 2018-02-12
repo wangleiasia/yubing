@@ -15,4 +15,7 @@ public class EnvMonitorConstant {
 
     public static final String AIRCATEGORY = "便携大气";
 
+    //监测点中执行状态
+    public static final String POINT_MANAGER_STATE_N="N";
+
 }

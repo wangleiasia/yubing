@@ -3,13 +3,13 @@ package com.yubing.web.controller.env;
 import com.yubing.util.DateUtil;
 import com.yubing.util.JsonDateValueProcessor;
 import com.yubing.web.controller.ControllerUtil;
-import com.yubing.web.csv.service.env.interfaces.I大气样品SV;
 import com.yubing.web.csv.service.env.interfaces.I工况表SV;
+import com.yubing.web.csv.service.env.interfaces.I样品管理SV;
 import com.yubing.web.csv.service.env.interfaces.I监测点管理SV;
 import com.yubing.web.csv.service.env.interfaces.I锅炉数据SV;
 import com.yubing.web.csv.service.env.interfaces.I锅炉模板SV;
-import com.yubing.web.model.env.大气样品;
 import com.yubing.web.model.env.工况表;
+import com.yubing.web.model.env.样品管理;
 import com.yubing.web.model.env.监测点管理;
 import com.yubing.web.model.env.锅炉数据;
 import com.yubing.web.model.env.锅炉模板;
@@ -36,6 +36,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+//import com.yubing.web.model.env.大气样品;
+
+//import com.yubing.web.model.env.大气样品;
+
+//import com.yubing.web.model.env.大气样品;
+
 /**
  * Created by wanglei on 2017/12/17.
  */
@@ -52,12 +58,14 @@ public class EnvController {
     private I锅炉数据SV s锅炉数据SVImpl;
     @Resource
     private I锅炉模板SV s锅炉模板SVImpl;
+//    @Resource
+//    private I大气样品SV s大气样品SVImpl;
     @Resource
-    private I大气样品SV s大气样品SVImpl;
+    private I样品管理SV s样品管理SVImpl;
 
     @ResponseBody
     @RequestMapping(value = "/boilerUpload", produces = "text/json;charset=UTF-8")
-    public String addNewRecord(大气样品 airTemplate,HttpServletRequest request) throws Exception {
+    public String addNewRecord(样品管理 airTemplate, HttpServletRequest request) throws Exception {
 
         long startTime = System.currentTimeMillis();
         //将当前上下文初始化给  CommonsMutipartResolver （多部分解析器）
@@ -99,7 +107,7 @@ public class EnvController {
                 cond.put("样品编号",airTemplate.get样品编号());
                 cond.put("时间段",airTemplate.get时间段());
                 airTemplate.set勾选("y");
-                s大气样品SVImpl.modify(cond,airTemplate);
+                s样品管理SVImpl.modify(cond,airTemplate);
             }
 
         }
@@ -110,7 +118,7 @@ public class EnvController {
     }
 
     //处理上传文件的内容
-    private void saveUploadReaord(String line,大气样品 airTemplate,Map<String,String> keyInfo,List<锅炉数据> records,HttpServletRequest request) throws Exception {
+    private void saveUploadReaord(String line,样品管理 airTemplate,Map<String,String> keyInfo,List<锅炉数据> records,HttpServletRequest request) throws Exception {
         if(StringUtils.isBlank(line)) {
             return;
         }
@@ -164,7 +172,7 @@ public class EnvController {
 
         keyInfo.put(StringUtils.trim(key), StringUtils.trim(value));
     }
-    private void resolve(String line,大气样品 airTemplate,Map<String,String> keyInfo,List<锅炉数据> records,HttpServletRequest request) throws Exception {
+    private void resolve(String line,样品管理 airTemplate,Map<String,String> keyInfo,List<锅炉数据> records,HttpServletRequest request) throws Exception {
         if(StringUtils.isBlank(line)) {
             LOGGER.error("锅炉数据有误，传入的数据行为空");
             return;
@@ -217,7 +225,7 @@ public class EnvController {
 
     @ResponseBody
     @RequestMapping(value = "/查询锅炉数据", produces = "text/json;charset=UTF-8")
-    public String addNewRecord(大气样品 airTemplate) {
+    public String addNewRecord(样品管理 airTemplate) {
         try {
             Map<String, String> cond = new HashMap<String, String>();
             cond.put("项目编号", airTemplate.get项目编号());
@@ -236,30 +244,6 @@ public class EnvController {
             return ControllerUtil.result(false, e.getMessage());
         }
     }
-
-    /**大气样品*begin*********************************************************************************/
-    //大气样品查询
-    @ResponseBody
-    @RequestMapping(value="/大气样品查询",produces="text/json;charset=UTF-8")
-    public String queryMonitorPoint(@RequestParam Map<String,String> param) {
-        try {
-            List<大气样品> records = s大气样品SVImpl.queryNotUploadRecordsByCond(param);
-            if (null == records || records.size() < 1) {
-                return ControllerUtil.result(false, "没有查询到大气样品信息");
-            }
-
-            //处理日期格式，注册转换器
-            JsonConfig jsonConfig = new JsonConfig();
-            jsonConfig.registerJsonValueProcessor(Date.class, new JsonDateValueProcessor());
-
-            return JSONArray.fromObject(records, jsonConfig).toString();
-        }catch (Exception e) {
-            LOGGER.error("大气样品查询异常",e);
-            return ControllerUtil.result(false, e.getMessage());
-        }
-    }
-    /**大气样品*end*********************************************************************************/
-
     /************************************************************************************/
     //监测点新增
     @ResponseBody
