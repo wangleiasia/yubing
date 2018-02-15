@@ -117,7 +117,7 @@ function initBoilerTemplate() {
             var v = JSON.stringify(data[i]);
             var item ={
                 value:v,
-                desc:data[i]['对应项目']
+                desc:data[i]['项目名称']
             };
             prjArray.push(item);
         }

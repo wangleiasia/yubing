@@ -47,6 +47,7 @@ $(document).ready(function () {
     },"json");
 
     //初始化用户名
+    /**
     $(document).ready(function () {
         //初始化用户名
         $.post("/service/getLoginNameExt",'',function (data) {
@@ -58,7 +59,7 @@ $(document).ready(function () {
         },"json");
 
     });
-
+     */
 });
 
 function submit() {
