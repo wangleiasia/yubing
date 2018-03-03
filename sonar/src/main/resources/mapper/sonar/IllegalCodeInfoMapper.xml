@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yubing.web.mapper.sonar.IllegalCodeInfoMapper">
+  <resultMap id="BaseResultMap" type="com.yubing.web.model.sonar.IllegalCodeInfo">
+    <id column="ILLEGAL_ID" jdbcType="DECIMAL" property="illegalId" />
+    <result column="CODE_TIME" jdbcType="VARCHAR" property="codeTime" />
+    <result column="DEVELOPER" jdbcType="VARCHAR" property="developer" />
+    <result column="PROJECT" jdbcType="VARCHAR" property="project" />
+    <result column="MODULAR" jdbcType="VARCHAR" property="modular" />
+    <result column="CODE_URL" jdbcType="VARCHAR" property="codeUrl" />
+    <result column="CODE_LINE" jdbcType="DECIMAL" property="codeLine" />
+    <result column="ILLEGAL_LEVEL" jdbcType="VARCHAR" property="illegalLevel" />
+    <result column="RULE_NAME" jdbcType="VARCHAR" property="ruleName" />
+    <result column="ILLEGAL_DESCRIPTION" jdbcType="VARCHAR" property="illegalDescription" />
+    <result column="REVISING_SUGGESTIONS1" jdbcType="VARCHAR" property="revisingSuggestions1" />
+    <result column="REVISING_SUGGESTIONS2" jdbcType="VARCHAR" property="revisingSuggestions2" />
+    <result column="REVISING_SUGGESTIONS3" jdbcType="VARCHAR" property="revisingSuggestions3" />
+    <result column="ILLEGAL_LABEL" jdbcType="VARCHAR" property="illegalLabel" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="BATCH_NUMBER" jdbcType="DECIMAL" property="batchNumber" />
+    <result column="STATE" jdbcType="DECIMAL" property="state" />
+    <result column="BUG_SERIAL" jdbcType="VARCHAR" property="bugSerial" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ILLEGAL_ID, CODE_TIME, DEVELOPER, PROJECT, MODULAR, CODE_URL, CODE_LINE, ILLEGAL_LEVEL, 
+    RULE_NAME, ILLEGAL_DESCRIPTION, REVISING_SUGGESTIONS1, REVISING_SUGGESTIONS2, REVISING_SUGGESTIONS3, 
+    ILLEGAL_LABEL, CREATE_TIME, BATCH_NUMBER, STATE, BUG_SERIAL
+  </sql>
+  <select id="selectByExample" parameterType="com.yubing.web.model.sonar.IllegalCodeInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from ILLEGAL_CODE_INFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ILLEGAL_CODE_INFO
+    where ILLEGAL_ID = #{illegalId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ILLEGAL_CODE_INFO
+    where ILLEGAL_ID = #{illegalId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yubing.web.model.sonar.IllegalCodeInfoExample">
+    delete from ILLEGAL_CODE_INFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yubing.web.model.sonar.IllegalCodeInfo">
+    insert into ILLEGAL_CODE_INFO (ILLEGAL_ID, CODE_TIME, DEVELOPER, 
+      PROJECT, MODULAR, CODE_URL, 
+      CODE_LINE, ILLEGAL_LEVEL, RULE_NAME, 
+      ILLEGAL_DESCRIPTION, REVISING_SUGGESTIONS1, 
+      REVISING_SUGGESTIONS2, REVISING_SUGGESTIONS3, 
+      ILLEGAL_LABEL, CREATE_TIME, BATCH_NUMBER, 
+      STATE, BUG_SERIAL)
+    values (#{illegalId,jdbcType=DECIMAL}, #{codeTime,jdbcType=VARCHAR}, #{developer,jdbcType=VARCHAR}, 
+      #{project,jdbcType=VARCHAR}, #{modular,jdbcType=VARCHAR}, #{codeUrl,jdbcType=VARCHAR}, 
+      #{codeLine,jdbcType=DECIMAL}, #{illegalLevel,jdbcType=VARCHAR}, #{ruleName,jdbcType=VARCHAR}, 
+      #{illegalDescription,jdbcType=VARCHAR}, #{revisingSuggestions1,jdbcType=VARCHAR}, 
+      #{revisingSuggestions2,jdbcType=VARCHAR}, #{revisingSuggestions3,jdbcType=VARCHAR}, 
+      #{illegalLabel,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{batchNumber,jdbcType=DECIMAL}, 
+      #{state,jdbcType=DECIMAL}, #{bugSerial,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yubing.web.model.sonar.IllegalCodeInfo">
+    insert into ILLEGAL_CODE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="illegalId != null">
+        ILLEGAL_ID,
+      </if>
+      <if test="codeTime != null">
+        CODE_TIME,
+      </if>
+      <if test="developer != null">
+        DEVELOPER,
+      </if>
+      <if test="project != null">
+        PROJECT,
+      </if>
+      <if test="modular != null">
+        MODULAR,
+      </if>
+      <if test="codeUrl != null">
+        CODE_URL,
+      </if>
+      <if test="codeLine != null">
+        CODE_LINE,
+      </if>
+      <if test="illegalLevel != null">
+        ILLEGAL_LEVEL,
+      </if>
+      <if test="ruleName != null">
+        RULE_NAME,
+      </if>
+      <if test="illegalDescription != null">
+        ILLEGAL_DESCRIPTION,
+      </if>
+      <if test="revisingSuggestions1 != null">
+        REVISING_SUGGESTIONS1,
+      </if>
+      <if test="revisingSuggestions2 != null">
+        REVISING_SUGGESTIONS2,
+      </if>
+      <if test="revisingSuggestions3 != null">
+        REVISING_SUGGESTIONS3,
+      </if>
+      <if test="illegalLabel != null">
+        ILLEGAL_LABEL,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="batchNumber != null">
+        BATCH_NUMBER,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="bugSerial != null">
+        BUG_SERIAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="illegalId != null">
+        #{illegalId,jdbcType=DECIMAL},
+      </if>
+      <if test="codeTime != null">
+        #{codeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="developer != null">
+        #{developer,jdbcType=VARCHAR},
+      </if>
+      <if test="project != null">
+        #{project,jdbcType=VARCHAR},
+      </if>
+      <if test="modular != null">
+        #{modular,jdbcType=VARCHAR},
+      </if>
+      <if test="codeUrl != null">
+        #{codeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="codeLine != null">
+        #{codeLine,jdbcType=DECIMAL},
+      </if>
+      <if test="illegalLevel != null">
+        #{illegalLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleName != null">
+        #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="illegalDescription != null">
+        #{illegalDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="revisingSuggestions1 != null">
+        #{revisingSuggestions1,jdbcType=VARCHAR},
+      </if>
+      <if test="revisingSuggestions2 != null">
+        #{revisingSuggestions2,jdbcType=VARCHAR},
+      </if>
+      <if test="revisingSuggestions3 != null">
+        #{revisingSuggestions3,jdbcType=VARCHAR},
+      </if>
+      <if test="illegalLabel != null">
+        #{illegalLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchNumber != null">
+        #{batchNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=DECIMAL},
+      </if>
+      <if test="bugSerial != null">
+        #{bugSerial,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yubing.web.model.sonar.IllegalCodeInfoExample" resultType="java.lang.Long">
+    select count(*) from ILLEGAL_CODE_INFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ILLEGAL_CODE_INFO
+    <set>
+      <if test="record.illegalId != null">
+        ILLEGAL_ID = #{record.illegalId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.codeTime != null">
+        CODE_TIME = #{record.codeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.developer != null">
+        DEVELOPER = #{record.developer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.project != null">
+        PROJECT = #{record.project,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modular != null">
+        MODULAR = #{record.modular,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codeUrl != null">
+        CODE_URL = #{record.codeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codeLine != null">
+        CODE_LINE = #{record.codeLine,jdbcType=DECIMAL},
+      </if>
+      <if test="record.illegalLevel != null">
+        ILLEGAL_LEVEL = #{record.illegalLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleName != null">
+        RULE_NAME = #{record.ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.illegalDescription != null">
+        ILLEGAL_DESCRIPTION = #{record.illegalDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.revisingSuggestions1 != null">
+        REVISING_SUGGESTIONS1 = #{record.revisingSuggestions1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.revisingSuggestions2 != null">
+        REVISING_SUGGESTIONS2 = #{record.revisingSuggestions2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.revisingSuggestions3 != null">
+        REVISING_SUGGESTIONS3 = #{record.revisingSuggestions3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.illegalLabel != null">
+        ILLEGAL_LABEL = #{record.illegalLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.batchNumber != null">
+        BATCH_NUMBER = #{record.batchNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="record.state != null">
+        STATE = #{record.state,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bugSerial != null">
+        BUG_SERIAL = #{record.bugSerial,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ILLEGAL_CODE_INFO
+    set ILLEGAL_ID = #{record.illegalId,jdbcType=DECIMAL},
+      CODE_TIME = #{record.codeTime,jdbcType=VARCHAR},
+      DEVELOPER = #{record.developer,jdbcType=VARCHAR},
+      PROJECT = #{record.project,jdbcType=VARCHAR},
+      MODULAR = #{record.modular,jdbcType=VARCHAR},
+      CODE_URL = #{record.codeUrl,jdbcType=VARCHAR},
+      CODE_LINE = #{record.codeLine,jdbcType=DECIMAL},
+      ILLEGAL_LEVEL = #{record.illegalLevel,jdbcType=VARCHAR},
+      RULE_NAME = #{record.ruleName,jdbcType=VARCHAR},
+      ILLEGAL_DESCRIPTION = #{record.illegalDescription,jdbcType=VARCHAR},
+      REVISING_SUGGESTIONS1 = #{record.revisingSuggestions1,jdbcType=VARCHAR},
+      REVISING_SUGGESTIONS2 = #{record.revisingSuggestions2,jdbcType=VARCHAR},
+      REVISING_SUGGESTIONS3 = #{record.revisingSuggestions3,jdbcType=VARCHAR},
+      ILLEGAL_LABEL = #{record.illegalLabel,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      BATCH_NUMBER = #{record.batchNumber,jdbcType=DECIMAL},
+      STATE = #{record.state,jdbcType=DECIMAL},
+      BUG_SERIAL = #{record.bugSerial,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yubing.web.model.sonar.IllegalCodeInfo">
+    update ILLEGAL_CODE_INFO
+    <set>
+      <if test="codeTime != null">
+        CODE_TIME = #{codeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="developer != null">
+        DEVELOPER = #{developer,jdbcType=VARCHAR},
+      </if>
+      <if test="project != null">
+        PROJECT = #{project,jdbcType=VARCHAR},
+      </if>
+      <if test="modular != null">
+        MODULAR = #{modular,jdbcType=VARCHAR},
+      </if>
+      <if test="codeUrl != null">
+        CODE_URL = #{codeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="codeLine != null">
+        CODE_LINE = #{codeLine,jdbcType=DECIMAL},
+      </if>
+      <if test="illegalLevel != null">
+        ILLEGAL_LEVEL = #{illegalLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleName != null">
+        RULE_NAME = #{ruleName,jdbcType=VARCHAR},
+      </if>
+      <if test="illegalDescription != null">
+        ILLEGAL_DESCRIPTION = #{illegalDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="revisingSuggestions1 != null">
+        REVISING_SUGGESTIONS1 = #{revisingSuggestions1,jdbcType=VARCHAR},
+      </if>
+      <if test="revisingSuggestions2 != null">
+        REVISING_SUGGESTIONS2 = #{revisingSuggestions2,jdbcType=VARCHAR},
+      </if>
+      <if test="revisingSuggestions3 != null">
+        REVISING_SUGGESTIONS3 = #{revisingSuggestions3,jdbcType=VARCHAR},
+      </if>
+      <if test="illegalLabel != null">
+        ILLEGAL_LABEL = #{illegalLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchNumber != null">
+        BATCH_NUMBER = #{batchNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=DECIMAL},
+      </if>
+      <if test="bugSerial != null">
+        BUG_SERIAL = #{bugSerial,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ILLEGAL_ID = #{illegalId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yubing.web.model.sonar.IllegalCodeInfo">
+    update ILLEGAL_CODE_INFO
+    set CODE_TIME = #{codeTime,jdbcType=VARCHAR},
+      DEVELOPER = #{developer,jdbcType=VARCHAR},
+      PROJECT = #{project,jdbcType=VARCHAR},
+      MODULAR = #{modular,jdbcType=VARCHAR},
+      CODE_URL = #{codeUrl,jdbcType=VARCHAR},
+      CODE_LINE = #{codeLine,jdbcType=DECIMAL},
+      ILLEGAL_LEVEL = #{illegalLevel,jdbcType=VARCHAR},
+      RULE_NAME = #{ruleName,jdbcType=VARCHAR},
+      ILLEGAL_DESCRIPTION = #{illegalDescription,jdbcType=VARCHAR},
+      REVISING_SUGGESTIONS1 = #{revisingSuggestions1,jdbcType=VARCHAR},
+      REVISING_SUGGESTIONS2 = #{revisingSuggestions2,jdbcType=VARCHAR},
+      REVISING_SUGGESTIONS3 = #{revisingSuggestions3,jdbcType=VARCHAR},
+      ILLEGAL_LABEL = #{illegalLabel,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      BATCH_NUMBER = #{batchNumber,jdbcType=DECIMAL},
+      STATE = #{state,jdbcType=DECIMAL},
+      BUG_SERIAL = #{bugSerial,jdbcType=VARCHAR}
+    where ILLEGAL_ID = #{illegalId,jdbcType=DECIMAL}
+  </update>
+</mapper>

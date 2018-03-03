@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+
+    <title>违规列表</title>
+
+    <link href="/frame/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="/sonar/developerpage.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+<div>
+    <nav class="navbar navbar-expand-sm navbar-dark float-right">
+        <form class="form-inline">
+            <label class="control-label">开发人员</label>
+            <select class="form-control" id="developer" name="developer"></select>
+            <label class="control-label">批次编号</label>
+            <select class="form-control" id="batchInfo" name="batchInfo"></select>
+            <button class="btn " type="button" onclick="search()">Search</button>
+        </form>
+    </nav>
+</div>
+
+<!-- 违规信息列表 -->
+<div style="margin-top: 5px;">
+    <table id="tab-id_dev_ill" style="background: beige"></table>
+</div>
+<!-- 违规代码信息 -->
+<div style="margin-top: 10px;">
+    <h4>违规代码信息</h4>
+</div>
+<div>
+    <table id="tab-id_ill_code" style="background: beige"></table>
+</div>
+
+<!-- 模态框 -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+                <h4 class="modal-title">违规代码信息</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- 模态框主体 -->
+            <div class="modal-body">
+                <dl class="dl-horizontal position-relative">
+                    <dt class="col-sm-2 float-left text-right">记录ID</dt>
+                    <dd class="col-sm-10 float-left" id="d_illegalId"></dd>
+
+                    <dt class="col-sm-2 float-left text-right">提交人</dt>
+                    <dd class="col-sm-10 float-left" id="d_developer"></dd>
+
+                    <dt class="col-sm-2 float-left text-right">模块名称</dt>
+                    <dd class="col-sm-10 float-left" id="d_modular"></dd>
+
+                    <dt class="col-sm-2 float-left text-right">代码路径</dt>
+                    <dd style="word-break: break-all;" class="col-sm-10 float-left" id="d_codeUrl"></dd>
+
+                    <dt class="col-sm-2 float-left text-right">代码行</dt>
+                    <dd class="col-sm-10 float-left" id="d_codeLine"></dd>
+
+                    <dt class="col-sm-2 float-left text-right">违规等级</dt>
+                    <dd class="col-sm-10 float-left" id="d_illegalLevel"></dd>
+
+                    <dt class="col-sm-2 float-left text-right">导入批次号</dt>
+                    <dd class="col-sm-10 float-left" id="d_batchNumber"></dd>
+
+                    <dt class="col-sm-2 float-left text-right">修改建议</dt>
+                    <dd class="col-sm-10 float-left" id="d_revisingSuggestions"></dd>
+
+                </dl>
+            </div>
+
+            <hr>
+
+            <form class="form-horizontal" id="form-id_bugSerial" target="rfFrame">
+                <div class="form-group row">
+                    <label for="bugSerial" class="col-sm-2 form-control-label text-right align-content-center">处理单号</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="bugSerial" name="bugSerial" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="bugSerial" class="col-sm-2 form-control-label text-right align-content-center"></label>
+                    <div class="col-sm-8">
+                        <button type="submit" class="btn btn-secondary" onclick="commitBugSerial()">提交</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- 模态框底部 -->
+            <div class="modal-footer">
+                <!--<button type="submit" class="btn btn-secondary" onclick="commitBugSerial()">提交</button>-->
+                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>-->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<iframe id="rfFrame" name="rfFrame" src="about:blank" style="display:none;"></iframe>
+
+</body>
+</html>

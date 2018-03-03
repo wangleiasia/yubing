@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+
+    <link href="/frame/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/frame/js/jquery-3.3.1.min.js"></script>
+    <script src="/frame/js/bootstrap.min.js"></script>
+
+    <script src="login.js"></script>
+
+    <title>登录</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div>
+                <h1>内蒙SONAR代码质量管理系统</h1>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 100px;">
+    <form class="form-horizontal" id="form-id_login">
+        <div class="form-group row">
+            <label for="userName" class="col-sm-4 form-control-label text-right align-content-center">userName</label>
+            <div class="col-sm-4">
+                <input type="email" class="form-control" id="userName" name="userName" value="wanglei6" placeholder="user name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="password" class="col-sm-4 form-control-label text-right align-content-center">Password</label>
+            <div class="col-sm-4">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="123456">
+            </div>
+        </div>
+    </form>
+    <div class="form-group row">
+        <label class="col-sm-4 form-control-label text-right align-content-center"></label>
+        <div class="col-md-offset-4 col-sm-4">
+            <button type="button" class="btn btn-secondary" onclick="login()">Sign in</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
