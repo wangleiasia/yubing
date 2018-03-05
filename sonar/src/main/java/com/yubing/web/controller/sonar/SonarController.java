@@ -124,7 +124,6 @@ public class SonarController {
                     illegalCodeInfos.add(illegalCodeInfo);
 
                     //进行汇总
-                    sIllegalBatchInfoSVImpl.saveIllegalBatchInfo(illegalBatchInfo);
                     summary(batchNumber,illegalCodeInfo,illegalBatchInfo,developerIllegalInfoMap);
                 }
 
