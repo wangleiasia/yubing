@@ -86,6 +86,21 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label class="col-sm-2 form-control-label text-right align-content-center">处理状态</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" id="modifyState" name="modifyState">
+                            <option value="Y">已修改</option>
+                            <option value="N">未修改</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="remark" class="col-sm-2 form-control-label text-right align-content-center">备注</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="remark" name="remark" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="bugSerial" class="col-sm-2 form-control-label text-right align-content-center"></label>
                     <div class="col-sm-8">
                         <button type="submit" class="btn btn-secondary" onclick="commitBugSerial()">提交</button>

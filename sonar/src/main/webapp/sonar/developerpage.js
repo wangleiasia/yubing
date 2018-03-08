@@ -60,12 +60,15 @@ $(document).ready(function () {
         {'field': 'codeLine', 'title': '代码行'},
         {'field': 'illegalLevel', 'title': '违规等级'},
         {'field': 'batchNumber', 'title': '批次号'},
+        {'field': 'modifyState', 'title': '是否修改'},
         {'field': 'bugSerial', 'title': '处理单号'},
-        {'field': 'revisingSuggestions1', 'title': '修改建议','visible':false}
+        {'field': 'revisingSuggestions1', 'title': '修改建议','visible':false},
+        {'field': 'remark', 'title': '备注','visible':true}
     ];
     //生成表格对象并初始化
     new RadioTableObject('tab-id_ill_code', codeColumns).Init();
 
+    /**
     $('#form-id_bugSerial').bootstrapValidator({
         message: 'This value is not valid',
         feedbackIcons: {
@@ -83,6 +86,7 @@ $(document).ready(function () {
             }
         }
     });
+     **/
 
 });
 
@@ -143,19 +147,22 @@ $("#tab-id_ill_code").on('click-row.bs.table', function(e,row, element) {
     $("#d_batchNumber").html(row["batchNumber"]);
     $("#d_revisingSuggestions").html(row["revisingSuggestions1"]);
     $("#bugSerial").val(row["bugSerial"]);
+    $("#remark").val(row["remark"]);
     $("#myModal").modal('show');
 });
 
 function commitBugSerial() {
     var illegalId = $("#d_illegalId").html();
     var bugSerial = $("#bugSerial").val();
+    var remark = $("#remark").val();
+    var modifyState = $("#modifyState").val();
 
     if(typeof(bugSerial) == 'undefined' || '' == bugSerial || null == bugSerial) {
-        return;
+        bugSerial='';
     }
 
-    var param = 'illegalId='+illegalId;
-    param += '&bugSerial='+bugSerial;
+    var param = $("#form-id_bugSerial").serialize();
+    param += '&illegalId='+illegalId;
     $.post("/service/commitBugSerial",param,function (data) {
         alert(data['message']);
         $('#myModal').modal('hide');
@@ -165,6 +172,19 @@ function commitBugSerial() {
         index : codeRowIndex,  //更新列所在行的索引
         field : "bugSerial", //要更新列的field
         value : bugSerial //要更新列的数据
+    }//更新表格数据
+    $('#tab-id_ill_code').bootstrapTable("updateCell",rows);
+    var rows = {
+        index : codeRowIndex,  //更新列所在行的索引
+        field : "remark", //要更新列的field
+        value : remark //要更新列的数据
+    }//更新表格数据
+    $('#tab-id_ill_code').bootstrapTable("updateCell",rows);
+    //modifyState
+    var rows = {
+        index : codeRowIndex,  //更新列所在行的索引
+        field : "modifyState", //要更新列的field
+        value : modifyState //要更新列的数据
     }//更新表格数据
     $('#tab-id_ill_code').bootstrapTable("updateCell",rows);
 

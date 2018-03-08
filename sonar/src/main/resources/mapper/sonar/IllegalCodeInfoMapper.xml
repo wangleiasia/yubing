@@ -20,6 +20,10 @@
     <result column="BATCH_NUMBER" jdbcType="DECIMAL" property="batchNumber" />
     <result column="STATE" jdbcType="DECIMAL" property="state" />
     <result column="BUG_SERIAL" jdbcType="VARCHAR" property="bugSerial" />
+    <result column="MODIFY_DEVELOPER" jdbcType="VARCHAR" property="modifyDeveloper" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="MODIFY_STATE" jdbcType="VARCHAR" property="modifyState" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -82,7 +86,8 @@
   <sql id="Base_Column_List">
     ILLEGAL_ID, CODE_TIME, DEVELOPER, PROJECT, MODULAR, CODE_URL, CODE_LINE, ILLEGAL_LEVEL, 
     RULE_NAME, ILLEGAL_DESCRIPTION, REVISING_SUGGESTIONS1, REVISING_SUGGESTIONS2, REVISING_SUGGESTIONS3, 
-    ILLEGAL_LABEL, CREATE_TIME, BATCH_NUMBER, STATE, BUG_SERIAL
+    ILLEGAL_LABEL, CREATE_TIME, BATCH_NUMBER, STATE, BUG_SERIAL, MODIFY_DEVELOPER, MODIFY_TIME, 
+    REMARK, MODIFY_STATE
   </sql>
   <select id="selectByExample" parameterType="com.yubing.web.model.sonar.IllegalCodeInfoExample" resultMap="BaseResultMap">
     select
@@ -122,14 +127,18 @@
       ILLEGAL_DESCRIPTION, REVISING_SUGGESTIONS1, 
       REVISING_SUGGESTIONS2, REVISING_SUGGESTIONS3, 
       ILLEGAL_LABEL, CREATE_TIME, BATCH_NUMBER, 
-      STATE, BUG_SERIAL)
+      STATE, BUG_SERIAL, MODIFY_DEVELOPER, 
+      MODIFY_TIME, REMARK, MODIFY_STATE
+      )
     values (#{illegalId,jdbcType=DECIMAL}, #{codeTime,jdbcType=VARCHAR}, #{developer,jdbcType=VARCHAR}, 
       #{project,jdbcType=VARCHAR}, #{modular,jdbcType=VARCHAR}, #{codeUrl,jdbcType=VARCHAR}, 
       #{codeLine,jdbcType=DECIMAL}, #{illegalLevel,jdbcType=VARCHAR}, #{ruleName,jdbcType=VARCHAR}, 
       #{illegalDescription,jdbcType=VARCHAR}, #{revisingSuggestions1,jdbcType=VARCHAR}, 
       #{revisingSuggestions2,jdbcType=VARCHAR}, #{revisingSuggestions3,jdbcType=VARCHAR}, 
       #{illegalLabel,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{batchNumber,jdbcType=DECIMAL}, 
-      #{state,jdbcType=DECIMAL}, #{bugSerial,jdbcType=VARCHAR})
+      #{state,jdbcType=DECIMAL}, #{bugSerial,jdbcType=VARCHAR}, #{modifyDeveloper,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{modifyState,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.yubing.web.model.sonar.IllegalCodeInfo">
     insert into ILLEGAL_CODE_INFO
@@ -188,6 +197,18 @@
       <if test="bugSerial != null">
         BUG_SERIAL,
       </if>
+      <if test="modifyDeveloper != null">
+        MODIFY_DEVELOPER,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="modifyState != null">
+        MODIFY_STATE,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="illegalId != null">
@@ -243,6 +264,18 @@
       </if>
       <if test="bugSerial != null">
         #{bugSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDeveloper != null">
+        #{modifyDeveloper,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyState != null">
+        #{modifyState,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -309,6 +342,18 @@
       <if test="record.bugSerial != null">
         BUG_SERIAL = #{record.bugSerial,jdbcType=VARCHAR},
       </if>
+      <if test="record.modifyDeveloper != null">
+        MODIFY_DEVELOPER = #{record.modifyDeveloper,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifyTime != null">
+        MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null">
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifyState != null">
+        MODIFY_STATE = #{record.modifyState,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -333,7 +378,11 @@
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       BATCH_NUMBER = #{record.batchNumber,jdbcType=DECIMAL},
       STATE = #{record.state,jdbcType=DECIMAL},
-      BUG_SERIAL = #{record.bugSerial,jdbcType=VARCHAR}
+      BUG_SERIAL = #{record.bugSerial,jdbcType=VARCHAR},
+      MODIFY_DEVELOPER = #{record.modifyDeveloper,jdbcType=VARCHAR},
+      MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      MODIFY_STATE = #{record.modifyState,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -392,6 +441,18 @@
       <if test="bugSerial != null">
         BUG_SERIAL = #{bugSerial,jdbcType=VARCHAR},
       </if>
+      <if test="modifyDeveloper != null">
+        MODIFY_DEVELOPER = #{modifyDeveloper,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyState != null">
+        MODIFY_STATE = #{modifyState,jdbcType=VARCHAR},
+      </if>
     </set>
     where ILLEGAL_ID = #{illegalId,jdbcType=DECIMAL}
   </update>
@@ -413,7 +474,11 @@
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       BATCH_NUMBER = #{batchNumber,jdbcType=DECIMAL},
       STATE = #{state,jdbcType=DECIMAL},
-      BUG_SERIAL = #{bugSerial,jdbcType=VARCHAR}
+      BUG_SERIAL = #{bugSerial,jdbcType=VARCHAR},
+      MODIFY_DEVELOPER = #{modifyDeveloper,jdbcType=VARCHAR},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      MODIFY_STATE = #{modifyState,jdbcType=VARCHAR}
     where ILLEGAL_ID = #{illegalId,jdbcType=DECIMAL}
   </update>
 </mapper>

@@ -1314,6 +1314,276 @@ public class IllegalCodeInfoExample {
             addCriterion("BUG_SERIAL not between", value1, value2, "bugSerial");
             return (Criteria) this;
         }
+
+        public Criteria andModifyDeveloperIsNull() {
+            addCriterion("MODIFY_DEVELOPER is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyDeveloperIsNotNull() {
+            addCriterion("MODIFY_DEVELOPER is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyDeveloperEqualTo(String value) {
+            addCriterion("MODIFY_DEVELOPER =", value, "modifyDeveloper");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyDeveloperNotEqualTo(String value) {
+            addCriterion("MODIFY_DEVELOPER <>", value, "modifyDeveloper");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyDeveloperGreaterThan(String value) {
+            addCriterion("MODIFY_DEVELOPER >", value, "modifyDeveloper");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyDeveloperGreaterThanOrEqualTo(String value) {
+            addCriterion("MODIFY_DEVELOPER >=", value, "modifyDeveloper");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyDeveloperLessThan(String value) {
+            addCriterion("MODIFY_DEVELOPER <", value, "modifyDeveloper");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyDeveloperLessThanOrEqualTo(String value) {
+            addCriterion("MODIFY_DEVELOPER <=", value, "modifyDeveloper");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyDeveloperLike(String value) {
+            addCriterion("MODIFY_DEVELOPER like", value, "modifyDeveloper");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyDeveloperNotLike(String value) {
+            addCriterion("MODIFY_DEVELOPER not like", value, "modifyDeveloper");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyDeveloperIn(List<String> values) {
+            addCriterion("MODIFY_DEVELOPER in", values, "modifyDeveloper");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyDeveloperNotIn(List<String> values) {
+            addCriterion("MODIFY_DEVELOPER not in", values, "modifyDeveloper");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyDeveloperBetween(String value1, String value2) {
+            addCriterion("MODIFY_DEVELOPER between", value1, value2, "modifyDeveloper");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyDeveloperNotBetween(String value1, String value2) {
+            addCriterion("MODIFY_DEVELOPER not between", value1, value2, "modifyDeveloper");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyTimeIsNull() {
+            addCriterion("MODIFY_TIME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyTimeIsNotNull() {
+            addCriterion("MODIFY_TIME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyTimeEqualTo(Date value) {
+            addCriterion("MODIFY_TIME =", value, "modifyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyTimeNotEqualTo(Date value) {
+            addCriterion("MODIFY_TIME <>", value, "modifyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyTimeGreaterThan(Date value) {
+            addCriterion("MODIFY_TIME >", value, "modifyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("MODIFY_TIME >=", value, "modifyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyTimeLessThan(Date value) {
+            addCriterion("MODIFY_TIME <", value, "modifyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyTimeLessThanOrEqualTo(Date value) {
+            addCriterion("MODIFY_TIME <=", value, "modifyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyTimeIn(List<Date> values) {
+            addCriterion("MODIFY_TIME in", values, "modifyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyTimeNotIn(List<Date> values) {
+            addCriterion("MODIFY_TIME not in", values, "modifyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyTimeBetween(Date value1, Date value2) {
+            addCriterion("MODIFY_TIME between", value1, value2, "modifyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyTimeNotBetween(Date value1, Date value2) {
+            addCriterion("MODIFY_TIME not between", value1, value2, "modifyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkIsNull() {
+            addCriterion("REMARK is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkIsNotNull() {
+            addCriterion("REMARK is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkEqualTo(String value) {
+            addCriterion("REMARK =", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkNotEqualTo(String value) {
+            addCriterion("REMARK <>", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkGreaterThan(String value) {
+            addCriterion("REMARK >", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkGreaterThanOrEqualTo(String value) {
+            addCriterion("REMARK >=", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkLessThan(String value) {
+            addCriterion("REMARK <", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkLessThanOrEqualTo(String value) {
+            addCriterion("REMARK <=", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkLike(String value) {
+            addCriterion("REMARK like", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkNotLike(String value) {
+            addCriterion("REMARK not like", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkIn(List<String> values) {
+            addCriterion("REMARK in", values, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkNotIn(List<String> values) {
+            addCriterion("REMARK not in", values, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkBetween(String value1, String value2) {
+            addCriterion("REMARK between", value1, value2, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkNotBetween(String value1, String value2) {
+            addCriterion("REMARK not between", value1, value2, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyStateIsNull() {
+            addCriterion("MODIFY_STATE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyStateIsNotNull() {
+            addCriterion("MODIFY_STATE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyStateEqualTo(String value) {
+            addCriterion("MODIFY_STATE =", value, "modifyState");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyStateNotEqualTo(String value) {
+            addCriterion("MODIFY_STATE <>", value, "modifyState");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyStateGreaterThan(String value) {
+            addCriterion("MODIFY_STATE >", value, "modifyState");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyStateGreaterThanOrEqualTo(String value) {
+            addCriterion("MODIFY_STATE >=", value, "modifyState");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyStateLessThan(String value) {
+            addCriterion("MODIFY_STATE <", value, "modifyState");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyStateLessThanOrEqualTo(String value) {
+            addCriterion("MODIFY_STATE <=", value, "modifyState");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyStateLike(String value) {
+            addCriterion("MODIFY_STATE like", value, "modifyState");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyStateNotLike(String value) {
+            addCriterion("MODIFY_STATE not like", value, "modifyState");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyStateIn(List<String> values) {
+            addCriterion("MODIFY_STATE in", values, "modifyState");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyStateNotIn(List<String> values) {
+            addCriterion("MODIFY_STATE not in", values, "modifyState");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyStateBetween(String value1, String value2) {
+            addCriterion("MODIFY_STATE between", value1, value2, "modifyState");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifyStateNotBetween(String value1, String value2) {
+            addCriterion("MODIFY_STATE not between", value1, value2, "modifyState");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

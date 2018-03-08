@@ -62,7 +62,7 @@
 		<!-- 使用类路径 -->
 		<!-- <mapper class=""/> -->
 
-		<!-- 要考虑，这块如何搞，不能逐个添加 -->
+		<!-- 要考虑，这块如何统配 -->
 		<mapper resource="mapper/constraint/KeyGeneratorMapper.xml" />
 		<mapper resource="mapper/sonar/IllegalCodeInfoMapper.xml" />
 		<mapper resource="mapper/sonar/DeveloperIllegalInfoMapper.xml" />

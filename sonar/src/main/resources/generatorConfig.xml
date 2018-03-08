@@ -6,6 +6,7 @@
 <generatorConfiguration>
     <!-- 配置oracle驱动jar包路径.用了绝对路径 -->
     <classPathEntry location="J:\myresources\maven-report\com\oracle\ojdbc6\11.2.0.1.0\ojdbc6-11.2.0.1.0.jar" />
+    <!-- sqlserver-->
     <!--<classPathEntry location="J:\myresources\maven-report\com\microsoft\sqlserver\mssql-jdbc\6.1.0.jre8\mssql-jdbc-6.1.0.jre8.jar" />-->
 
     <context id="yubing_project_tables" targetRuntime="MyBatis3">
@@ -52,7 +53,7 @@
         <!-- 数据表进行生成操作 schema:相当于库名{schema="ORCL"}; tableName:表名; domainObjectName:对应的Model -->
         <!-- 如果是oracle，sqlserver数据看，需要去掉schema属性-->
         <!-- mysql需要添加schema属性-->
-        <table tableName="sonar_employee" domainObjectName="SonarEmployee"
+        <table tableName="illegal_code_info" domainObjectName="IllegalCodeInfo"
                enableCountByExample="true"
                enableUpdateByExample="true"
                enableDeleteByExample="true"

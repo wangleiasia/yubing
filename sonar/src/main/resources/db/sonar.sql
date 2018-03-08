@@ -23,6 +23,10 @@ create table illegal_code_info
 );
 --主键
 alter table illegal_code_info add constraint PK_illegal_id primary key (illegal_id);
+alter table work.illegal_code_info add modify_developer     varchar2(20);
+alter table work.illegal_code_info add modify_time          date;
+alter table work.illegal_code_info add remark               varchar2(200);
+alter table work.illegal_code_info add modify_state               varchar2(20);
 --索引
 create index IDX_ILLEGAL_CODE_INFO_DEV on illegal_code_info (developer);
 --序列

@@ -39,6 +39,14 @@ public class IllegalCodeInfo {
 
     private String bugSerial;
 
+    private String modifyDeveloper;
+
+    private Date modifyTime;
+
+    private String remark;
+
+    private String modifyState;
+
     public Integer getIllegalId() {
         return illegalId;
     }
@@ -181,5 +189,37 @@ public class IllegalCodeInfo {
 
     public void setBugSerial(String bugSerial) {
         this.bugSerial = bugSerial == null ? null : bugSerial.trim();
+    }
+
+    public String getModifyDeveloper() {
+        return modifyDeveloper;
+    }
+
+    public void setModifyDeveloper(String modifyDeveloper) {
+        this.modifyDeveloper = modifyDeveloper == null ? null : modifyDeveloper.trim();
+    }
+
+    public Date getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
+    }
+
+    public String getModifyState() {
+        return modifyState;
+    }
+
+    public void setModifyState(String modifyState) {
+        this.modifyState = modifyState == null ? null : modifyState.trim();
     }
 }

@@ -7,6 +7,7 @@ import com.yubing.web.model.sonar.IllegalCodeInfoExample;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -54,6 +55,30 @@ public class IIllegalCodeInfoSVImpl implements IIllegalCodeInfoSV {
         c.andIllegalIdEqualTo(illegalId);
 
         illegalCodeInfo.setBugSerial(bugSerial);
+        iIllegalCodeInfoDAO.updateByPrimaryKey(illegalCodeInfo);
+    }
+
+    public void modifyIllegalCodeInfo(int illegalId, Map<String, String> params) throws Exception {
+        IllegalCodeInfo illegalCodeInfo = iIllegalCodeInfoDAO.selectByPrimaryKey(illegalId);
+
+        IllegalCodeInfoExample example = new IllegalCodeInfoExample();
+        IllegalCodeInfoExample.Criteria c = example.or();
+        c.andIllegalIdEqualTo(illegalId);
+
+        illegalCodeInfo.setModifyTime(new Date());
+        if(params.containsKey("remark")) {
+            illegalCodeInfo.setRemark(params.get("remark"));
+        }
+        if(params.containsKey("modifyDeveloper")) {
+            illegalCodeInfo.setModifyDeveloper(params.get("modifyDeveloper"));
+        }
+        if(params.containsKey("bugSerial")) {
+            illegalCodeInfo.setBugSerial(params.get("bugSerial"));
+        }
+        if(params.containsKey("modifyState")) {
+            illegalCodeInfo.setModifyState(params.get("modifyState"));
+        }
+
         iIllegalCodeInfoDAO.updateByPrimaryKey(illegalCodeInfo);
     }
 }

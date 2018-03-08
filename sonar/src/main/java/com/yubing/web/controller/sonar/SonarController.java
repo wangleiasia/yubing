@@ -309,7 +309,17 @@ public class SonarController {
     public String commitBugSerial(HttpServletRequest request) throws Exception {
         int illegalId = Integer.parseInt(request.getParameter("illegalId"));
         String bugSerial = request.getParameter("bugSerial");
-        sIIllegalCodeInfoSVImpl.modifyIllegalCodeInfo(illegalId,bugSerial);
+        String remark = request.getParameter("remark");
+        String modifyState = request.getParameter("modifyState");
+
+        Map<String,String> params = new HashMap<String, String>();
+        SonarEmployee sonarEmployee = (SonarEmployee)request.getSession().getAttribute("SonarEmployee");
+        params.put("modifyDeveloper",sonarEmployee.getDeveloper());
+        params.put("bugSerial",bugSerial);
+        params.put("remark",remark);
+        params.put("modifyState",modifyState);
+
+        sIIllegalCodeInfoSVImpl.modifyIllegalCodeInfo(illegalId,params);
         return ControllerUtil.result(false, "提交成功！");
     }
 
