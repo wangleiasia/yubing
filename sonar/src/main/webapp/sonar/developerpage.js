@@ -3,6 +3,7 @@
  */
 
 var codeRowIndex;
+var developerRowIndex;
 
 $(document).ready(function () {
     var columns = [
@@ -12,6 +13,8 @@ $(document).ready(function () {
         {'field': 'major', 'title': '主要违规数量'},
         {'field': 'minor', 'title': '次要违规数量'},
         {'field': 'info', 'title': '提示违规数量'},
+        {'field': 'hasModify', 'title': '已修改'},
+        {'field': 'surplus', 'title': '剩余修改'},
         {'field': 'createDate', 'title': '导入时间'},
         {'field': 'batchNumber', 'title': '批次编号'}
     ];
@@ -120,7 +123,7 @@ $("#tab-id_dev_ill").on('click-row.bs.table', function(e,row, element) {
     // console.log(row);
     // console.log(element);
 
-    var rowId = element.data('index');
+    developerRowIndex = element.data('index');
     var batchNumber = row["batchNumber"];
     var developer = row["developer"];
     //查询违规代码列表信息
@@ -164,8 +167,27 @@ function commitBugSerial() {
     var param = $("#form-id_bugSerial").serialize();
     param += '&illegalId='+illegalId;
     $.post("/service/commitBugSerial",param,function (data) {
-        alert(data['message']);
+        alert("提交成功！");
         $('#myModal').modal('hide');
+
+        //更新
+        var developerCodeInfo = data['DeveloperIllegalInfo'];
+        if(typeof(developerCodeInfo) == 'undefined' || null == bugSerial) {
+            return;
+        }
+        var rows = {
+            index : developerRowIndex,  //更新列所在行的索引
+            field : "hasModify", //要更新列的field
+            value : developerCodeInfo['hasModify'] //要更新列的数据
+        }//更新表格数据
+        $('#tab-id_dev_ill').bootstrapTable("updateCell",rows);
+        var rows = {
+            index : developerRowIndex,  //更新列所在行的索引
+            field : "surplus", //要更新列的field
+            value : developerCodeInfo['surplus'] //要更新列的数据
+        }//更新表格数据
+        $('#tab-id_dev_ill').bootstrapTable("updateCell",rows);
+
     },"json");
 
     var rows = {
@@ -187,6 +209,5 @@ function commitBugSerial() {
         value : modifyState //要更新列的数据
     }//更新表格数据
     $('#tab-id_ill_code').bootstrapTable("updateCell",rows);
-
 }
 

@@ -21,6 +21,10 @@ public class DeveloperIllegalInfo {
 
     private Short state;
 
+    private Integer hasModify;
+
+    private Integer surplus;
+
     public String getDeveloper() {
         return developer;
     }
@@ -91,5 +95,21 @@ public class DeveloperIllegalInfo {
 
     public void setState(Short state) {
         this.state = state;
+    }
+
+    public Integer getHasModify() {
+        return hasModify;
+    }
+
+    public void setHasModify(Integer hasModify) {
+        this.hasModify = hasModify;
+    }
+
+    public Integer getSurplus() {
+        return surplus;
+    }
+
+    public void setSurplus(Integer surplus) {
+        this.surplus = surplus;
     }
 }

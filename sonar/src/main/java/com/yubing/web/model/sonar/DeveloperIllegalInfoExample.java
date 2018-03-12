@@ -654,6 +654,126 @@ public class DeveloperIllegalInfoExample {
             addCriterion("STATE not between", value1, value2, "state");
             return (Criteria) this;
         }
+
+        public Criteria andHasModifyIsNull() {
+            addCriterion("HAS_MODIFY is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasModifyIsNotNull() {
+            addCriterion("HAS_MODIFY is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasModifyEqualTo(Integer value) {
+            addCriterion("HAS_MODIFY =", value, "hasModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasModifyNotEqualTo(Integer value) {
+            addCriterion("HAS_MODIFY <>", value, "hasModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasModifyGreaterThan(Integer value) {
+            addCriterion("HAS_MODIFY >", value, "hasModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasModifyGreaterThanOrEqualTo(Integer value) {
+            addCriterion("HAS_MODIFY >=", value, "hasModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasModifyLessThan(Integer value) {
+            addCriterion("HAS_MODIFY <", value, "hasModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasModifyLessThanOrEqualTo(Integer value) {
+            addCriterion("HAS_MODIFY <=", value, "hasModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasModifyIn(List<Integer> values) {
+            addCriterion("HAS_MODIFY in", values, "hasModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasModifyNotIn(List<Integer> values) {
+            addCriterion("HAS_MODIFY not in", values, "hasModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasModifyBetween(Integer value1, Integer value2) {
+            addCriterion("HAS_MODIFY between", value1, value2, "hasModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasModifyNotBetween(Integer value1, Integer value2) {
+            addCriterion("HAS_MODIFY not between", value1, value2, "hasModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusIsNull() {
+            addCriterion("SURPLUS is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusIsNotNull() {
+            addCriterion("SURPLUS is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusEqualTo(Integer value) {
+            addCriterion("SURPLUS =", value, "surplus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusNotEqualTo(Integer value) {
+            addCriterion("SURPLUS <>", value, "surplus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusGreaterThan(Integer value) {
+            addCriterion("SURPLUS >", value, "surplus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("SURPLUS >=", value, "surplus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusLessThan(Integer value) {
+            addCriterion("SURPLUS <", value, "surplus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusLessThanOrEqualTo(Integer value) {
+            addCriterion("SURPLUS <=", value, "surplus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusIn(List<Integer> values) {
+            addCriterion("SURPLUS in", values, "surplus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusNotIn(List<Integer> values) {
+            addCriterion("SURPLUS not in", values, "surplus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusBetween(Integer value1, Integer value2) {
+            addCriterion("SURPLUS between", value1, value2, "surplus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusNotBetween(Integer value1, Integer value2) {
+            addCriterion("SURPLUS not between", value1, value2, "surplus");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

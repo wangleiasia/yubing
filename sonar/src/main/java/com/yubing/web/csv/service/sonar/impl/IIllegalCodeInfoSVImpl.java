@@ -1,9 +1,14 @@
 package com.yubing.web.csv.service.sonar.impl;
 
+import com.yubing.web.csv.dao.sonar.IDeveloperIllegalInfoDAO;
 import com.yubing.web.csv.dao.sonar.IIllegalCodeInfoDAO;
 import com.yubing.web.csv.service.sonar.interfaces.IIllegalCodeInfoSV;
+import com.yubing.web.model.sonar.DeveloperIllegalInfo;
+import com.yubing.web.model.sonar.DeveloperIllegalInfoExample;
 import com.yubing.web.model.sonar.IllegalCodeInfo;
 import com.yubing.web.model.sonar.IllegalCodeInfoExample;
+import org.apache.commons.collections.map.HashedMap;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,6 +24,8 @@ public class IIllegalCodeInfoSVImpl implements IIllegalCodeInfoSV {
 
     @Resource
     private IIllegalCodeInfoDAO iIllegalCodeInfoDAO;
+    @Resource
+    private IDeveloperIllegalInfoDAO iDeveloperIllegalInfoDAO;
 
     public void saveIllegalCodeInfo(IllegalCodeInfo record) throws Exception {
         iIllegalCodeInfoDAO.insert(record);
@@ -58,8 +65,16 @@ public class IIllegalCodeInfoSVImpl implements IIllegalCodeInfoSV {
         iIllegalCodeInfoDAO.updateByPrimaryKey(illegalCodeInfo);
     }
 
-    public void modifyIllegalCodeInfo(int illegalId, Map<String, String> params) throws Exception {
+    public Map<String,Object> modifyIllegalCodeInfo(int illegalId, Map<String, String> params) throws Exception {
+        Map<String,Object> result = new HashedMap();
+
         IllegalCodeInfo illegalCodeInfo = iIllegalCodeInfoDAO.selectByPrimaryKey(illegalId);
+        result.put("IllegalCodeInfo",illegalCodeInfo);
+
+        String srcModifyState = illegalCodeInfo.getModifyState();
+        String currentModifyState = "";
+        int batchNumber = illegalCodeInfo.getBatchNumber();
+        String developer = illegalCodeInfo.getDeveloper();
 
         IllegalCodeInfoExample example = new IllegalCodeInfoExample();
         IllegalCodeInfoExample.Criteria c = example.or();
@@ -77,8 +92,48 @@ public class IIllegalCodeInfoSVImpl implements IIllegalCodeInfoSV {
         }
         if(params.containsKey("modifyState")) {
             illegalCodeInfo.setModifyState(params.get("modifyState"));
+            currentModifyState = params.get("modifyState");
         }
 
         iIllegalCodeInfoDAO.updateByPrimaryKey(illegalCodeInfo);
+
+        DeveloperIllegalInfo developerIllegalInfo = queryDeveloperIllegalInfo(developer,batchNumber);
+        if(null == developerIllegalInfo) {
+            return result;
+        }
+        result.put("DeveloperIllegalInfo",developerIllegalInfo);
+
+        if("Y".equals(currentModifyState) && (StringUtils.isBlank(srcModifyState) || "N".equals(srcModifyState))) {
+            if(developerIllegalInfo.getHasModify() == null) {
+                developerIllegalInfo.setHasModify(1);
+            }else{
+                developerIllegalInfo.setHasModify(developerIllegalInfo.getHasModify()+1);
+            }
+            developerIllegalInfo.setSurplus(developerIllegalInfo.getSurplus()-1);
+        }else if("N".equals(currentModifyState) && StringUtils.isNotBlank(srcModifyState) && "Y".equals(srcModifyState)){
+            //将已修改改为未修改
+            developerIllegalInfo.setHasModify(developerIllegalInfo.getHasModify()-1);
+            developerIllegalInfo.setSurplus(developerIllegalInfo.getSurplus()+1);
+        }
+        DeveloperIllegalInfoExample developerIllegalInfoExample = new DeveloperIllegalInfoExample();
+        DeveloperIllegalInfoExample.Criteria dCriteria = developerIllegalInfoExample.or();
+        dCriteria.andDeveloperEqualTo(developer);
+        dCriteria.andBatchNumberEqualTo(batchNumber);
+        iDeveloperIllegalInfoDAO.updateByExample(developerIllegalInfo,developerIllegalInfoExample);
+
+        return result;
+    }
+
+    private DeveloperIllegalInfo queryDeveloperIllegalInfo(String developer,int batchNumber) throws Exception {
+        DeveloperIllegalInfoExample example = new DeveloperIllegalInfoExample();
+        DeveloperIllegalInfoExample.Criteria c = example.or();
+        c.andDeveloperEqualTo(developer);
+        c.andBatchNumberEqualTo(batchNumber);
+        List<DeveloperIllegalInfo> developerIllegalInfos = iDeveloperIllegalInfoDAO.selectByExample(example);
+        if(null == developerIllegalInfos || developerIllegalInfos.size() < 1) {
+            return null;
+        }else{
+            return developerIllegalInfos.get(0);
+        }
     }
 }

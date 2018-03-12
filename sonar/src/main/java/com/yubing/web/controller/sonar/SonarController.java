@@ -36,6 +36,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+//import com.yubing.web.model.sonar.IllegalBatchInfo;
+
 /**
  * Created by wanglei on 2018/3/1.
  */
@@ -132,9 +134,14 @@ public class SonarController {
                     return ControllerUtil.result(true, "文件上传成功");
                 }
                 sIIllegalCodeInfoSVImpl.saveIllegalCodeInfos(illegalCodeInfos);
+
+//                illegalBatchInfo.setHasModify(0);
+//                illegalBatchInfo.setSurplus(illegalBatchInfo.getBlocker()+illegalBatchInfo.getCritical());
                 sIllegalBatchInfoSVImpl.saveIllegalBatchInfo(illegalBatchInfo);
+
                 Collection<DeveloperIllegalInfo> values = developerIllegalInfoMap.values();
                 List<DeveloperIllegalInfo> developerIllegalInfos = new ArrayList<DeveloperIllegalInfo>(values);
+                trans(developerIllegalInfos);
                 sDeveloperIllegalInfoSVImpl.saveDeveloperIllegalInfos(developerIllegalInfos);
             }
 
@@ -143,6 +150,23 @@ public class SonarController {
         LOGGER.info("文件上传消费时间：" + String.valueOf(endTime - startTime) + "ms");
 
         return ControllerUtil.result(true, "文件上传成功");
+    }
+
+    private void trans(List<DeveloperIllegalInfo> developerIllegalInfos) throws Exception {
+        if(null == developerIllegalInfos || developerIllegalInfos.size() < 1) {
+            return;
+        }
+        for (DeveloperIllegalInfo value : developerIllegalInfos) {
+            value.setHasModify(0);
+            int surplus = 0;
+            if(value.getBlocker() != null) {
+                surplus += value.getBlocker();
+            }
+            if(value.getCritical() != null) {
+                surplus += value.getCritical();
+            }
+            value.setSurplus(surplus);
+        }
     }
 
     private void summary(int batchNumber, IllegalCodeInfo illegalCodeInfo, IllegalBatchInfo illegalBatchInfo, Map<String, DeveloperIllegalInfo> developerIllegalInfoMap) throws Exception {
@@ -319,8 +343,9 @@ public class SonarController {
         params.put("remark",remark);
         params.put("modifyState",modifyState);
 
-        sIIllegalCodeInfoSVImpl.modifyIllegalCodeInfo(illegalId,params);
-        return ControllerUtil.result(false, "提交成功！");
+        Map<String,Object> result = sIIllegalCodeInfoSVImpl.modifyIllegalCodeInfo(illegalId,params);
+        return JSONObject.fromObject(result).toString();
+        //return ControllerUtil.result(true, "提交成功！");
     }
 
 }

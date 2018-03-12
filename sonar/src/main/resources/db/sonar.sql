@@ -52,6 +52,8 @@ create table illegal_batch_info
 );
 --主键
 alter table illegal_batch_info add constraint PK_batch_number primary key (batch_number);
+alter table illegal_batch_info add has_modify           number(8);
+alter table illegal_batch_info add surplus              number(8);
 --序列
 create sequence ILLEGAL_BATCH_INFO$SEQ
 minvalue 10000000
@@ -72,6 +74,8 @@ create table developer_illegal_info
    batch_number         number(8)                      null,
    state                number(1)                      null
 );
+alter table developer_illegal_info add has_modify           number(8);
+alter table developer_illegal_info add surplus              number(8);
 
 --雇员表
 create table sonar_employee

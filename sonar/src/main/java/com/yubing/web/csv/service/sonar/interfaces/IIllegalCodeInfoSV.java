@@ -18,5 +18,6 @@ public interface IIllegalCodeInfoSV {
 
     void modifyIllegalCodeInfo(int illegalId,String bugSerial) throws Exception;
 
-    void modifyIllegalCodeInfo(int illegalId,Map<String,String> params) throws Exception;
+    Map<String,Object> modifyIllegalCodeInfo(int illegalId,Map<String,String> params) throws Exception;
+
 }

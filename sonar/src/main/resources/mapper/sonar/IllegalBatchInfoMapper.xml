@@ -10,6 +10,8 @@
     <result column="INFO" jdbcType="DECIMAL" property="info" />
     <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
     <result column="STATE" jdbcType="DECIMAL" property="state" />
+    <result column="HAS_MODIFY" jdbcType="DECIMAL" property="hasModify" />
+    <result column="SURPLUS" jdbcType="DECIMAL" property="surplus" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    BATCH_NUMBER, BLOCKER, CRITICAL, MAJOR, MINOR, INFO, CREATE_DATE, STATE
+    BATCH_NUMBER, BLOCKER, CRITICAL, MAJOR, MINOR, INFO, CREATE_DATE, STATE, HAS_MODIFY, 
+    SURPLUS
   </sql>
   <select id="selectByExample" parameterType="com.yubing.web.model.sonar.IllegalBatchInfoExample" resultMap="BaseResultMap">
     select
@@ -106,10 +109,12 @@
   <insert id="insert" parameterType="com.yubing.web.model.sonar.IllegalBatchInfo">
     insert into ILLEGAL_BATCH_INFO (BATCH_NUMBER, BLOCKER, CRITICAL, 
       MAJOR, MINOR, INFO, 
-      CREATE_DATE, STATE)
+      CREATE_DATE, STATE, HAS_MODIFY, 
+      SURPLUS)
     values (#{batchNumber,jdbcType=DECIMAL}, #{blocker,jdbcType=DECIMAL}, #{critical,jdbcType=DECIMAL}, 
       #{major,jdbcType=DECIMAL}, #{minor,jdbcType=DECIMAL}, #{info,jdbcType=DECIMAL}, 
-      #{createDate,jdbcType=TIMESTAMP}, #{state,jdbcType=DECIMAL})
+      #{createDate,jdbcType=TIMESTAMP}, #{state,jdbcType=DECIMAL}, #{hasModify,jdbcType=DECIMAL}, 
+      #{surplus,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.yubing.web.model.sonar.IllegalBatchInfo">
     insert into ILLEGAL_BATCH_INFO
@@ -138,6 +143,12 @@
       <if test="state != null">
         STATE,
       </if>
+      <if test="hasModify != null">
+        HAS_MODIFY,
+      </if>
+      <if test="surplus != null">
+        SURPLUS,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="batchNumber != null">
@@ -163,6 +174,12 @@
       </if>
       <if test="state != null">
         #{state,jdbcType=DECIMAL},
+      </if>
+      <if test="hasModify != null">
+        #{hasModify,jdbcType=DECIMAL},
+      </if>
+      <if test="surplus != null">
+        #{surplus,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -199,6 +216,12 @@
       <if test="record.state != null">
         STATE = #{record.state,jdbcType=DECIMAL},
       </if>
+      <if test="record.hasModify != null">
+        HAS_MODIFY = #{record.hasModify,jdbcType=DECIMAL},
+      </if>
+      <if test="record.surplus != null">
+        SURPLUS = #{record.surplus,jdbcType=DECIMAL},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -213,7 +236,9 @@
       MINOR = #{record.minor,jdbcType=DECIMAL},
       INFO = #{record.info,jdbcType=DECIMAL},
       CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
-      STATE = #{record.state,jdbcType=DECIMAL}
+      STATE = #{record.state,jdbcType=DECIMAL},
+      HAS_MODIFY = #{record.hasModify,jdbcType=DECIMAL},
+      SURPLUS = #{record.surplus,jdbcType=DECIMAL}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -242,6 +267,12 @@
       <if test="state != null">
         STATE = #{state,jdbcType=DECIMAL},
       </if>
+      <if test="hasModify != null">
+        HAS_MODIFY = #{hasModify,jdbcType=DECIMAL},
+      </if>
+      <if test="surplus != null">
+        SURPLUS = #{surplus,jdbcType=DECIMAL},
+      </if>
     </set>
     where BATCH_NUMBER = #{batchNumber,jdbcType=DECIMAL}
   </update>
@@ -253,7 +284,9 @@
       MINOR = #{minor,jdbcType=DECIMAL},
       INFO = #{info,jdbcType=DECIMAL},
       CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
-      STATE = #{state,jdbcType=DECIMAL}
+      STATE = #{state,jdbcType=DECIMAL},
+      HAS_MODIFY = #{hasModify,jdbcType=DECIMAL},
+      SURPLUS = #{surplus,jdbcType=DECIMAL}
     where BATCH_NUMBER = #{batchNumber,jdbcType=DECIMAL}
   </update>
 </mapper>
