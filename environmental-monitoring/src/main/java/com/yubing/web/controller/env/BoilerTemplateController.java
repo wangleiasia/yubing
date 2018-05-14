@@ -9,6 +9,7 @@ import com.yubing.web.model.env.锅炉数据;
 import com.yubing.web.model.env.锅炉模板;
 import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,13 +62,29 @@ public class BoilerTemplateController {
     public String saveBoilerResult(锅炉数据 record,HttpServletRequest request) {
         try {
             Date now = new Date();
-
+            /**
             String checkDate = DateUtil.transTimeToString(now,DateUtil.FORMAT_YYMMDD);
             String checkTime = DateUtil.transTimeToString(now,DateUtil.FORMAT_24HHMMSS);
             record.set检测日期(DateUtil.transToDate(checkDate,DateUtil.FORMAT_YYMMDD));
             record.set时间(checkTime);
+             **/
 
-            record.set检测人((String)request.getSession().getAttribute("account"));
+            String checkDateIn = request.getParameter("检测日期In");
+            String checkTimeIn = request.getParameter("时间In");
+            if(StringUtils.isBlank(checkDateIn)) {
+                String checkDate = DateUtil.transTimeToString(now,DateUtil.FORMAT_YYMMDD);
+                record.set检测日期(DateUtil.transToDate(checkDate,DateUtil.FORMAT_YYMMDD));
+            }else{
+                record.set检测日期(DateUtil.transToDate(checkDateIn,DateUtil.FORMAT_NOLINE_YYMMDD));
+            }
+            if(StringUtils.isBlank(checkTimeIn)) {
+                String checkTime = DateUtil.transTimeToString(now,DateUtil.FORMAT_24HHMMSS);
+                record.set时间(checkTime);
+            }else{
+                String checkTime = checkTimeIn.substring(0,2)+":"+checkTimeIn.substring(2,4)+":"+checkTimeIn.substring(4,6);
+                record.set时间(checkTime);
+            }
+            record.set检测人((String)request.getSession().getAttribute("userName"));
 
             s锅炉数据SVImpl.addRecord(record);
             return ControllerUtil.result(true, "保存锅炉数据成功");

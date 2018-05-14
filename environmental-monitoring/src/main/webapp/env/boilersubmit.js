@@ -305,6 +305,25 @@ function commitAirResult() {
     param += '&单位='+boilerTemplateJson['单位'];
     param += '&仪器编号='+boilerTemplateJson['仪器编号'];
 
+    var checkDate = $("#检测日期").val();
+    var regDate = /^\d{8}$/;
+    if (!regDate.test(checkDate)) {
+        alert("请输入8位有效日期！")
+        return;
+    }
+    param += '&检测日期In='+checkDate;
+
+    var checkTime = $("#时间").val();
+    var regTime = /^\d{6}$/;
+    if (!regTime.test(checkTime)) {
+        alert("请输入6位有效时间！")
+        return;
+    }
+    if(typeof(checkTime) == 'undefined') {
+        checkTime = '';
+    }
+    param += '&时间In='+checkTime;
+
     $.post("/service/saveBoilerResult",param,function (data) {
         alert(data['message']);
         if('false' == data['result']) {

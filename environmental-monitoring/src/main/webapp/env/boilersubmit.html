@@ -148,6 +148,14 @@
                         <label >项目值</label>
                         <input type="text" class="form-control" id="项目值" name="项目值" placeholder="项目值">
                     </fieldset>
+                    <fieldset class="form-group">
+                        <label >检测日期</label>
+                        <input type="text" class="form-control" id="检测日期" name="检测日期" placeholder="检测日期，例如输入：20180101">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label >时间</label>
+                        <input type="text" class="form-control" id="时间" name="时间" placeholder="检测时间，例如输入：123056">
+                    </fieldset>
                 </form>
             </div>
 
@@ -168,11 +176,11 @@
         control.fileinput({
             language: 'zh', //设置语言
             uploadUrl: uploadUrl, //上传的地址
-            allowedFileExtensions : ['txt','sql','jpg'],//接收的文件后缀
+//            allowedFileExtensions : ['txt'],//接收的文件后缀
             showUpload: true, //是否显示上传按钮
             showCaption: false,//是否显示标题
             browseClass: "btn btn-primary", //按钮样式
-            maxFileSize: 10000, //最大10M
+            maxFileSize: 10240, //最大10M
             maxFilesNum: 10,
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
             uploadExtraData:function () {

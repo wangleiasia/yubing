@@ -202,7 +202,7 @@ public class EnvController {
         record.set检测结果(items[1]);
         record.set方法代码(boilerTemplate.get方法代码());
         record.set单位(boilerTemplate.get单位());
-        record.set检测人((String)request.getSession().getAttribute("account"));
+        record.set检测人((String)request.getSession().getAttribute("userName"));
         record.set仪器编号(boilerTemplate.get仪器编号());
 
         String checkDate = keyInfo.get("测试日期Date");

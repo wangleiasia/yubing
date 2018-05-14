@@ -49,6 +49,8 @@ public class 现场噪声监测记录 {
 
     private String 小型车;
 
+    private String 气象条件;
+
     public String get项目编号() {
         return 项目编号;
     }
@@ -231,5 +233,13 @@ public class 现场噪声监测记录 {
 
     public void set小型车(String 小型车) {
         this.小型车 = 小型车 == null ? null : 小型车.trim();
+    }
+
+    public String get气象条件() {
+        return 气象条件;
+    }
+
+    public void set气象条件(String 气象条件) {
+        this.气象条件 = 气象条件 == null ? null : 气象条件.trim();
     }
 }

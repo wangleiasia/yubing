@@ -25,6 +25,7 @@
     <result column="检测日期" jdbcType="TIMESTAMP" property="检测日期" />
     <result column="复核" jdbcType="VARCHAR" property="复核" />
     <result column="小型车" jdbcType="VARCHAR" property="小型车" />
+    <result column="气象条件" jdbcType="VARCHAR" property="气象条件" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -86,7 +87,7 @@
   </sql>
   <sql id="Base_Column_List">
     项目编号, 样品编号, 方法代码, 设备编号, 点位编号, 月, 日, 时, 分, Leq, L10, L50, L90, Lmax, Lmin, 标准差SD, 
-    时间段, 大型车, 中小型车, 检测人员, 检测日期, 复核, 小型车
+    时间段, 大型车, 中小型车, 检测人员, 检测日期, 复核, 小型车, 气象条件
   </sql>
   <select id="selectByExample" parameterType="com.yubing.web.model.env.现场噪声监测记录Example" resultMap="BaseResultMap">
     select
@@ -115,15 +116,15 @@
       时, 分, Leq, L10, 
       L50, L90, Lmax, Lmin, 
       标准差SD, 时间段, 大型车, 中小型车, 
-      检测人员, 检测日期, 复核, 小型车
-      )
+      检测人员, 检测日期, 复核, 小型车, 
+      气象条件)
     values (#{项目编号,jdbcType=VARCHAR}, #{样品编号,jdbcType=VARCHAR}, #{方法代码,jdbcType=VARCHAR}, 
       #{设备编号,jdbcType=VARCHAR}, #{点位编号,jdbcType=VARCHAR}, #{月,jdbcType=VARCHAR}, #{日,jdbcType=VARCHAR}, 
       #{时,jdbcType=VARCHAR}, #{分,jdbcType=VARCHAR}, #{leq,jdbcType=VARCHAR}, #{l10,jdbcType=VARCHAR}, 
       #{l50,jdbcType=VARCHAR}, #{l90,jdbcType=VARCHAR}, #{lmax,jdbcType=VARCHAR}, #{lmin,jdbcType=VARCHAR}, 
       #{标准差sd,jdbcType=VARCHAR}, #{时间段,jdbcType=VARCHAR}, #{大型车,jdbcType=VARCHAR}, #{中小型车,jdbcType=VARCHAR}, 
-      #{检测人员,jdbcType=VARCHAR}, #{检测日期,jdbcType=TIMESTAMP}, #{复核,jdbcType=VARCHAR}, #{小型车,jdbcType=VARCHAR}
-      )
+      #{检测人员,jdbcType=VARCHAR}, #{检测日期,jdbcType=TIMESTAMP}, #{复核,jdbcType=VARCHAR}, #{小型车,jdbcType=VARCHAR}, 
+      #{气象条件,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yubing.web.model.env.现场噪声监测记录">
     insert into 现场噪声监测记录
@@ -197,6 +198,9 @@
       <if test="小型车 != null">
         小型车,
       </if>
+      <if test="气象条件 != null">
+        气象条件,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="项目编号 != null">
@@ -267,6 +271,9 @@
       </if>
       <if test="小型车 != null">
         #{小型车,jdbcType=VARCHAR},
+      </if>
+      <if test="气象条件 != null">
+        #{气象条件,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -348,6 +355,9 @@
       <if test="record.小型车 != null">
         小型车 = #{record.小型车,jdbcType=VARCHAR},
       </if>
+      <if test="record.气象条件 != null">
+        气象条件 = #{record.气象条件,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -377,7 +387,8 @@
       检测人员 = #{record.检测人员,jdbcType=VARCHAR},
       检测日期 = #{record.检测日期,jdbcType=TIMESTAMP},
       复核 = #{record.复核,jdbcType=VARCHAR},
-      小型车 = #{record.小型车,jdbcType=VARCHAR}
+      小型车 = #{record.小型车,jdbcType=VARCHAR},
+      气象条件 = #{record.气象条件,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

@@ -1704,6 +1704,76 @@ public class 现场噪声监测记录Example {
             addCriterion("小型车 not between", value1, value2, "小型车");
             return (Criteria) this;
         }
+
+        public Criteria and气象条件IsNull() {
+            addCriterion("气象条件 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria and气象条件IsNotNull() {
+            addCriterion("气象条件 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria and气象条件EqualTo(String value) {
+            addCriterion("气象条件 =", value, "气象条件");
+            return (Criteria) this;
+        }
+
+        public Criteria and气象条件NotEqualTo(String value) {
+            addCriterion("气象条件 <>", value, "气象条件");
+            return (Criteria) this;
+        }
+
+        public Criteria and气象条件GreaterThan(String value) {
+            addCriterion("气象条件 >", value, "气象条件");
+            return (Criteria) this;
+        }
+
+        public Criteria and气象条件GreaterThanOrEqualTo(String value) {
+            addCriterion("气象条件 >=", value, "气象条件");
+            return (Criteria) this;
+        }
+
+        public Criteria and气象条件LessThan(String value) {
+            addCriterion("气象条件 <", value, "气象条件");
+            return (Criteria) this;
+        }
+
+        public Criteria and气象条件LessThanOrEqualTo(String value) {
+            addCriterion("气象条件 <=", value, "气象条件");
+            return (Criteria) this;
+        }
+
+        public Criteria and气象条件Like(String value) {
+            addCriterion("气象条件 like", value, "气象条件");
+            return (Criteria) this;
+        }
+
+        public Criteria and气象条件NotLike(String value) {
+            addCriterion("气象条件 not like", value, "气象条件");
+            return (Criteria) this;
+        }
+
+        public Criteria and气象条件In(List<String> values) {
+            addCriterion("气象条件 in", values, "气象条件");
+            return (Criteria) this;
+        }
+
+        public Criteria and气象条件NotIn(List<String> values) {
+            addCriterion("气象条件 not in", values, "气象条件");
+            return (Criteria) this;
+        }
+
+        public Criteria and气象条件Between(String value1, String value2) {
+            addCriterion("气象条件 between", value1, value2, "气象条件");
+            return (Criteria) this;
+        }
+
+        public Criteria and气象条件NotBetween(String value1, String value2) {
+            addCriterion("气象条件 not between", value1, value2, "气象条件");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
