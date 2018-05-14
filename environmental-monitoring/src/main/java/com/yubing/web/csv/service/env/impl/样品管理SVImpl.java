@@ -52,9 +52,9 @@ public class 样品管理SVImpl implements I样品管理SV {
         if(StringUtils.isNotBlank(cond.get("点位编号"))) {
             c.and点位编号EqualTo(cond.get("点位编号"));
         }
-        if(StringUtils.isNotBlank(cond.get("勾选"))) {
-            c.and勾选NotEqualTo(cond.get("勾选"));
-        }
+//        if(StringUtils.isNotBlank(cond.get("勾选"))) {
+//            c.and勾选NotEqualTo(cond.get("勾选"));
+//        }
         if(StringUtils.isNotBlank(cond.get("样品类别"))) {
             c.and样品类别EqualTo(cond.get("样品类别"));
         }

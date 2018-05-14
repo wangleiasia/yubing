@@ -101,7 +101,7 @@ public class EnvController {
                 s锅炉数据SVImpl.addRecords(records);
 
                 //锅炉数据上传成功后，需要修改大气样品，修改条件：项目编号、点位编号、样品编号、时间段
-                /**
+
                 Map<String,String> cond = new HashMap<String, String>();
                 cond.put("项目编号",airTemplate.get项目编号());
                 cond.put("点位编号",airTemplate.get点位编号());
@@ -109,7 +109,7 @@ public class EnvController {
                 cond.put("时间段",airTemplate.get时间段());
                 airTemplate.set勾选("y");
                 s样品管理SVImpl.modify(cond,airTemplate);
-                 **/
+
             }
 
         }
