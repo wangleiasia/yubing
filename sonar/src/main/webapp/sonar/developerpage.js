@@ -65,6 +65,7 @@ $(document).ready(function () {
         {'field': 'batchNumber', 'title': '批次号'},
         {'field': 'modifyState', 'title': '是否修改'},
         {'field': 'bugSerial', 'title': '处理单号'},
+        {'field': 'illegalDescription', 'title': '违规描述','visible':false},
         {'field': 'revisingSuggestions1', 'title': '修改建议','visible':false},
         {'field': 'remark', 'title': '备注','visible':true}
     ];
@@ -148,6 +149,7 @@ $("#tab-id_ill_code").on('click-row.bs.table', function(e,row, element) {
     $("#d_codeLine").html(row["codeLine"]);
     $("#d_illegalLevel").html(row["illegalLevel"]);
     $("#d_batchNumber").html(row["batchNumber"]);
+    $("#d_illegalDescription").html(row["illegalDescription"]);
     $("#d_revisingSuggestions").html(row["revisingSuggestions1"]);
     $("#bugSerial").val(row["bugSerial"]);
     $("#remark").val(row["remark"]);
