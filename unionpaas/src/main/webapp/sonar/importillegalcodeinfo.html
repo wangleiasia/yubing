@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+
+    <title>违规代码上传</title>
+
+    <!-- 文件上传组件 -->
+    <link href="/frame/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+    <script src="/frame/js/fileinput.min.js" type="text/javascript"></script>
+    <!--<script src="/frame/js/zh.js" type="text/javascript"></script>-->
+
+    <script src="importillegalcodeinfo.js" type="text/javascript"></script>
+</head>
+<body>
+
+<div class="panel panel-default" id="div-id_fileInput" style="margin-bottom: 2px">
+    <div class="panel-heading">
+        <h3 class="panel-title">选择SONAR文件</h3>
+    </div>
+    <!-- 上传组件必须放到form中，有enctype属性 -->
+    <form enctype="multipart/form-data" method="post">
+        <div>
+            <input id="file-0" class="file-loading" type="file" multiple data-min-file-count="1">
+        </div>
+    </form>
+</div>
+
+
+<script>
+    //初始化fileinput控件（第一次初始化）
+    function initFileInput(ctrlName, uploadUrl) {
+        var control = $('#' + ctrlName);
+        control.fileinput({
+            language: 'zh', //设置语言
+            uploadUrl: uploadUrl, //上传的地址
+            allowedFileExtensions : ['xls'],//接收的文件后缀
+            showUpload: true, //是否显示上传按钮
+            showCaption: false,//是否显示标题
+            browseClass: "btn btn-primary", //按钮样式
+            maxFileSize: 100000, //最大100M
+            maxFilesNum: 10,
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>"
+//            ,
+//            uploadExtraData:function () {
+//                return uploadExtendParam();
+//            }
+        });
+    }
+
+    //初始化fileinput控件（第一次初始化）
+    initFileInput("file-0", "/service/illegalCodeUpload");
+</script>
+
+</body>
+</html>

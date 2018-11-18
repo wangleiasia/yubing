@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<!-- setting 必须放在最前面 -->
+	<!-- <settings>
+		<setting name="cacheEnabled" value="true" />
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<setting name="useColumnLabel" value="true" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="autoMappingBehavior" value="PARTIAL" />
+		<setting name="autoMappingUnknownColumnBehavior" value="WARNING" />
+		<setting name="defaultExecutorType" value="SIMPLE" />
+		<setting name="defaultStatementTimeout" value="25" />
+		<setting name="defaultFetchSize" value="100" />
+		<setting name="safeRowBoundsEnabled" value="false" />
+		<setting name="mapUnderscoreToCamelCase" value="false" />
+		<setting name="localCacheScope" value="SESSION" />
+		<setting name="jdbcTypeForNull" value="OTHER" />
+		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />
+	</settings> -->
+	
+	<settings>
+		<!-- 配置全局属性 -->
+		<!-- 使用jdbc的getGeneratedKeys 获取数据库自增主键值 -->
+		<!-- <setting name="useGeneratedKeys" value="true"/> -->
+		<!-- 使用列别名替换列明，默认为true -->
+		<setting name="useColumnLabel" value="true" />
+		<!-- 使用驼峰明明转换 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<!-- 输出mybatis日志，必须配置下面语句 -->
+		<setting name="logImpl" value="LOG4J"/>
+	</settings>
+
+	<!--<typeAliases>-->
+		<!--<typeAlias alias="RfRule" type="mybatis.rule.RfRule" />-->
+	<!--</typeAliases>-->
+
+	<plugins>
+		<!-- 拦截器配置，用于打印sql的执行时长 -->
+		<plugin interceptor="com.yubing.web.interceptor.SqlCostInterceptor" />
+	</plugins>
+
+	<!--<environments default="development">-->
+		<!--<environment id="development">-->
+			<!--<transactionManager type="JDBC" />-->
+			<!--<dataSource type="POOLED">-->
+				<!--<property name="driver" value="oracle.jdbc.OracleDriver" />-->
+				<!--<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:ORCL" />-->
+				<!--<property name="username" value="work" />-->
+				<!--<property name="password" value="work" />-->
+			<!--</dataSource>-->
+		<!--</environment>-->
+	<!--</environments>-->
+
+	<mappers>
+		<!-- 映射器文件你可以使用相对于类路径的资源引用， 或完全限定资源定位符（包括 file:/// 的 URL），或类名和包名等。 -->
+		<!-- 资源引用 -->
+		<!--<mapper resource="classpath:mapper/**/*.xml" />-->
+		<!-- 完全限定资源定位符 -->
+		<!-- <mapper url="file:///E:/myeclipse2015-workspace/mybatis/src/mybatis/rule/RfRule.xml" /> -->
+		<!-- 包名 -->
+		<!--<package name="mapper.sec"/>-->
+		<!-- 使用类路径 -->
+		<!-- <mapper class=""/> -->
+
+		<!-- 要考虑，这块如何统配 -->
+		<mapper resource="mapper/constraint/KeyGeneratorMapper.xml" />
+		<mapper resource="mapper/sonar/IllegalCodeInfoMapper.xml" />
+		<mapper resource="mapper/sonar/DeveloperIllegalInfoMapper.xml" />
+		<mapper resource="mapper/sonar/IllegalBatchInfoMapper.xml" />
+		<mapper resource="mapper/sonar/SonarEmployeeMapper.xml" />
+
+	</mappers>
+
+</configuration>
+

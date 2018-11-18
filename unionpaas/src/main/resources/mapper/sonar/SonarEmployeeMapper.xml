@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yubing.web.mapper.sonar.SonarEmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.yubing.web.model.sonar.SonarEmployee">
+    <result column="DEVELOPER" jdbcType="VARCHAR" property="developer" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="SUPERIOR_LEADERSHIP" jdbcType="VARCHAR" property="superiorLeadership" />
+    <result column="IMPORT_FLAG" jdbcType="VARCHAR" property="importFlag" />
+    <result column="STATE" jdbcType="DECIMAL" property="state" />
+    <result column="SUPERADMINISTRATOR_FLAG" jdbcType="VARCHAR" property="superadministratorFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    DEVELOPER, PASSWORD, SUPERIOR_LEADERSHIP, IMPORT_FLAG, STATE, SUPERADMINISTRATOR_FLAG
+  </sql>
+  <select id="selectByExample" parameterType="com.yubing.web.model.sonar.SonarEmployeeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from SONAR_EMPLOYEE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.yubing.web.model.sonar.SonarEmployeeExample">
+    delete from SONAR_EMPLOYEE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yubing.web.model.sonar.SonarEmployee">
+    insert into SONAR_EMPLOYEE (DEVELOPER, PASSWORD, SUPERIOR_LEADERSHIP, 
+      IMPORT_FLAG, STATE, SUPERADMINISTRATOR_FLAG
+      )
+    values (#{developer,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{superiorLeadership,jdbcType=VARCHAR}, 
+      #{importFlag,jdbcType=VARCHAR}, #{state,jdbcType=DECIMAL}, #{superadministratorFlag,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yubing.web.model.sonar.SonarEmployee">
+    insert into SONAR_EMPLOYEE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="developer != null">
+        DEVELOPER,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="superiorLeadership != null">
+        SUPERIOR_LEADERSHIP,
+      </if>
+      <if test="importFlag != null">
+        IMPORT_FLAG,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="superadministratorFlag != null">
+        SUPERADMINISTRATOR_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="developer != null">
+        #{developer,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="superiorLeadership != null">
+        #{superiorLeadership,jdbcType=VARCHAR},
+      </if>
+      <if test="importFlag != null">
+        #{importFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=DECIMAL},
+      </if>
+      <if test="superadministratorFlag != null">
+        #{superadministratorFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yubing.web.model.sonar.SonarEmployeeExample" resultType="java.lang.Long">
+    select count(*) from SONAR_EMPLOYEE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update SONAR_EMPLOYEE
+    <set>
+      <if test="record.developer != null">
+        DEVELOPER = #{record.developer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        PASSWORD = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.superiorLeadership != null">
+        SUPERIOR_LEADERSHIP = #{record.superiorLeadership,jdbcType=VARCHAR},
+      </if>
+      <if test="record.importFlag != null">
+        IMPORT_FLAG = #{record.importFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null">
+        STATE = #{record.state,jdbcType=DECIMAL},
+      </if>
+      <if test="record.superadministratorFlag != null">
+        SUPERADMINISTRATOR_FLAG = #{record.superadministratorFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update SONAR_EMPLOYEE
+    set DEVELOPER = #{record.developer,jdbcType=VARCHAR},
+      PASSWORD = #{record.password,jdbcType=VARCHAR},
+      SUPERIOR_LEADERSHIP = #{record.superiorLeadership,jdbcType=VARCHAR},
+      IMPORT_FLAG = #{record.importFlag,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=DECIMAL},
+      SUPERADMINISTRATOR_FLAG = #{record.superadministratorFlag,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
