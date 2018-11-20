@@ -31,10 +31,16 @@
     <!-- 2、配置链接池 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <!-- 配置连接池属性 -->
-        <property name="driverClass" value="oracle.jdbc.OracleDriver"></property>
+        <!--<property name="driverClass" value="oracle.jdbc.OracleDriver"></property>
         <property name="jdbcUrl" value="jdbc:oracle:thin:@127.0.0.1:1521:ORCL"></property>
         <property name="user" value="work"></property>
-        <property name="password" value="work"></property>
+        <property name="password" value="work"></property>-->
+
+        <!-- 测试环境数据库信息 -->
+        <property name="driverClass" value="oracle.jdbc.OracleDriver"></property>
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@10.220.67.202:1521:devdb"></property>
+        <property name="user" value="BASE"></property>
+        <property name="password" value="NMCRMDEV"></property>
 
         <!--<property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"></property>-->
         <!--<property name="jdbcUrl" value="jdbc:sqlserver://127.0.0.1:1433;"></property>-->

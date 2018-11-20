@@ -221,12 +221,14 @@
                     <useCache>false</useCache>
                     <!-- 不对依赖包进行打包 -->
                     <packagingExcludes>
-                        WEB-INF/lib/*
-                        <!--,-->
-                        <!--WEB-INF/classes/db/**,-->
-                        <!--WEB-INF/classes/*.xml,-->
-                        <!--WEB-INF/classes/*.properties,-->
-                        <!--WEB-INF/applicationContext.xml-->
+                        <!--WEB-INF/lib/*,-->
+                        WEB-INF/classes/db/**,
+                        WEB-INF/classes/*.xml,
+                        WEB-INF/classes/*.txt,
+                        WEB-INF/classes/log4j.properties,
+                        WEB-INF/classes/source.properties
+                        <!--WEB-INF/classes/*.properties,
+                        WEB-INF/applicationContext.xml-->
                     </packagingExcludes>
                     <archive>
                         <addMavenDescriptor>true</addMavenDescriptor>
