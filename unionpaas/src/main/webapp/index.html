@@ -16,8 +16,8 @@
     <!--<link href="/frame/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>-->
     <!--<script src="/frame/js/fileinput.min.js" type="text/javascript"></script>-->
 
-    <link href="/frame/css/bootstrapValidator.min.css" media="all" rel="stylesheet" type="text/css"/>
-    <script src="/frame/js/bootstrapValidator.min.js" type="text/javascript"></script>
+    <!--<link href="/frame/css/bootstrapValidator.min.css" media="all" rel="stylesheet" type="text/css"/>
+    <script src="/frame/js/bootstrapValidator.min.js" type="text/javascript"></script>-->
 
     <!--tab组件 -->
     <script src="/frame/js/closable-tab-div.js" type="text/javascript"></script>
@@ -41,7 +41,11 @@
     <script src="/frame/js/tempusdominus-bootstrap-4.min.js" type="text/javascript"></script>
     <script src="/frame/js/zh-cn.js"></script>
 
-    <title>内蒙SONAR代码质量管理系统</title>
+    <!--表单验证框架-->
+    <script src="/frame/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/frame/js/messages_zh.js"></script>
+
+    <title>DevOps开发运维一体平台</title>
 
 </head>
 <body>
@@ -53,15 +57,9 @@
                 <li class="nav-item">
                     <a href="javascript:showContent('page-first','首页','/sonar/home.html',true)" class="nav-link">首页</a>
                 </li>
-                <!--<li class="nav-item">
-                    <a href="javascript:showContent('/sonar/importillegalcodeinfo.html')" class="nav-link">批量导入违规代码</a>
-                </li>
-                <li class="nav-item">
-                    <a href="javascript:showContent('/sonar/developerpage.html')" class="nav-link">违规代码处理</a>
-                </li>-->
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">软件质量</a>
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">软件质量管理</a>
                     <div class="dropdown-menu">
                         <a href="javascript:showContent('page-importillegalcodeinfo','批量导入违规代码','/sonar/importillegalcodeinfo.html',true)" class="dropdown-item">批量导入违规代码</a>
                         <a href="javascript:showContent('page-developerpage','违规代码处理','/sonar/developerpage.html',true)" class="dropdown-item">违规代码处理</a>

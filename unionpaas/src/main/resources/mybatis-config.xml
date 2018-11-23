@@ -73,6 +73,7 @@
 		<mapper resource="mapper/sonar/DeveloperIllegalInfoMapper.xml" />
 		<mapper resource="mapper/sonar/IllegalBatchInfoMapper.xml" />
 		<mapper resource="mapper/sonar/SonarEmployeeMapper.xml" />
+		<mapper resource="mapper/devops/config/DevopsConfigInfoMapper.xml" />
 
 	</mappers>
 

@@ -1,3 +1,5 @@
+import com.yubing.web.model.devops.config.DevopsConfigInfo;
+import net.sf.json.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,9 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
+
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Created by wanglei on 2017/12/23.
@@ -41,5 +46,22 @@ public class TestJunit {
         shardJedis.set("a","hello");
         shardJedis.expireAt("a",30);
         shardJedis.close();
+    }
+
+    @Test
+    public void tesstJson() throws Exception {
+        DevopsConfigInfo devopsConfigInfo = new DevopsConfigInfo();
+        devopsConfigInfo.setConfigId(1000000000L);
+        devopsConfigInfo.setConfigContext("sfsdfsdf");
+        devopsConfigInfo.setConfigDescription("sdjfldsjfllsdjflj");
+
+        JSONObject valueObj = JSONObject.fromObject(devopsConfigInfo);
+        p(valueObj.getString("configId"));
+
+        Set set = valueObj.keySet();
+        Iterator<String> it = set.iterator();
+        while (it.hasNext()) {
+            p(it.next());
+        }
     }
 }

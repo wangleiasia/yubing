@@ -41,20 +41,20 @@
 
         <!-- 生成模型的包名和位置 -->
         <!-- 数据表对应的model层  -->
-        <javaModelGenerator targetPackage="com.yubing.web.model.test" targetProject="src/main/java/">
+        <javaModelGenerator targetPackage="com.yubing.web.model.devops.config" targetProject="src/main/java/">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
         <!-- 生成映射文件的包名和位置 -->
         <!-- sql mapper 映射配置文件 -->
-        <sqlMapGenerator targetPackage="test"  targetProject="src/main/resources/">
+        <sqlMapGenerator targetPackage="mapper.devops.config"  targetProject="src/main/resources/">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
         <!-- 生成DAO的包名和位置 -->
         <!-- mybatis3中的mapper接口 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yubing.web.mapper.test"  targetProject="src/main/java/">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yubing.web.mapper.devops.config"  targetProject="src/main/java/">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
@@ -101,7 +101,7 @@
         <!-- 数据表进行生成操作 schema:相当于库名{schema="ORCL"}; tableName:表名; domainObjectName:对应的Model -->
         <!-- 如果是oracle，sqlserver数据看，需要去掉schema属性-->
         <!-- mysql需要添加schema属性-->
-        <table tableName="test_mybatis" domainObjectName="TestMybatis"
+        <table tableName="devops_config_info" domainObjectName="DevopsConfigInfo"
                enableCountByExample="true"
                enableUpdateByExample="true"
                enableDeleteByExample="true"

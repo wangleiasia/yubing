@@ -15,7 +15,7 @@ import java.util.Locale;
  */
 public class JsonDateValueProcessor implements JsonValueProcessor{
 
-    private String format ="yyyy-MM-dd";
+    private String format ="yyyy-MM-dd HH:mm:ss";
 
     public JsonDateValueProcessor() {
         super();

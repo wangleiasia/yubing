@@ -1,0 +1,34 @@
+[
+  {
+    "title":"配置ID",
+    "key":"configId"
+  },
+  {
+    "title":"DMP_ID",
+    "key":"dmpId"
+  },
+  {
+    "title":"文件路径",
+    "key":"fileName"
+  },
+  {
+    "title":"创建时间",
+    "key":"createDate"
+  },
+  {
+    "title":"当前状态",
+    "key":"configStatus"
+  },
+  {
+    "title":"修改内容",
+    "key":"configContext"
+  },
+  {
+    "title":"修改描述",
+    "key":"configDescription"
+  },
+  {
+    "title":"提交人",
+    "key":"submitter"
+  }
+]
