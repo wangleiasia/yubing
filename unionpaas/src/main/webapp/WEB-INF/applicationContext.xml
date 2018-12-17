@@ -31,10 +31,10 @@
     <!-- 2、配置链接池 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <!-- 配置连接池属性 -->
-        <property name="driverClass" value="oracle.jdbc.OracleDriver"></property>
+        <!--<property name="driverClass" value="oracle.jdbc.OracleDriver"></property>
         <property name="jdbcUrl" value="jdbc:oracle:thin:@127.0.0.1:1521:ORCL"></property>
         <property name="user" value="work"></property>
-        <property name="password" value="work"></property>
+        <property name="password" value="work"></property>-->
 
         <!-- 测试环境数据库信息 -->
         <!--<property name="driverClass" value="oracle.jdbc.OracleDriver"></property>
@@ -42,10 +42,17 @@
         <property name="user" value="BASE"></property>
         <property name="password" value="NMCRMDEV"></property>-->
 
+        <!-- sqlserver -->
         <!--<property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"></property>-->
         <!--<property name="jdbcUrl" value="jdbc:sqlserver://127.0.0.1:1433;"></property>-->
         <!--<property name="user" value="env"></property>-->
         <!--<property name="password" value="env"></property>-->
+
+        <!-- mysql -->
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/devops"></property>
+        <property name="user" value="devops"></property>
+        <property name="password" value="devops"></property>
 
         <!-- c3p0数据库连接池私有属性 -->
         <property name="maxPoolSize" value="50"></property>

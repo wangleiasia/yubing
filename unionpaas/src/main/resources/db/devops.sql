@@ -1,4 +1,4 @@
-
+--配置提交
 create table work.devops_config_info (
 config_id number(12),
 dmp_id varchar2(40),
@@ -20,4 +20,21 @@ start with 100000000000
 increment by 1
 cache 10;
 
+--程序保存
+create table work.devops_code_info (
+code_id number(12),
+dmp_id varchar2(40),
+file_name varchar2(1000),
+create_date DATE,
+dmp_date DATE,
+submitter varchar2(200)
+);
+alter table work.devops_code_info add constraint PK_CODE_ID primary key (code_id);
+create index work.IDX_CODE_DMP_ID on work.devops_code_info (dmp_id);
 
+create sequence work.DEVOPS_CODE_INFO_ID$SEQ
+minvalue 100000000000
+maxvalue 999999999999
+start with 100000000000
+increment by 1
+cache 10;

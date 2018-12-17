@@ -10,6 +10,11 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -64,4 +69,58 @@ public class TestJunit {
             p(it.next());
         }
     }
+
+    @Test
+    public void testMySqlConn() throws Exception {
+        String DBDRIVER = "com.mysql.jdbc.Driver";
+        //定义MySQL数据库的连接地址
+        String DBURL = "jdbc:mysql://localhost:3306/sonar";
+        //MySQL数据库的连接用户名
+        String DBUSER = "sonar";
+        //MySQL数据库的连接密码
+        String DBPASS = "sonar";
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+            try {
+                //加载驱动程序
+                Class.forName(DBDRIVER);
+            }
+            catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            try {
+                //连接MySQL数据库时，要写上连接的用户名和密码
+                con = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
+
+                String sql = "select * from sonar.issues where id = 649185";
+                stmt = con.createStatement();
+                rs = stmt.executeQuery(sql);
+
+                while (rs.next()) {
+                    System.out.println(rs.getString(2));
+                }
+
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+            System.out.println(con);
+            try {
+                //关闭数据库
+                con.close();
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+    }
+
+    @Test
+    public void testKey() {
+        for (int i = 0; i < 1000; i++) {
+            String millis =  System.currentTimeMillis()%10000+"";
+            int rand = (int)(Math.random()*10000);
+            p(millis+rand);
+        }
+     }
 }
