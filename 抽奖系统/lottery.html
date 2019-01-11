@@ -31,7 +31,7 @@
 			font-size: 25px;
 			font-family:"楷体";
 		}
-
+		
 	</style>
 </head>
 <body>
@@ -41,28 +41,40 @@
 			<div class="col-12">
             	<div>
             		<!-- <small>CMC内蒙项目组2018年会</small> -->
-                	<h1>砥砺奋进&nbsp;再创辉煌<small class="bb">&nbsp;&nbsp;CMC内蒙项目组2018年会</small></h1>
+                	<h1>砥砺奋进&nbsp;再创辉煌<small class="bb">&nbsp;&nbsp;CMC内蒙项目组2019年会</small></h1>
     				<!-- <p>CMC内蒙项目组2018年会</p>  -->
             	</div>
             	<hr>
+            	<div>
+					<h1><small class="bb" id="drawLevel"></small></h1>
+            	</div>
 			</div>
 		</div>
 	</div>
 
 	<div class="container" style="margin-top: 10px">
-		<div class="row" style="margin-top: 10%">
+		<div class="row" style="margin-top: 20px">
 			<!-- <div class="col-12 text-center"> -->
-			<div class="m-lg-auto">
-				<label id="operCode" class="h1 lb_staff_id" style="fon">Are You Ready</label>
+			<div class="m-lg-auto" style="height: 80px;">
+				<label id="operCode" class="lb_staff_id" style="fon"></label>
 			</div>
 		</div>
-		<div class="row" style="margin-top: 20%">
+		<div class="row fixed-bottom" >
 			<!-- <div class="col-12 text-center"> -->
 			<div class="m-lg-auto">
-				<button type="button" class="btn btn-outline-primary" onclick="start()">开始</button>
-				<button type="button" class="btn btn-outline-primary" onclick="stop()">停止</button>
-				<button type="button" class="btn btn-outline-primary" onclick="file()">导入数据</button>
-				<!-- <button type="button" class="btn btn-outline-primary" onclick="test()">杂七杂八测试</button> -->
+				<div id="id_main">
+					<button type="button" class="btn btn-outline-primary" onclick="file()">导入数据</button>
+					<button type="button" class="btn btn-outline-primary" onclick="luckDraw(1,1)">一等奖</button>
+					<button type="button" class="btn btn-outline-primary" onclick="luckDraw(3,2)">二等奖</button>
+					<button type="button" class="btn btn-outline-primary" onclick="luckDraw(6,3)">三等奖</button>
+					<button type="button" class="btn btn-outline-primary" onclick="luckDraw(1,0)">特等奖</button>
+					<!-- <button type="button" class="btn btn-outline-primary" onclick="test(3)">测试</button> -->
+				</div>
+				<div id="id_luckDraw" style="display: none;">
+					<button type="button" class="btn btn-outline-primary" onclick="start()">开始</button>
+					<button type="button" class="btn btn-outline-primary" onclick="stop()">停止</button>
+					<button type="button" class="btn btn-outline-primary" onclick="showMain()">返回</button>
+				</div>
 			</div>
 		</div>
 	</div>
