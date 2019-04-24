@@ -39,7 +39,7 @@ $(document).ready(function () {
         //加载数据
         for(var i = 0; i < data.length; i++) {
             var item ={
-                value:data[i]['方法代码'],
+                value:'['+data[i]['方法代码']+']'+data[i]['检测方法'],
                 desc:data[i]['方法代码']
             };
             methodCodeArray.push(item);
