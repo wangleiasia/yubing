@@ -4,6 +4,7 @@
 //保存大气样品信息
 var airTemplateData;
 var rowId;
+var glDataG;
 $(document).ready(function () {
 
     //定义大气样品
@@ -40,6 +41,19 @@ $(document).ready(function () {
     new RadioTableObject('tab-id_boilerInfo', boilerInfoColumns).Init();
     //隐藏锅炉数据区域
     // $("#div-id-table_boilerInfo").hide();
+
+    //工况数据回显区域
+    var gkColumns = [
+        {'field': '项目编号', 'title': '项目编号'},
+        {'field': '点位编号', 'title': '点位编号'},
+        {'field': '设计工况', 'title': '设计工况'},
+        {'field': '运行工况', 'title': '运行工况'},
+        {'field': '百分比', 'title': '百分比'},
+        {'field': '单位', 'title': '单位'},
+        {'field': '检测结果', 'title': '检测结果'},
+        {'field': '时间段', 'title': '时间段'}
+    ];
+    new RadioTableObject('tab-id_gkInfos', gkColumns).Init();
 
     //用户项目编号下拉列表展示
     $.post("/service/pointManage/airPointManagePageInit",'',function (data) {
@@ -121,7 +135,11 @@ function initBoilerTemplate() {
             };
             prjArray.push(item);
         }
-        $("#锅炉模板").selectLoad(prjArray);
+        //$("#锅炉模板").selectLoad(prjArray);
+
+        initGlHtml(data);
+        glDataG = data;
+
     },"json");
 }
 
@@ -164,6 +182,23 @@ $("#tab-id_pointInfo").on('click-row.bs.table', function(e,row, element) {
     // console.log(e);
     // console.log(row);
     // console.log(element);
+    var param = "项目编号="+row.项目编号;
+    param += "&点位编号="+row.点位编号;
+    param += "&样品编号="+row.样品编号;
+    $.post("/service/查询工况信息",param,function (data) {
+        loadData($("#tab-id_gkInfos"),data);
+    },"json");
+
+    //初始化锅炉数据
+    $.post("/service/查询锅炉数据",param,function (data) {
+        if('false' == data['queryParam']) {
+            alert(data['message']);
+            alert('ddfs');
+            return;
+        }
+        //加载数据
+        loadData($("#tab-id_boilerInfo"),data);
+    },"json");
 
     //清空工况回传表单
     $('#form-id_noisesubmit').formClear();
@@ -247,7 +282,8 @@ function operatingModeSubmit() {
     param += "&项目编号="+prjCode;
     param += "&点位编号="+pointCode;
     $.post("/service/工况回传",param,function (data) {
-        alert(data['message']);
+        loadData($("#tab-id_gkInfos"),data);
+        alert("工况回传成功！");
     },"json");
 }
 
@@ -339,6 +375,7 @@ function commitAirResult() {
     $.post("/service/查询锅炉数据",obj,function (data) {
         if('false' == data['queryParam']) {
             alert(data['message']);
+            alert('ddfs');
             return;
         }
         //加载数据
@@ -346,5 +383,152 @@ function commitAirResult() {
     },"json");
 }
 
+function initGlHtml(glData) {
+    var html = "";
+    for(var i = 0; i < glData.length; i++) {
+        html += getGlHtml(i,glData[i]);
+    }
+    $("#airResultForm").append(html);
 
+    for(var i = 0; i < glData.length; i++) {
+        //初始化日期控件
+        var dataId = '检测日期'+i;
+        var timeId = '时间'+i;
+        $("#"+dataId).datetimepicker({
+            format: 'yyyy-mm-dd',
+            minView: "month",
+            language:  'zh-CN',
+            todayBtn:  1,
+            autoclose: 1
+        });
+        $("#"+timeId).datetimepicker({
+            format: 'hh:dd:ss',
+            minView: "0",
+            language:  'zh-CN',
+            todayBtn:  1,
+            autoclose: 1
+        });
+
+        //初始化模版数据
+        var v = JSON.stringify(glData[i]);
+        var glDataId = 'glData'+i;
+        $("#"+glDataId).attr("value",v);
+    }
+}
+
+function getGlHtml(i,data) {
+    // var v = JSON.stringify(data);
+    var html = "";
+
+    var template = data['项目名称'];
+
+    html += '<div class="form-group">\n' +
+        '        <input type="text" class="form-control" id="锅炉模板'+i+'" placeholder="锅炉模板" value="'+template+'">\n' +
+        '        </div>\n' +
+        '        <div class="form-group">\n' +
+        '        <input type="text" class="form-control" id="项目值'+i+'" placeholder="项目值">\n' +
+        '        </div>\n' +
+        '        <div class="form-group">\n' +
+        '        <input type="text" class="form-control" id="检测日期'+i+'" placeholder="检测日期，例如输入：20180101">\n' +
+        '        </div>\n' +
+        '        <div class="form-group">\n' +
+        '        <input type="text" class="form-control" id="时间'+i+'" placeholder="检测时间，例如输入：123056">\n' +
+        '        </div>';
+    html += '<div class="form-group" style="display: none">\n' +
+        '        <input type="text" class="form-control" id="glData'+i+'" placeholder="检测时间，例如输入：123056">\n' +
+        '        </div>';
+
+    return html;
+}
+
+
+
+function commitAirResult2() {
+    var selectRows = $('#tab-id_pointInfo').bootstrapTable('getSelections');
+    if(selectRows.length == 0) {
+        alert("请先选择样品！");
+        return;
+    }
+
+    var obj = selectRows[0];
+
+    var jsonData = getGlJsonData();
+    // console.log(jsonData);
+    // console.log(JSON.stringify(jsonData));
+
+    $.ajax({
+        // headers必须添加，否则会报415错误
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        type: 'POST',
+        dataType: "json", //表示返回值类型，不必须
+        data: JSON.stringify(jsonData),
+        url: '/service/saveBoilerResult2',
+        success: function(data){
+            alert('提交成功');
+            $("#myModal").modal('hide');
+            //显示锅炉数据
+            $.post("/service/查询锅炉数据",obj,function (data) {
+                if('false' == data['queryParam']) {
+                    alert(data['message']);
+                    alert('ddfs');
+                    return;
+                }
+                //加载数据
+                loadData($("#tab-id_boilerInfo"),data);
+            },"json");
+        }
+
+    });
+
+}
+
+function getGlJsonData() {
+    var glDataId = '';
+    var glJsonArray=[];
+
+    var selectRows = $('#tab-id_pointInfo').bootstrapTable('getSelections');
+    var obj = selectRows[0];
+    for(var i = 0; i < glDataG.length; i++) {
+        glDataId = 'glData'+i;
+        var boilerTemplateStr = $("#"+glDataId).val();
+        var boilerTemplateJson = JSON.parse(boilerTemplateStr);
+
+        var item={};
+        item.项目编号=obj['项目编号'];
+        item.点位编号=obj['点位编号'];
+        item.样品编号=obj['样品编号'];
+        item.序号=boilerTemplateJson['序号'];
+        item.时间段=obj['时间段'];
+        item.项目名称=boilerTemplateJson['项目名称'];
+
+        var checkResult = $("#项目值"+i).val();
+        if(typeof(checkResult) == 'undefined') {
+            checkResult = '';
+        }
+
+        item.检测结果=checkResult;
+        item.方法代码=boilerTemplateJson['方法代码'];
+        item.单位=boilerTemplateJson['单位'];
+        item.仪器编号=boilerTemplateJson['仪器编号'];
+
+        var checkData = $("#检测日期"+i).val();
+        if(typeof(checkData) == 'undefined') {
+            checkData = '';
+        }
+        item.s检测日期=checkData;
+
+        var checkTime = $("#时间"+i).val();
+        if(typeof(checkTime) == 'undefined') {
+            checkTime = '';
+        }
+        item.时间=checkTime;
+
+        glJsonArray.push(item);
+    }
+
+    return glJsonArray;
+}
 

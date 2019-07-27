@@ -295,7 +295,31 @@ public class EnvController {
     public String addOperateMode(工况表 record) {
         try {
             s工况表SVImpl.addRecord(record);
-            return ControllerUtil.result(true, "工况回传成功");
+
+            //工况添加成功后，在查询所有工况信息
+            List<工况表> query工况Infos = query工况Infos(record.get项目编号(),record.get点位编号());
+
+            return JSONArray.fromObject(query工况Infos).toString();
+        }catch (Exception e) {
+            LOGGER.error("工况回传异常",e);
+            return ControllerUtil.result(false, e.getMessage());
+        }
+    }
+
+    private List<工况表> query工况Infos(String xmbh,String dwbh) throws Exception {
+        return s工况表SVImpl.queryRecordsByCond(xmbh,dwbh);
+    }
+
+    //工况回传
+    @ResponseBody
+    @RequestMapping(value="/查询工况信息",produces="text/json;charset=UTF-8")
+    public String queryGkInfos(工况表 record) {
+        try {
+
+            //工况添加成功后，在查询所有工况信息
+            List<工况表> query工况Infos = query工况Infos(record.get项目编号(),record.get点位编号());
+
+            return JSONArray.fromObject(query工况Infos).toString();
         }catch (Exception e) {
             LOGGER.error("工况回传异常",e);
             return ControllerUtil.result(false, e.getMessage());

@@ -11,13 +11,14 @@ import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +37,13 @@ public class BoilerTemplateController {
 
     @Resource
     private I锅炉数据SV s锅炉数据SVImpl;
+
+    @InitBinder
+    public void initBind(WebDataBinder binder){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+    }
 
     @ResponseBody
     @RequestMapping(value="/queryBoilerTemplate",produces="text/json;charset=UTF-8")
@@ -87,6 +95,35 @@ public class BoilerTemplateController {
             record.set检测人((String)request.getSession().getAttribute("userName"));
 
             s锅炉数据SVImpl.addRecord(record);
+            return ControllerUtil.result(true, "保存锅炉数据成功");
+        }catch (Exception e) {
+            LOGGER.error("保存锅炉数据异常异常",e);
+            return ControllerUtil.result(false, e.getMessage());
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/saveBoilerResult2")
+    public String saveBoilerResult2(@RequestBody List<锅炉数据> records,HttpServletRequest request) {
+        try {
+            Date now = new Date();
+            if(null == records || records.size() <1) {
+                return ControllerUtil.result(true, "保存锅炉数据成功");
+            }
+
+            for (锅炉数据 item : records) {
+                String d = item.getS检测日期();
+                if(StringUtils.isBlank(d)) {
+                    String checkDate = DateUtil.transTimeToString(now,DateUtil.FORMAT_YYMMDD);
+                    item.set检测日期(DateUtil.transToDate(checkDate,DateUtil.FORMAT_YYMMDD));
+                }else{
+                    item.set检测日期(DateUtil.transToDate(d,DateUtil.FORMAT_NOLINE_YYMMDD));
+                }
+
+                item.set检测人((String)request.getSession().getAttribute("userName"));
+                s锅炉数据SVImpl.addRecord(item);
+            }
+
             return ControllerUtil.result(true, "保存锅炉数据成功");
         }catch (Exception e) {
             LOGGER.error("保存锅炉数据异常异常",e);

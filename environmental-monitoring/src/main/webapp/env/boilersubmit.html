@@ -12,6 +12,12 @@
     <script src="/bootstrap-fileinput-master/js/fileinput.min.js" type="text/javascript"></script>
     <script src="/bootstrap-fileinput-master/js/locales/zh.js" type="text/javascript"></script>
 
+
+    <link href="/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css" media="all" rel="stylesheet" type="text/css"/>
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.zh-CN.js" type="text/javascript"></script>
+
+
     <script src="/env/boilersubmit.js" type="text/javascript"></script>
 
 </head>
@@ -103,6 +109,10 @@
         <!--<button type="button" style="margin-top: 5px;" class="btn btn-primary btn-block" onclick="operatingModeSubmit()">工况回传</button>-->
     <!--</div>-->
 </div>
+<!-- 锅炉数据上传结果 -->
+<div id="div-id-table_gkInfos" style="margin-top: 0px">
+    <table id="tab-id_gkInfos" style="background: beige"></table>
+</div>
 
 <div class="panel panel-default" style="margin-bottom: 2px">
     <nav class="navbar navbar-default" style="margin-bottom: 0px">
@@ -128,7 +138,7 @@
 
 <!-- 模态框 -->
 <div class="modal fade" id="myModal">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="width:750px;">
         <div class="modal-content">
             <!-- 模态框头部 -->
             <div class="modal-header">
@@ -138,30 +148,45 @@
 
             <!-- 模态框主体 -->
             <div class="modal-body">
-                <form id="airResultForm">
-                    <fieldset class="form-group">
-                        <label>锅炉模板</label>
-                        <!--<input type="text" class="form-control" id="templateName" name="templateName" placeholder="对应项目">-->
-                        <select class="form-control" id="锅炉模板" name="锅炉模板"></select>
-                    </fieldset>
-                    <fieldset class="form-group">
-                        <label >项目值</label>
-                        <input type="text" class="form-control" id="项目值" name="项目值" placeholder="项目值">
-                    </fieldset>
-                    <fieldset class="form-group">
-                        <label >检测日期</label>
-                        <input type="text" class="form-control" id="检测日期" name="检测日期" placeholder="检测日期，例如输入：20180101">
-                    </fieldset>
-                    <fieldset class="form-group">
-                        <label >时间</label>
-                        <input type="text" class="form-control" id="时间" name="时间" placeholder="检测时间，例如输入：123056">
-                    </fieldset>
+                <form id="airResultForm" class="form-inline">
+                    <!--<fieldset class="form-group">-->
+                        <!--<label>锅炉模板</label>-->
+                        <!--&lt;!&ndash;<input type="text" class="form-control" id="templateName" name="templateName" placeholder="对应项目">&ndash;&gt;-->
+                        <!--<select class="form-control" id="锅炉模板" name="锅炉模板"></select>-->
+                    <!--</fieldset>-->
+                    <!--<fieldset class="form-group">-->
+                        <!--<label >项目值</label>-->
+                        <!--<input type="text" class="form-control" id="项目值" name="项目值" placeholder="项目值">-->
+                    <!--</fieldset>-->
+                    <!--<fieldset class="form-group">-->
+                        <!--<label >检测日期</label>-->
+                        <!--<input type="text" class="form-control" id="检测日期" name="检测日期" placeholder="检测日期，例如输入：20180101">-->
+                    <!--</fieldset>-->
+                    <!--<fieldset class="form-group">-->
+                        <!--<label >时间</label>-->
+                        <!--<input type="text" class="form-control" id="时间" name="时间" placeholder="检测时间，例如输入：123056">-->
+                    <!--</fieldset>-->
+
+
+                    <!--<div class="form-group" style="display: none">-->
+                        <!--<input type="text" class="form-control" id="锅炉模板1" placeholder="锅炉模板">-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<input type="text" class="form-control" id="项目值1" placeholder="项目值">-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<input type="text" class="form-control" id="检测日期1" placeholder="检测日期，例如输入：20180101">-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<input type="text" class="form-control" id="时间1" placeholder="检测时间，例如输入：123056">-->
+                    <!--</div>-->
+
                 </form>
             </div>
 
             <!-- 模态框底部 -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="commitAirResult()">提交</button>
+                <button type="button" class="btn btn-secondary" onclick="commitAirResult2()">提交</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
             </div>
 

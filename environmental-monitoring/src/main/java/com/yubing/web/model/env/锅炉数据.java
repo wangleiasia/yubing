@@ -1,5 +1,7 @@
 package com.yubing.web.model.env;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class 锅炉数据 {
@@ -21,6 +23,7 @@ public class 锅炉数据 {
 
     private String 单位;
 
+
     private Date 检测日期;
 
     private String 时间;
@@ -34,6 +37,16 @@ public class 锅炉数据 {
     private String 结论;
 
     private String 选择;
+
+    private String s检测日期;
+
+    public String getS检测日期() {
+        return s检测日期;
+    }
+
+    public void setS检测日期(String s检测日期) {
+        this.s检测日期 = s检测日期;
+    }
 
     public String get项目编号() {
         return 项目编号;
