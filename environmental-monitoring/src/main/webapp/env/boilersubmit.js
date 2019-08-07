@@ -423,16 +423,16 @@ function getGlHtml(i,data) {
     var template = data['项目名称'];
 
     html += '<div class="form-group">\n' +
-        '        <input type="text" class="form-control" id="锅炉模板'+i+'" placeholder="锅炉模板" value="'+template+'">\n' +
+        '        <input type="text" class="form-control" style="width:200px;" id="锅炉模板'+i+'" placeholder="锅炉模板" value="'+template+'">\n' +
         '        </div>\n' +
         '        <div class="form-group">\n' +
-        '        <input type="text" class="form-control" id="项目值'+i+'" placeholder="项目值">\n' +
+        '        <input type="text" class="form-control" style="width:150px;" id="项目值'+i+'" placeholder="项目值">\n' +
         '        </div>\n' +
         '        <div class="form-group">\n' +
-        '        <input type="text" class="form-control" id="检测日期'+i+'" placeholder="检测日期，例如输入：20180101">\n' +
+        '        <input type="text" class="form-control" style="width:150px;" id="检测日期'+i+'" placeholder="检测日期，例如输入：20180101">\n' +
         '        </div>\n' +
         '        <div class="form-group">\n' +
-        '        <input type="text" class="form-control" id="时间'+i+'" placeholder="检测时间，例如输入：123056">\n' +
+        '        <input type="text" class="form-control" style="width:150px;" id="时间'+i+'" placeholder="检测时间，例如输入：123056">\n' +
         '        </div>';
     html += '<div class="form-group" style="display: none">\n' +
         '        <input type="text" class="form-control" id="glData'+i+'" placeholder="检测时间，例如输入：123056">\n' +
