@@ -383,8 +383,10 @@ function commitAirResult() {
     },"json");
 }
 
+var recordLen = 0;
 function initGlHtml(glData) {
     var html = "";
+    recordLen = glData.length;
     for(var i = 0; i < glData.length; i++) {
         html += getGlHtml(i,glData[i]);
     }
@@ -400,13 +402,31 @@ function initGlHtml(glData) {
             language:  'zh-CN',
             todayBtn:  1,
             autoclose: 1
+        }).on('changeDate',function(ev) {
+            //日期回调函数
+            // debugger
+            var id = ev.currentTarget.id;
+            var time = $("#"+id).val();
+            for(var i = 0; i < recordLen; i++) {
+                $("#检测日期"+i).val(time);
+            }
         });
         $("#"+timeId).datetimepicker({
-            format: 'hh:dd:ss',
+            // dateFormat: 'yyyy-mm-dd',//日期显示格式
+            format:'hh:ii:ss',//时间显示格式
             minView: "0",
             language:  'zh-CN',
             todayBtn:  1,
-            autoclose: 1
+            autoclose: 1,
+            minuteStep:1
+        }).on('changeDate',function(ev) {
+            //日期回调函数
+            // debugger
+            var id = ev.currentTarget.id;
+            var time = $("#"+id).val();
+            for(var i = 0; i < recordLen; i++) {
+                $("#时间"+i).val(time);
+            }
         });
 
         //初始化模版数据
