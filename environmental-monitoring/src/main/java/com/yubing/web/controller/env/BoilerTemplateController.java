@@ -130,4 +130,31 @@ public class BoilerTemplateController {
             return ControllerUtil.result(false, e.getMessage());
         }
     }
+
+    @ResponseBody
+    @RequestMapping(value="/updateGlsj")
+    public String updateGlsj(@RequestBody List<锅炉数据> records,HttpServletRequest request) {
+        try {
+            Date now = new Date();
+            if(null == records || records.size() <1) {
+                return ControllerUtil.result(true, "保存锅炉数据成功");
+            }
+
+            锅炉数据 r = records.get(0);
+            String d = r.getS检测日期();
+            if(StringUtils.isBlank(d)) {
+                String checkDate = DateUtil.transTimeToString(now,DateUtil.FORMAT_YYMMDD);
+                r.set检测日期(DateUtil.transToDate(checkDate,DateUtil.FORMAT_YYMMDD));
+            }else{
+                r.set检测日期(DateUtil.transToDate(d,DateUtil.FORMAT_YYMMDD));
+            }
+
+            s锅炉数据SVImpl.updateGlsj(r);
+
+            return ControllerUtil.result(true, "保存锅炉数据成功");
+        }catch (Exception e) {
+            LOGGER.error("保存锅炉数据异常异常",e);
+            return ControllerUtil.result(false, e.getMessage());
+        }
+    }
 }

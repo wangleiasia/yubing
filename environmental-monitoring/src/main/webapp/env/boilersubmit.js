@@ -35,7 +35,10 @@ $(document).ready(function () {
         {'field': '方法代码', 'title': '方法代码'},
         {'field': '单位', 'title': '单位'},
         {'field': '仪器编号', 'title': '仪器编号'},
-        {'field': '检测人', 'title': '检测人'}
+        {'field': '检测人', 'title': '检测人'},
+        {'field': '检测日期', 'title': '检测日期'},
+        {'field': '时间', 'title': '检测时间'},
+        {'field': '复核', 'title': '复核'}
     ];
     //生成表格对象并初始化
     new RadioTableObject('tab-id_boilerInfo', boilerInfoColumns).Init();
@@ -182,12 +185,15 @@ $("#tab-id_pointInfo").on('click-row.bs.table', function(e,row, element) {
     // console.log(e);
     // console.log(row);
     // console.log(element);
+    var sjd = row.时间段;
     var param = "项目编号="+row.项目编号;
     param += "&点位编号="+row.点位编号;
     param += "&样品编号="+row.样品编号;
     $.post("/service/查询工况信息",param,function (data) {
         loadData($("#tab-id_gkInfos"),data);
     },"json");
+
+    $("#时间段").val(sjd);
 
     //初始化锅炉数据
     $.post("/service/查询锅炉数据",param,function (data) {
@@ -421,11 +427,13 @@ function initGlHtml(glData) {
             minuteStep:1
         }).on('changeDate',function(ev) {
             //日期回调函数
-            // debugger
+            debugger
             var id = ev.currentTarget.id;
-            var time = $("#"+id).val();
-            for(var i = 0; i < recordLen; i++) {
-                $("#时间"+i).val(time);
+            if('时间0' == id) {
+                var time = $("#" + id).val();
+                for (var i = 0; i < recordLen; i++) {
+                    $("#时间" + i).val(time);
+                }
             }
         });
 
@@ -461,6 +469,40 @@ function getGlHtml(i,data) {
     return html;
 }
 
+function validSubmit() {
+    var glDataId = '';
+    var result = true;
+    for(var i = 0; i < glDataG.length; i++) {
+        var checkResult = $("#项目值"+i).val();
+        if(typeof(checkResult) == 'undefined') {
+            checkResult = '';
+        }
+        if('' == checkResult) {
+            alert('检测结果不能为空！');
+            result = false;
+            break;
+        }
+        var checkData = $("#检测日期"+i).val();
+        if(typeof(checkData) == 'undefined') {
+            checkData = '';
+        }
+        if('' == checkData) {
+            alert('检测日期不能为空！');
+            result = false;
+            break;
+        }
+        var checkTime = $("#时间"+i).val();
+        if(typeof(checkTime) == 'undefined') {
+            checkTime = '';
+        }
+        if('' == checkTime) {
+            alert('时间不能为空！');
+            result = false;
+            break;
+        }
+    }
+    return result;
+}
 
 
 function commitAirResult2() {
@@ -471,6 +513,11 @@ function commitAirResult2() {
     }
 
     var obj = selectRows[0];
+
+    //校验输入的内容是否空
+    if(!validSubmit()) {
+        return;
+    }
 
     var jsonData = getGlJsonData();
     // console.log(jsonData);
@@ -551,4 +598,133 @@ function getGlJsonData() {
 
     return glJsonArray;
 }
+
+var updateRow ;
+$("#tab-id_boilerInfo").on('dbl-click-row.bs.table', function(e,row, element) {
+    // console.log(e);
+    // console.log(row);
+    // console.log(element);
+
+    //已审核的数据，不能在进行修改
+    var shr = row.复核;
+    if(shr != '') {
+        alert('当前数据已经审核，不允许修改！');
+        return;
+    }
+
+    $("#项目名称").val(row.项目名称);
+    $("#检测结果").val(row.检测结果);
+    $("#检测日期").val(row.检测日期);
+    $("#时间").val(row.时间);
+
+    updateRow = row;
+
+    $("#UpMyModal").modal('show');
+});
+
+function updateGlsj() {
+    var selectRows = $('#tab-id_pointInfo').bootstrapTable('getSelections');
+    if(selectRows.length == 0) {
+        alert("请先选择样品！");
+        return;
+    }
+
+    var obj = selectRows[0];
+
+    if(!validSubmitFoUpdate()) {
+        return;
+    }
+
+    var jsonData = getGlJsonDataForUp();
+
+    $.ajax({
+        // headers必须添加，否则会报415错误
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        type: 'POST',
+        dataType: "json", //表示返回值类型，不必须
+        data: JSON.stringify(jsonData),
+        // data: item,
+        url: '/service/updateGlsj',
+        success: function(data){
+            alert('更新成功');
+            $("#UpMyModal").modal('hide');
+            //显示锅炉数据
+            $.post("/service/查询锅炉数据",obj,function (data) {
+                if('false' == data['queryParam']) {
+                    alert(data['message']);
+                    return;
+                }
+                //加载数据
+                loadData($("#tab-id_boilerInfo"),data);
+            },"json");
+        }
+
+    });
+
+}
+
+function getGlJsonDataForUp() {
+    var glJsonArray=[];
+    var selectRows = $('#tab-id_pointInfo').bootstrapTable('getSelections');
+    var obj = selectRows[0];
+
+    var item={};
+    item.项目编号=obj['项目编号'];
+    item.点位编号=obj['点位编号'];
+    item.样品编号=obj['样品编号'];
+    item.序号=updateRow.序号;
+    item.时间段=obj['时间段'];
+    item.项目名称=updateRow.项目名称;
+
+    item.方法代码=updateRow.方法代码;
+    item.单位=updateRow.单位;
+    item.仪器编号=updateRow.仪器编号;
+
+    item.检测结果=$("#检测结果").val();
+    item.s检测日期=$("#检测日期").val();
+    item.时间=$("#时间").val();
+
+    glJsonArray.push(item);
+
+
+    return glJsonArray;
+}
+
+
+function validSubmitFoUpdate() {
+    var glDataId = '';
+    var result = true;
+
+    var checkResult = $("#检测结果").val();
+    if(typeof(checkResult) == 'undefined') {
+        checkResult = '';
+    }
+    if('' == checkResult) {
+        alert('检测结果不能为空！');
+        result = false;
+    }
+    var checkData = $("#检测日期").val();
+    if(typeof(checkData) == 'undefined') {
+        checkData = '';
+    }
+    if('' == checkData) {
+        alert('检测日期不能为空！');
+        result = false;
+    }
+    var checkTime = $("#时间").val();
+    if(typeof(checkTime) == 'undefined') {
+        checkTime = '';
+    }
+    if('' == checkTime) {
+        alert('时间不能为空！');
+        result = false;
+    }
+
+    return result;
+}
+
+
 

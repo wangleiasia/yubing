@@ -24,11 +24,17 @@
     <title>登录</title>
 
     <style>
+        /*body{*/
+            /*background-image: url("/frame/image/env/env-bg.jpg");*/
+            /*!*background-size: cover;*!*/
+            /*!*width: 100%;*!*/
+            /*!*height: 100%;*!*/
+        /*}*/
+
         body{
-            background-image: url("/frame/image/env/env-bg.jpg");
-            /*background-size: cover;*/
-            /*width: 100%;*/
-            /*height: 100%;*/
+            background-image: url("/frame/image/env/bg.png");
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         /*#fooler{*/
@@ -51,22 +57,24 @@
 <div style="margin-top: 70px;">
     <form class="form-horizontal" id="form-id_login">
         <div class="form-group">
-            <label class="col-sm-4 control-label"></label>
+            <label class="col-sm-4 control-label">用户名</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" id="userName" name="userName" placeholder="输入用户名" value="">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-4 control-label"></label>
+            <label class="col-sm-4 control-label">密码</label>
             <div class="col-sm-4">
                 <input type="password" class="form-control" id="userPass" name="userPass" placeholder="输入密码" value="">
             </div>
         </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label"></label>
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-primary col-sm-12" onclick="login()">登录</button>
+            </div>
+        </div>
     </form>
-</div>
-<div>
-    <label class="col-sm-4 control-label"></label>
-    <button type="button" class="btn btn-primary col-sm-4" onclick="login()">登录</button>
 </div>
 
 </div>

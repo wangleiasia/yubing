@@ -16,5 +16,5 @@ public interface I锅炉数据SV {
 
     List<锅炉数据> queryRecordsByCond(Map<String,String> cond) throws Exception;
 
-
+    void updateGlsj(锅炉数据 record) throws Exception;
 }

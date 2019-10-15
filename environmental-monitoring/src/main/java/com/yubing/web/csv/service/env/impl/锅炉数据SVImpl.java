@@ -49,4 +49,28 @@ public class 锅炉数据SVImpl implements I锅炉数据SV {
 
         return i锅炉数据DAO.selectByExample(example);
     }
+
+    public void updateGlsj(锅炉数据 record) throws Exception {
+        锅炉数据Example example = new 锅炉数据Example() ;
+        锅炉数据Example.Criteria c = example.or();
+
+        c.and项目编号EqualTo(record.get项目编号());
+        c.and点位编号EqualTo(record.get点位编号());
+        c.and样品编号EqualTo(record.get样品编号());
+        c.and序号EqualTo(record.get序号());
+        c.and项目名称EqualTo(record.get项目名称());
+        c.and方法代码EqualTo(record.get方法代码());
+
+        List<锅炉数据> infos = i锅炉数据DAO.selectByExample(example);
+        if(null == infos || infos.size() != 1) {
+            return;
+        }
+
+        锅炉数据 info = infos.get(0);
+        info.set检测日期(record.get检测日期());
+        info.set时间(record.get时间());
+        info.set检测结果(record.get检测结果());
+
+        i锅炉数据DAO.updateByExample(info,example);
+    }
 }
