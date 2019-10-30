@@ -70,6 +70,7 @@ public class 锅炉数据SVImpl implements I锅炉数据SV {
         info.set检测日期(record.get检测日期());
         info.set时间(record.get时间());
         info.set检测结果(record.get检测结果());
+        info.set仪器编号(record.get仪器编号());
 
         i锅炉数据DAO.updateByExample(info,example);
     }

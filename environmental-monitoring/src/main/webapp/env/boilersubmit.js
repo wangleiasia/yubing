@@ -5,6 +5,11 @@
 var airTemplateData;
 var rowId;
 var glDataG;
+var oper='';
+
+var yqbh;
+
+
 $(document).ready(function () {
 
     //定义大气样品
@@ -77,8 +82,26 @@ $(document).ready(function () {
         $("#项目编号").selectLoad(prjArray);
     },"json");
 
-    //初始化：锅炉模板下拉列表展示
-    initBoilerTemplate();
+    //初始化一起编号数据
+    $.post("/service/pointManage/queryEquipmentForAir",'',function (data) {
+        var equipmentArray = [];
+        if('false' == data['result']) {
+            $("#设备编号").selectLoad(equipmentArray);
+            return;
+        }
+        //加载数据
+        for(var i = 0; i < data.length; i++) {
+            var descV = '['+data[i]['设备编号']+']['+data[i]['设备名称']+']';
+            var item ={
+                value:data[i]['设备编号'],
+                desc:descV
+            };
+            equipmentArray.push(item);
+        }
+
+        yqbh = equipmentArray;
+
+    },"json");
 
     $('#form-id_noisesubmit').bootstrapValidator({
         message: 'This value is not valid',
@@ -142,6 +165,8 @@ function initBoilerTemplate() {
 
         initGlHtml(data);
         glDataG = data;
+
+        $("#myModal").modal('show');
 
     },"json");
 }
@@ -389,6 +414,12 @@ function commitAirResult() {
     },"json");
 }
 
+//批量新增
+function mutiAdd() {
+    //初始化：锅炉模板下拉列表展示
+    initBoilerTemplate();
+}
+
 var recordLen = 0;
 function initGlHtml(glData) {
     var html = "";
@@ -397,6 +428,8 @@ function initGlHtml(glData) {
         html += getGlHtml(i,glData[i]);
     }
     $("#airResultForm").append(html);
+
+    var yqbhSelectHtml = getYqbhHtml();
 
     for(var i = 0; i < glData.length; i++) {
         //初始化日期控件
@@ -427,7 +460,7 @@ function initGlHtml(glData) {
             minuteStep:1
         }).on('changeDate',function(ev) {
             //日期回调函数
-            debugger
+            // debugger
             var id = ev.currentTarget.id;
             if('时间0' == id) {
                 var time = $("#" + id).val();
@@ -441,7 +474,25 @@ function initGlHtml(glData) {
         var v = JSON.stringify(glData[i]);
         var glDataId = 'glData'+i;
         $("#"+glDataId).attr("value",v);
+
+        // debugger
+        var yqbhId = '仪器编号'+i;
+        $("#"+yqbhId).html(yqbhSelectHtml)
     }
+}
+
+function valueChg() {
+    for(var i = 1; i < recordLen; i++) {
+        $("#仪器编号"+i).val($("#仪器编号0").val());
+    }
+}
+
+function getYqbhHtml() {
+    var html = '<option value = "">--请选择--</option>';
+    for (var i = 0; i < yqbh.length; i++) {
+        html += '<option value = "'+yqbh[i].value+'">'+yqbh[i].desc+'</option>';
+    }
+    return html;
 }
 
 function getGlHtml(i,data) {
@@ -462,26 +513,59 @@ function getGlHtml(i,data) {
         '        <div class="form-group">\n' +
         '        <input type="text" class="form-control" style="width:150px;" id="时间'+i+'" placeholder="检测时间，例如输入：123056">\n' +
         '        </div>';
+    if(i == 0) {
+        html += '<div class="form-group">\n' +
+            '        <select class="form-control" style="width:150px;" onchange="valueChg()" id="仪器编号'+i+'" placeholder="仪器编号"></select>\n' +
+            '        </div>';
+    }else{
+        html += '<div class="form-group">\n' +
+            '        <select class="form-control" style="width:150px;" id="仪器编号'+i+'" placeholder="仪器编号"></select>\n' +
+            '        </div>';
+    }
     html += '<div class="form-group" style="display: none">\n' +
         '        <input type="text" class="form-control" id="glData'+i+'" placeholder="检测时间，例如输入：123056">\n' +
         '        </div>';
-
     return html;
+}
+//初始化一起编号下拉列表
+function initYqbh() {
+    $.post("/service/pointManage/queryEquipmentForAir",'',function (data) {
+        var equipmentArray = [];
+        debugger
+        if('false' == data['result']) {
+            $("#设备编号").selectLoad(equipmentArray);
+            return;
+        }
+        //加载数据
+        for(var i = 0; i < data.length; i++) {
+            var descV = '['+data[i]['设备编号']+']['+data[i]['设备名称']+']';
+            var item ={
+                value:data[i]['设备编号'],
+                desc:descV
+            };
+            equipmentArray.push(item);
+        }
+
+        for (var i = 0; i < recordLen; i++) {
+            $("#仪器编号"+i).selectLoad(equipmentArray);
+        }
+
+    },"json");
 }
 
 function validSubmit() {
     var glDataId = '';
     var result = true;
     for(var i = 0; i < glDataG.length; i++) {
-        var checkResult = $("#项目值"+i).val();
-        if(typeof(checkResult) == 'undefined') {
-            checkResult = '';
-        }
-        if('' == checkResult) {
-            alert('检测结果不能为空！');
-            result = false;
-            break;
-        }
+        // var checkResult = $("#项目值"+i).val();
+        // if(typeof(checkResult) == 'undefined') {
+        //     checkResult = '';
+        // }
+        // if('' == checkResult) {
+        //     alert('检测结果不能为空！');
+        //     result = false;
+        //     break;
+        // }
         var checkData = $("#检测日期"+i).val();
         if(typeof(checkData) == 'undefined') {
             checkData = '';
@@ -579,7 +663,7 @@ function getGlJsonData() {
         item.检测结果=checkResult;
         item.方法代码=boilerTemplateJson['方法代码'];
         item.单位=boilerTemplateJson['单位'];
-        item.仪器编号=boilerTemplateJson['仪器编号'];
+        //item.仪器编号=boilerTemplateJson['仪器编号'];
 
         var checkData = $("#检测日期"+i).val();
         if(typeof(checkData) == 'undefined') {
@@ -592,6 +676,13 @@ function getGlJsonData() {
             checkTime = '';
         }
         item.时间=checkTime;
+
+
+        var yqbhVal = $("#仪器编号"+i).val();
+        if(typeof(yqbhVal) == 'undefined') {
+            yqbhVal = '';
+        }
+        item.仪器编号=yqbhVal;
 
         glJsonArray.push(item);
     }
@@ -606,19 +697,26 @@ $("#tab-id_boilerInfo").on('dbl-click-row.bs.table', function(e,row, element) {
     // console.log(element);
 
     //已审核的数据，不能在进行修改
+    // debugger
     var shr = row.复核;
     if(shr != '') {
         alert('当前数据已经审核，不允许修改！');
         return;
     }
 
+    initDatePickerForUp();
+
+    $("#仪器编号").html(getYqbhHtml());
+
     $("#项目名称").val(row.项目名称);
     $("#检测结果").val(row.检测结果);
     $("#检测日期").val(row.检测日期);
     $("#时间").val(row.时间);
+    $("#仪器编号").val(row.仪器编号);
 
     updateRow = row;
 
+    oper='edit';
     $("#UpMyModal").modal('show');
 });
 
@@ -628,15 +726,29 @@ function updateGlsj() {
         alert("请先选择样品！");
         return;
     }
-
     var obj = selectRows[0];
 
-    if(!validSubmitFoUpdate()) {
-        return;
+    var url = '';
+    var jsonData = '';
+    var msg = '';
+    var modelId = '';
+    if('add' == oper) {
+        url = '/service/saveBoilerResult2';
+        if(!validSubmitForAddSignle()) {
+            return;
+        }
+        jsonData = getGlJsonDataForAdd();
+        msg = '新增成功';
+        modelId = 'AddMyModal';
+    }else if('edit' == oper) {
+        url = '/service/updateGlsj';
+        if(!validSubmitFoUpdate()) {
+            return;
+        }
+        jsonData = getGlJsonDataForUp();
+        msg = '更新成功';
+        modelId = 'UpMyModal';
     }
-
-    var jsonData = getGlJsonDataForUp();
-
     $.ajax({
         // headers必须添加，否则会报415错误
         headers: {
@@ -647,10 +759,10 @@ function updateGlsj() {
         dataType: "json", //表示返回值类型，不必须
         data: JSON.stringify(jsonData),
         // data: item,
-        url: '/service/updateGlsj',
+        url: url,
         success: function(data){
-            alert('更新成功');
-            $("#UpMyModal").modal('hide');
+            alert(msg);
+            $("#"+modelId).modal('hide');
             //显示锅炉数据
             $.post("/service/查询锅炉数据",obj,function (data) {
                 if('false' == data['queryParam']) {
@@ -681,7 +793,8 @@ function getGlJsonDataForUp() {
 
     item.方法代码=updateRow.方法代码;
     item.单位=updateRow.单位;
-    item.仪器编号=updateRow.仪器编号;
+    //item.仪器编号=updateRow.仪器编号;
+    item.仪器编号=$("#仪器编号").val();
 
     item.检测结果=$("#检测结果").val();
     item.s检测日期=$("#检测日期").val();
@@ -698,14 +811,14 @@ function validSubmitFoUpdate() {
     var glDataId = '';
     var result = true;
 
-    var checkResult = $("#检测结果").val();
-    if(typeof(checkResult) == 'undefined') {
-        checkResult = '';
-    }
-    if('' == checkResult) {
-        alert('检测结果不能为空！');
-        result = false;
-    }
+    // var checkResult = $("#检测结果").val();
+    // if(typeof(checkResult) == 'undefined') {
+    //     checkResult = '';
+    // }
+    // if('' == checkResult) {
+    //     alert('检测结果不能为空！');
+    //     result = false;
+    // }
     var checkData = $("#检测日期").val();
     if(typeof(checkData) == 'undefined') {
         checkData = '';
@@ -726,5 +839,154 @@ function validSubmitFoUpdate() {
     return result;
 }
 
+function validSubmitForAddSignle() {
+    var result = true;
+    var boilerTemplateStr = $("#a_项目名称").val();
+    if(typeof(boilerTemplateStr) == 'undefined') {
+        boilerTemplateStr = '-1';
+    }
+    if('-1' == boilerTemplateStr) {
+        alert('请选择项目名称！');
+        result = false;
+        return result;
+    }
+    var checkData = $("#a_检测日期").val();
+    if(typeof(checkData) == 'undefined') {
+        checkData = '';
+    }
+    if('' == checkData) {
+        alert('检测日期不能为空！');
+        result = false;
+    }
+    var checkTime = $("#a_时间").val();
+    if(typeof(checkTime) == 'undefined') {
+        checkTime = '';
+    }
+    if('' == checkTime) {
+        alert('时间不能为空！');
+        result = false;
+    }
 
+    return result;
+}
+
+function addGlsjSignle() {
+    oper = 'add';
+    initDatePickerForAdd();
+
+    //初始化模版
+    $.post("/service/queryBoilerTemplate",'',function (data) {
+        var prjArray = [];
+        if('false' == data['result']) {
+            $("#锅炉模板").selectLoad(prjArray);
+            return;
+        }
+        //加载数据
+        for(var i = 0; i < data.length; i++) {
+            var v = JSON.stringify(data[i]);
+            var item ={
+                value:v,
+                desc:data[i]['项目名称']
+            };
+            prjArray.push(item);
+        }
+        $("#a_项目名称").selectLoad(prjArray);
+
+    },"json");
+
+    $("#a_仪器编号").html(getYqbhHtml());
+
+    // $('#项目名称').removeAttr("readonly");
+    $("#AddMyModal").modal('show');
+}
+
+function initDatePickerForUp() {
+    //初始化日期控件
+    $("#检测日期").datetimepicker({
+        format: 'yyyy-mm-dd',
+        minView: "month",
+        language:  'zh-CN',
+        todayBtn:  1,
+        autoclose: 1
+    }).on('changeDate',function(ev) {
+    });
+    $("#时间").datetimepicker({
+        // dateFormat: 'yyyy-mm-dd',//日期显示格式
+        format:'hh:ii:ss',//时间显示格式
+        minView: "0",
+        language:  'zh-CN',
+        todayBtn:  1,
+        autoclose: 1,
+        minuteStep:1
+    }).on('changeDate',function(ev) {
+    });
+}
+function initDatePickerForAdd() {
+    //初始化日期控件
+    $("#a_检测日期").datetimepicker({
+        format: 'yyyy-mm-dd',
+        minView: "month",
+        language:  'zh-CN',
+        todayBtn:  1,
+        autoclose: 1
+    }).on('changeDate',function(ev) {
+    });
+    $("#a_时间").datetimepicker({
+        // dateFormat: 'yyyy-mm-dd',//日期显示格式
+        format:'hh:ii:ss',//时间显示格式
+        minView: "0",
+        language:  'zh-CN',
+        todayBtn:  1,
+        autoclose: 1,
+        minuteStep:1
+    }).on('changeDate',function(ev) {
+    });
+}
+
+
+function getGlJsonDataForAdd() {
+    var glDataId = '';
+    var glJsonArray=[];
+
+    var selectRows = $('#tab-id_pointInfo').bootstrapTable('getSelections');
+    var obj = selectRows[0];
+
+    var boilerTemplateStr = $("#a_项目名称").val();
+    var boilerTemplateJson = JSON.parse(boilerTemplateStr);
+
+    var item={};
+    item.项目编号=obj['项目编号'];
+    item.点位编号=obj['点位编号'];
+    item.样品编号=obj['样品编号'];
+    item.序号=boilerTemplateJson['序号'];
+    item.时间段=obj['时间段'];
+    item.项目名称=boilerTemplateJson['项目名称'];
+
+    var checkResult = $("#a_检测结果").val();
+    if(typeof(checkResult) == 'undefined') {
+        checkResult = '';
+    }
+
+    item.检测结果=checkResult;
+    item.方法代码=boilerTemplateJson['方法代码'];
+    item.单位=boilerTemplateJson['单位'];
+    //item.仪器编号=boilerTemplateJson['仪器编号'];
+    item.仪器编号=$("#a_仪器编号").val();
+
+    var checkData = $("#a_检测日期").val();
+    if(typeof(checkData) == 'undefined') {
+        checkData = '';
+    }
+    item.s检测日期=checkData;
+
+    var checkTime = $("#a_时间").val();
+    if(typeof(checkTime) == 'undefined') {
+        checkTime = '';
+    }
+    item.时间=checkTime;
+
+    glJsonArray.push(item);
+
+    return glJsonArray;
+}
 

@@ -7,7 +7,7 @@ function showContent(url) {
 }
 
 $(document).ready(function () {
-   //初始化用户名
+    //初始化用户名
     $.post("/service/getLoginName",'',function (data) {
         if ('true' == data['result']) {
             $("#s-id_loginName").text(data['message']);
@@ -15,13 +15,16 @@ $(document).ready(function () {
             alert(data['message']);
         }
     },"json");
-
-    //浏览器高度
-    // var height = $(document).height();
-    // var workHeight = height-50-5-27;
-    // $("#work").height(workHeight);
-
 });
+
+function logout() {
+    $("#confirmModel").modal('show');
+}
+
+function zx() {
+    $("#confirmModel").modal('hide');
+    window.location.href = '/service/logout';
+}
 
 
 
